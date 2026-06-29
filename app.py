@@ -282,7 +282,7 @@ def _transcript_html(conversation):
         if msg["role"] == "user":
             who, color, bg = "Customer", "#0a0a0a", "#f5f4f0"
         elif msg["role"] == "assistant":
-            who, color, bg = "Reeds Assistant", "#9a7d1a", "#ffffff"
+            who, color, bg = "K&H Assistant", "#9a7d1a", "#ffffff"
         else:
             continue
         text = html.escape(msg["content"]).replace("\n", "<br>")
@@ -445,7 +445,8 @@ Naturally and conversationally find out:
   - Rough size or number of rooms/areas
   - The town or postcode
   - Rough timescale
-  - Their name and a contact number
+  - A rough budget if they have one
+  - Their name and a contact number, confirming the phone number if given
 Encourage them to upload photos using the + button - it really helps Steve estimate accurately.
 
 Services K&H offer: interior and exterior painting and decorating; plastering, skimming
@@ -454,9 +455,11 @@ tiling; dry lining; fascias, gutters and PVC; property refurbishments; general m
 and specialist work on listed buildings and heritage properties.
 
 Style: warm, professional, concise British English. Keep replies short (1-3 sentences).
+Ask one useful question at a time and do not repeat details you already have.
 Do NOT give prices or quotes - Steve provides free estimates after seeing the details.
 Once you have the key details, reassure them that's everything for now and that Steve
-will be in touch about a free estimate.
+will be in touch about a free estimate. At the very end of that final wrap-up message,
+include the internal tag [[READY]]. Do not show or mention the tag.
 """
 
 
@@ -478,51 +481,73 @@ BASE_STYLE = """
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#f6f3ec; --paper:#fffefb; --ink:#23211c; --mut:#6f685c; --line:rgba(35,33,28,.13);
-    --green:#36523f; --green-d:#26412e; --brass:#a9854f; --sage:#e9ece1;
+    --bg:#f3f7ef; --paper:#fffefb; --ink:#162018; --mut:#5f675b; --line:rgba(22,32,24,.14);
+    --green:#1f6b3a; --green-d:#102418; --brass:#d9a441; --sage:#e4f1dc; --lime:#c7e464; --plum:#2b123d;
   }
   *{box-sizing:border-box} html{scroll-behavior:smooth}
-  body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  body{margin:0;background:radial-gradient(circle at 8% -6%,rgba(199,228,100,.28),transparent 28%),radial-gradient(circle at 92% 8%,rgba(217,164,65,.18),transparent 24%),linear-gradient(180deg,#f8fbef 0%,#f3f7ef 48%,#fff8e8 100%);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
   a{color:var(--green)} img,video{max-width:100%;display:block}
   .serif{font-family:Fraunces,Georgia,serif}
   .wrap{max-width:1160px;margin:0 auto;width:100%;padding:0 24px}.narrow{max-width:780px}
-  nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:14px 24px;background:rgba(246,243,236,.86);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:14px 24px;background:rgba(255,254,251,.9);backdrop-filter:blur(12px);border-bottom:1px solid rgba(31,107,58,.18);box-shadow:0 10px 30px rgba(16,36,24,.06)}
   .brand{display:flex;align-items:center;gap:11px;color:var(--ink);text-decoration:none}
   .brand img{width:40px;height:40px;border-radius:8px;object-fit:cover}
   .brand b{font-family:Fraunces,serif;font-weight:700;font-size:19px;letter-spacing:.01em}
   .brand b span{color:var(--green)}
   .links{display:flex;align-items:center;gap:24px}.links a{color:#3b372f;text-decoration:none;font-size:14px;font-weight:600}.links a:hover{color:var(--green)}
-  .navcta{background:var(--green);color:#fff!important;padding:10px 17px;border-radius:6px;font-size:13px;box-shadow:0 6px 18px rgba(54,82,63,.22)}
-  .hero{padding:74px 0 64px;border-bottom:1px solid var(--line)}
-  .hero-inner{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:50px;align-items:center}
+  .navcta{background:linear-gradient(135deg,var(--green),#4d9148 58%,var(--brass));color:#fff!important;padding:10px 17px;border-radius:999px;font-size:13px;box-shadow:0 12px 28px rgba(31,107,58,.22)}
+  .hero{position:relative;isolation:isolate;padding:58px 0 52px;background:#102418;color:#fff;overflow:hidden;border-bottom:0}
+  .hero:before{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(8,18,12,.96),rgba(31,107,58,.82) 48%,rgba(43,18,61,.44)),url('https://www.kandhdecoratorschichester.co.uk/wp-content/uploads/2021/02/PHOTO-2021-02-01-09-40-31.jpg') center/cover;z-index:-2}
+  .hero:after{content:"";position:absolute;inset:auto -10% -34% 24%;height:420px;background:radial-gradient(circle,rgba(199,228,100,.28),rgba(217,164,65,.18) 38%,rgba(217,164,65,0) 68%);z-index:-1;pointer-events:none}
+  .hero-inner{display:grid;grid-template-columns:minmax(0,.98fr) minmax(280px,.72fr);gap:38px;align-items:center}
   .eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--brass);font-weight:700}
   h1{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:clamp(40px,6vw,66px);line-height:1.04;margin:16px 0 18px;letter-spacing:-.01em}
   h1 em{font-style:italic;color:var(--green)}
-  .hero p{font-size:18px;color:#544d43;max-width:540px;margin:0 0 26px}
+  .hero p{font-size:18px;color:#ece4d8;max-width:560px;margin:0 0 26px}
+  .hero h1{color:#fff;text-shadow:0 14px 42px rgba(0,0,0,.32)}
+  .hero h1 em{color:#e4c176}
+  .hero .eyebrow{color:#e4c176}
   .btns{display:flex;gap:12px;flex-wrap:wrap}
-  .btn{display:inline-flex;align-items:center;gap:9px;justify-content:center;border:0;border-radius:7px;background:var(--green);color:#fff;text-decoration:none;font-weight:700;padding:14px 24px;box-shadow:0 12px 28px rgba(54,82,63,.22);font-size:15px}
+  .btn{display:inline-flex;align-items:center;gap:9px;justify-content:center;border:0;border-radius:999px;background:linear-gradient(135deg,var(--green),#4e963f 62%,var(--brass));color:#fff;text-decoration:none;font-weight:700;padding:14px 24px;box-shadow:0 16px 30px rgba(31,107,58,.24);font-size:15px}
   .btn svg{width:18px;height:18px;fill:currentColor}
   .btn.ghost{background:transparent;border:1px solid var(--green);color:var(--green);box-shadow:none}
+  .hero .btn.ghost{color:#fff;border-color:rgba(255,255,255,.5);background:rgba(255,255,255,.08)}
   .btn.wa{background:#1faa53}
-  .hero-cluster{position:relative;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:14px}
-  .hero-cluster figure{margin:0;border-radius:12px;overflow:hidden;box-shadow:0 18px 44px rgba(35,30,20,.16);background:#ded8cc}
-  .hero-cluster img{width:100%;height:100%;object-fit:cover;aspect-ratio:3/4}
-  .hero-cluster figure:first-child{grid-row:span 2}.hero-cluster figure:first-child img{aspect-ratio:3/5}
-  .scorechip{position:absolute;right:-10px;bottom:-14px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 16px;box-shadow:0 16px 40px rgba(0,0,0,.14);text-align:center}
+  .hero-cluster{position:relative;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:12px;max-width:430px;justify-self:end}
+  .hero-cluster figure{margin:0;border-radius:12px;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.24);background:#ded8cc;border:1px solid rgba(255,255,255,.12)}
+  .hero-cluster img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/3}
+  .hero-cluster figure:first-child{grid-row:span 2}.hero-cluster figure:first-child img{aspect-ratio:4/5}
+  .scorechip{position:absolute;right:14px;bottom:14px;background:linear-gradient(135deg,#fff,var(--lime));border:1px solid rgba(255,255,255,.4);border-radius:999px;padding:10px 15px;box-shadow:0 16px 40px rgba(0,0,0,.2);text-align:center}
   .scorechip b{font-family:Fraunces,serif;font-size:26px;color:var(--green);display:block;line-height:1}
   .scorechip .st{color:#e0a92e;font-size:12px;letter-spacing:1px}.scorechip span{font-size:11px;color:var(--mut);font-weight:600}
-  .trustbar{background:var(--green);color:#eef3ec}
+  .hero-proof{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;max-width:580px;margin-top:28px}
+  .proof{border:1px solid rgba(199,228,100,.26);background:rgba(255,255,255,.1);backdrop-filter:blur(10px);border-radius:12px;padding:13px 14px;box-shadow:inset 0 2px 0 rgba(217,164,65,.28)}
+  .proof b{display:block;color:#fff;font-family:Fraunces,serif;font-size:22px;line-height:1}.proof span{display:block;color:#d5cfbf;font-size:12px;font-weight:700;margin-top:4px}
+  .quote-panel{position:absolute;left:-28px;bottom:34px;width:min(280px,70vw);background:rgba(255,255,255,.94);color:var(--ink);border:1px solid rgba(255,255,255,.5);border-radius:14px;padding:15px;box-shadow:0 20px 50px rgba(0,0,0,.28)}
+  .quote-panel .mini{font-size:11px;color:var(--brass);font-weight:900;letter-spacing:.14em;text-transform:uppercase}.quote-panel p{font-size:13px;color:#514b43;margin:7px 0 0}
+  .trustbar{background:linear-gradient(90deg,var(--green-d),var(--green),var(--plum));color:#eef3ec}
   .trustbar .row{display:flex;flex-wrap:wrap;gap:10px 36px;justify-content:center;padding:16px 24px;max-width:1160px;margin:0 auto;font-size:13.5px;font-weight:600}
   .trustbar .row span b{color:#fff}.trustbar .star{color:#ffd66e}
   .band{padding:80px 0}.band.alt{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .band.dark{background:linear-gradient(135deg,#102418 0%,#1f6b3a 58%,#2b123d 100%);color:#fff}
+  .band.dark .head h2,.band.dark .card h3{color:#fff}.band.dark .sub,.band.dark .card p{color:#d2ccbf}.band.dark .card{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12)}
+  .band.dark .card .ic{color:#e4c176}.band.dark .eyebrow{color:#e4c176}.band.dark .rule{background:#e4c176}
   .head{margin-bottom:38px;max-width:720px}.head h2{font-family:Fraunces,serif;font-weight:600;font-size:clamp(28px,4.4vw,46px);line-height:1.08;margin:12px 0}.sub{color:var(--mut);font-size:16.5px}
   .rule{width:46px;height:2px;background:var(--brass)}
   .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
-  .card{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:26px;transition:transform .25s,box-shadow .25s}
-  .card:hover{transform:translateY(-3px);box-shadow:0 16px 36px rgba(35,30,20,.08)}
+  .card{background:var(--paper);border:1px solid rgba(31,107,58,.14);border-radius:12px;padding:26px;transition:transform .25s,box-shadow .25s;box-shadow:0 10px 24px rgba(31,107,58,.05)}
+  .card:hover{transform:translateY(-3px);box-shadow:0 16px 36px rgba(31,107,58,.11)}
   .card .ic{width:38px;height:38px;color:var(--green)}.card h3{font-family:Fraunces,serif;font-weight:600;margin:14px 0 7px;font-size:19px}.card p{margin:0;color:var(--mut);font-size:14.5px}
-  .ba{position:relative;--pos:50%;border-radius:14px;overflow:hidden;border:1px solid var(--line);box-shadow:0 18px 44px rgba(35,30,20,.14);background:#ded8cc}
-  .ba .spacer img{width:100%;aspect-ratio:4/3;object-fit:cover;opacity:0}
+  .process{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:22px}
+  .step{position:relative;background:linear-gradient(180deg,#fffefb,#fbfff4);border:1px solid rgba(31,107,58,.14);border-radius:12px;padding:22px;box-shadow:0 12px 26px rgba(31,107,58,.06)}
+  .step b{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--green),var(--brass));color:#fff;margin-bottom:12px}.step h3{font-family:Fraunces,serif;margin:0 0 6px;font-size:19px}.step p{margin:0;color:var(--mut);font-size:14.5px}
+  .feature-strip{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:stretch}
+  .feature-main{background:linear-gradient(135deg,var(--green),#173620 58%,var(--plum));color:#fff;border-radius:16px;padding:34px;border:1px solid rgba(255,255,255,.12);box-shadow:0 20px 52px rgba(31,107,58,.18)}
+  .feature-main h2{font-family:Fraunces,serif;font-size:clamp(26px,4vw,42px);line-height:1.08;margin:10px 0}.feature-main p{color:#dfe8dd;margin:0 0 18px}.feature-list{display:grid;gap:10px}.feature-list span{display:flex;gap:10px;align-items:flex-start;font-weight:700;color:#fff}.feature-list span:before{content:"";width:9px;height:9px;border-radius:50%;background:#e4c176;margin-top:8px;flex:none}
+  .feature-side{display:grid;gap:14px}.mini-card{background:linear-gradient(180deg,#fffefb,#fff7df);border:1px solid rgba(217,164,65,.32);border-radius:14px;padding:22px;box-shadow:0 12px 28px rgba(31,107,58,.06)}.mini-card b{font-family:Fraunces,serif;color:var(--green);font-size:28px;line-height:1}.mini-card span{display:block;color:var(--mut);font-size:13px;font-weight:700;margin-top:5px}
+  #work .split{grid-template-columns:minmax(280px,520px) minmax(0,1fr)}
+  .ba{position:relative;--pos:50%;border-radius:14px;overflow:hidden;border:1px solid rgba(31,107,58,.18);box-shadow:0 18px 38px rgba(31,107,58,.14);background:#ded8cc}
+  .ba .spacer img{width:100%;aspect-ratio:16/10;object-fit:cover;opacity:0}
   .ba .layer{position:absolute;inset:0}.ba .layer img{width:100%;height:100%;object-fit:cover}
   .ba .before{clip-path:inset(0 calc(100% - var(--pos)) 0 0)}
   .ba input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;z-index:5}
@@ -532,17 +557,17 @@ BASE_STYLE = """
   .split{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
   .split h2{font-family:Fraunces,serif;font-weight:600;font-size:clamp(26px,4vw,40px);margin:10px 0 14px}
   .split p{color:#544d43;margin:0 0 12px}
-  .gallery{columns:4 220px;column-gap:14px}
-  .shot{margin:0 0 14px;border-radius:10px;overflow:hidden;background:#e3ddd1;break-inside:avoid;cursor:zoom-in;border:1px solid var(--line)}
-  .shot img{width:100%;display:block;transition:transform .5s}.shot:hover img{transform:scale(1.05)}
+  .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}
+  .shot{margin:0;border-radius:10px;overflow:hidden;background:#e3ddd1;cursor:zoom-in;border:1px solid rgba(31,107,58,.14);aspect-ratio:4/3;box-shadow:0 12px 28px rgba(31,107,58,.08)}
+  .shot img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}.shot:hover img{transform:scale(1.05)}
   .reviews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
-  .review-card{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:24px}
+  .review-card{background:var(--paper);border:1px solid rgba(31,107,58,.14);border-radius:12px;padding:24px;box-shadow:0 12px 28px rgba(31,107,58,.07)}
   .stars{color:#e0a92e;letter-spacing:.1em;font-size:14px}.review-card h3{font-family:Fraunces,serif;font-weight:600;margin:10px 0 8px;font-size:17px}.review-card p{margin:0;color:#554d43;font-size:14.5px}.review-meta{margin-top:14px;color:#8a8275;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
-  .scorewrap{display:flex;align-items:center;gap:22px;flex-wrap:wrap;background:var(--green);color:#fff;border-radius:14px;padding:24px 28px;margin-bottom:24px}
+  .scorewrap{display:flex;align-items:center;gap:22px;flex-wrap:wrap;background:linear-gradient(135deg,var(--green),#173620 58%,var(--brass));color:#fff;border-radius:14px;padding:24px 28px;margin-bottom:24px;box-shadow:0 18px 42px rgba(31,107,58,.18)}
   .scorewrap b{font-family:Fraunces,serif;font-size:46px;line-height:1}.scorewrap .st{color:#ffd66e;font-size:18px;letter-spacing:2px}.scorewrap span{color:#dce6da;font-weight:600}
   .contact-box{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:30px}.contact-box p{margin:10px 0}.contact-box strong{color:var(--ink)}
   .prose{color:#4c4539;max-width:760px}.prose h3{font-family:Fraunces,serif;color:var(--ink);font-size:19px;margin:26px 0 8px}.prose p{margin:0 0 12px}
-  .ctaband{background:var(--green);border-radius:18px;padding:48px;text-align:center;color:#fff}
+  .ctaband{background:linear-gradient(135deg,var(--green),#173620 55%,var(--brass));border-radius:18px;padding:48px;text-align:center;color:#fff;box-shadow:0 18px 42px rgba(31,107,58,.22)}
   .ctaband h2{font-family:Fraunces,serif;font-weight:600;font-size:clamp(26px,4vw,40px);margin:0 0 10px}.ctaband p{color:#cfe0d2;margin:0 0 24px}
   .ctaband .btn{background:#fff;color:var(--green)}.ctaband .btn.wa{background:#1faa53;color:#fff}
   .badges{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:18px}
@@ -554,7 +579,9 @@ BASE_STYLE = """
   .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s,transform .7s}.reveal.in{opacity:1;transform:none}
   @media(max-width:860px){
     .hero{padding:42px 0 40px}.hero-inner{grid-template-columns:1fr;gap:30px}.split{grid-template-columns:1fr;gap:24px}
-    .links a:not(.navcta){display:none}.band{padding:54px 0}.gallery{columns:2 150px}
+    .links a:not(.navcta){display:none}.band{padding:54px 0}.gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+    .hero-cluster{max-width:100%;justify-self:stretch}.hero-cluster img{aspect-ratio:5/4}.hero-cluster figure:first-child img{aspect-ratio:4/5}
+    .hero-proof{grid-template-columns:1fr 1fr}.quote-panel{position:relative;left:auto;bottom:auto;width:100%;margin-top:14px}.feature-strip{grid-template-columns:1fr}
   }
 </style>
 """
@@ -636,12 +663,18 @@ HOME_PAGE = """
       <a class="btn" href="tel:+447908701460"><svg viewBox="0 0 24 24"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.3 1l-2.1 2.2z"/></svg> Call Steve</a>
       <a class="btn ghost" href="https://wa.me/447908701460" target="_blank" rel="noopener">WhatsApp</a>
     </div>
+    <div class="hero-proof">
+      <div class="proof"><b>225</b><span>verified reviews</span></div>
+      <div class="proof"><b>10/10</b><span>Checkatrade rating</span></div>
+      <div class="proof"><b>26 yrs</b><span>decorating experience</span></div>
+    </div>
   </div>
   <div class="hero-cluster reveal">
     <figure><img src=\"""" + IMG + """2021/02/PHOTO-2021-02-01-09-40-31.jpg" alt="Decorating work by K&H" onerror="this.parentNode.style.display='none'"></figure>
     <figure><img src=\"""" + IMG + """2022/06/WhatsApp-Image-2022-06-23-at-11.59.01-AM.jpeg" alt="Decorating work by K&H" onerror="this.parentNode.style.display='none'"></figure>
     <figure><img src=\"""" + IMG + """2021/02/PHOTO-2021-02-01-09-39-42-5.jpg" alt="Decorating work by K&H" onerror="this.parentNode.style.display='none'"></figure>
     <div class="scorechip"><div class="st">&#9733;&#9733;&#9733;&#9733;&#9733;</div><b>10/10</b><span>225 reviews</span></div>
+    <div class="quote-panel"><div class="mini">24/7 quote assistant</div><p>Customers can send job details and photos instantly, so Steve gets a cleaner enquiry before calling back.</p></div>
   </div>
 </div></header>
 
@@ -663,7 +696,27 @@ HOME_PAGE = """
   </div>
 </div></section>
 
-<section class="band" id="services"><div class="wrap">
+<section class="band"><div class="wrap">
+  <div class="feature-strip reveal">
+    <div class="feature-main">
+      <div class="eyebrow">Built for real enquiries</div>
+      <h2 class="serif">A smoother way to get a quote.</h2>
+      <p>The site does more than look good: it guides visitors into sending the exact details Steve needs, including photos, location, timescale and contact details.</p>
+      <div class="feature-list">
+        <span>Photo upload built into the chat</span>
+        <span>Lead summary sent straight to the inbox</span>
+        <span>Mobile-first layout for people browsing on-site or at home</span>
+      </div>
+    </div>
+    <div class="feature-side">
+      <div class="mini-card"><b>Photos</b><span>Customers can attach rooms, walls, ceilings or exterior areas.</span></div>
+      <div class="mini-card"><b>Details</b><span>The assistant asks what, where, when and how big the job is.</span></div>
+      <div class="mini-card"><b>Follow-up</b><span>Steve receives a tidy lead instead of a vague message.</span></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="band dark" id="services"><div class="wrap">
   <div class="head reveal"><div class="rule"></div><div class="eyebrow" style="margin-top:12px">What we do</div><h2 class="serif">Services.</h2><p class="sub">No job too small &mdash; and you can send photos straight through the chat for a quick estimate.</p></div>
   <div class="cards">
     <div class="card reveal"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 21h18M5 21V8l7-4 7 4v13M9 21v-6h6v6"/></svg><h3>Painting &amp; decorating</h3><p>Interior and exterior, walls, ceilings, woodwork &mdash; neat lines, clean finish.</p></div>
@@ -672,6 +725,16 @@ HOME_PAGE = """
     <div class="card reveal"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12h18M12 3v18M3 7.5h18M3 16.5h18"/></svg><h3>Tiling &amp; dry lining</h3><p>Wall and floor tiling, dry lining and overboarding.</p></div>
     <div class="card reveal"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 10l9-7 9 7v10a1 1 0 0 1-1 1h-4v-7H8v7H4a1 1 0 0 1-1-1z"/></svg><h3>Listed &amp; heritage</h3><p>Specialist care for listed buildings and period properties.</p></div>
     <div class="card reveal"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 7h16M4 12h16M4 17h10"/></svg><h3>Refurbs &amp; maintenance</h3><p>Property refurbishments, fascias, gutters, PVC and general upkeep.</p></div>
+  </div>
+</div></section>
+
+<section class="band"><div class="wrap">
+  <div class="head reveal"><div class="rule"></div><div class="eyebrow" style="margin-top:12px">How it works</div><h2 class="serif">From first message to free estimate.</h2><p class="sub">Simple for customers, useful for Steve, and much better than a plain contact form.</p></div>
+  <div class="process">
+    <div class="step reveal"><b>1</b><h3>Send the job</h3><p>Tell the assistant what needs painting, decorating or plastering.</p></div>
+    <div class="step reveal"><b>2</b><h3>Add photos</h3><p>Upload pictures of the area so Steve can understand the condition and finish needed.</p></div>
+    <div class="step reveal"><b>3</b><h3>Confirm details</h3><p>Location, timing, size, budget and contact details are captured cleanly.</p></div>
+    <div class="step reveal"><b>4</b><h3>Get a reply</h3><p>Steve follows up personally with the next step and a free estimate.</p></div>
   </div>
 </div></section>
 
@@ -783,14 +846,15 @@ def ensure_session():
 @app.route("/sitemap.xml")
 def sitemap():
     pages = ["/", "/services", "/gallery", "/contact", "/privacy-policy"]
-    base = "https://reeds-demo.onrender.com"
+    base = request.host_url.rstrip("/")
     urls = "".join(f"<url><loc>{base}{p}</loc></url>" for p in pages)
     xml = f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>'
     return Response(xml, mimetype="application/xml")
 
 @app.route("/robots.txt")
 def robots():
-    return Response("User-agent: *\nAllow: /\nSitemap: https://reeds-demo.onrender.com/sitemap.xml", mimetype="text/plain")
+    base = request.host_url.rstrip("/")
+    return Response(f"User-agent: *\nAllow: /\nSitemap: {base}/sitemap.xml", mimetype="text/plain")
 
 @app.route("/")
 def home():
