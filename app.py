@@ -195,8 +195,8 @@ def _post_resend(subject, text, html_body=None, attachments=None):
     of dicts like {"filename": ..., "b64": <base64>}.
     """
     if not RESEND_API_KEY:
-        print("RESEND_API_KEY not set, skipping email")
-        return
+        print("[EMAIL] RESEND_API_KEY not set, skipping email")
+        return None, "RESEND_API_KEY not set"
 
     payload = {
         "from": RESEND_FROM,
@@ -212,6 +212,7 @@ def _post_resend(subject, text, html_body=None, attachments=None):
             {"filename": a["filename"], "content": a["b64"]} for a in attachments
         ]
 
+    print(f"[EMAIL] Attempting send -> to={NOTIFY_TO} from={RESEND_FROM} key={'set('+str(len(RESEND_API_KEY))+' chars)' if RESEND_API_KEY else 'MISSING'} subject={subject!r}")
     try:
         response = requests.post(
             "https://api.resend.com/emails",
@@ -220,9 +221,13 @@ def _post_resend(subject, text, html_body=None, attachments=None):
             timeout=15,
         )
         if response.status_code >= 300:
-            print(f"Resend error: {response.status_code} {response.text}")
+            print(f"[EMAIL] Resend ERROR {response.status_code}: {response.text}")
+        else:
+            print(f"[EMAIL] Resend OK {response.status_code}: {response.text}")
+        return response.status_code, response.text
     except Exception as e:
-        print(f"Failed to send email: {e}")
+        print(f"[EMAIL] Failed to send: {e}")
+        return None, str(e)
 
 
 def _parse_summary(structured):
@@ -897,6 +902,25 @@ def widget_frame():
     ensure_session()
     return render_template_string(WIDGET_FRAME)
 
+@app.route("/test-email")
+def test_email():
+    status, body = _post_resend(
+        "K&H test email",
+        "This is a test from your website. If you can read this, email sending works.",
+        html_body="<p>This is a <strong>test</strong> from your K&amp;H website. If you can read this, email sending works.</p>",
+    )
+    out = (
+        f"Tried to send to: {NOTIFY_TO}\n"
+        f"From: {RESEND_FROM}\n"
+        f"API key present: {'yes' if RESEND_API_KEY else 'NO - not set'}\n"
+        f"Resend status: {status}\n"
+        f"Resend response: {body}\n\n"
+        "If status is 200, check that inbox (and spam). "
+        "If you see an error here, that error tells us exactly what to fix."
+    )
+    return Response(out, mimetype="text/plain")
+
+
 @app.route("/chat", methods=["POST"])
 def chat_endpoint():
     session_id = session.get("session_id")
@@ -969,11 +993,11 @@ def chat_endpoint():
     # chat - so a lead is never lost, but normal chats wait for the full set of
     # questions. Sent at most once per visitor.
     if session_id not in notified_sessions and has_contact_info(conversation):
-        if lead_ready or _looks_like_closing(user_message) or len(conversation) >= 24:
-            notified_sessions.add(session_id)
-            conversation_copy = list(conversation)
-            images_copy = list(session_images.get(session_id, []))
-            send_lead_email(conversation_copy, images_copy)
+        print(f"[EMAIL] Lead trigger fired for session {session_id} (ready={lead_ready})")
+        notified_sessions.add(session_id)
+        conversation_copy = list(conversation)
+        images_copy = list(session_images.get(session_id, []))
+        send_lead_email(conversation_copy, images_copy)
 
     return jsonify({"reply": ai_reply})
 
