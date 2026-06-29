@@ -471,7 +471,7 @@ IMG = "https://www.kandhdecoratorschichester.co.uk/wp-content/uploads/"
 
 BASE_STYLE = """
 <link rel="icon" type="image/png" href=\"""" + KH_LOGO + """\">
-  <meta name="theme-color" content="#101722">
+  <meta name="theme-color" content="#050506">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="K&H Decorators Chichester">
 <meta property="og:title" content="K&H Decorators - Painting & Decorating, Chichester">
@@ -481,11 +481,11 @@ BASE_STYLE = """
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#f6f1e8; --paper:#fffdf8; --ink:#171820; --mut:#68625a; --line:rgba(23,24,32,.14);
-    --green:#163d68; --green-d:#101722; --brass:#d6a13a; --sage:#eef2f7; --lime:#f5d27a; --plum:#5d2f86;
+    --bg:#050506; --paper:#111317; --ink:#f7f8fb; --mut:#b5bcc7; --line:rgba(236,240,245,.16);
+    --green:#cfd6df; --green-d:#050506; --brass:#f2f5f8; --sage:#171a20; --lime:#dde3eb; --plum:#8d96a3;
   }
   *{box-sizing:border-box} html{scroll-behavior:smooth}
-  body{margin:0;background:radial-gradient(circle at 8% -6%,rgba(214,161,58,.22),transparent 28%),radial-gradient(circle at 92% 8%,rgba(93,47,134,.16),transparent 24%),linear-gradient(180deg,#fffaf0 0%,#f6f1e8 48%,#eef2f7 100%);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  body{margin:0;background:radial-gradient(circle at 8% -6%,rgba(255,255,255,.16),transparent 26%),radial-gradient(circle at 92% 4%,rgba(151,160,173,.16),transparent 28%),linear-gradient(180deg,#030303 0%,#0b0c0f 48%,#171a20 100%);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
   a{color:var(--green)} img,video{max-width:100%;display:block}
   .serif{font-family:Fraunces,Georgia,serif}
   .wrap{max-width:1160px;margin:0 auto;width:100%;padding:0 24px}.narrow{max-width:780px}
@@ -593,6 +593,30 @@ BASE_STYLE = """
   .project-ledger{display:grid;grid-template-columns:minmax(300px,520px) 1fr;gap:24px;align-items:center;background:#fffdf8;border:1px solid rgba(22,61,104,.13);border-radius:20px;padding:18px;box-shadow:0 18px 44px rgba(16,23,34,.09)}.ledger-copy{padding:12px 12px 12px 6px}.ledger-copy h2{font-family:Fraunces,serif;font-size:clamp(26px,4vw,42px);margin:8px 0 12px}.ledger-copy p{color:#524b43}.ledger-notes{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:18px}.ledger-notes span{border-radius:12px;background:#f2ebdf;border:1px solid rgba(23,24,32,.09);padding:12px;font-size:12px;font-weight:800;color:#3e372f}
   .proof-wall{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}.proof-review{background:#fffdf8;border:1px solid rgba(22,61,104,.13);border-radius:16px;padding:20px;box-shadow:0 12px 30px rgba(16,23,34,.06)}.proof-review.featured{grid-row:span 2;background:linear-gradient(135deg,#171820,#2f1a48);color:#fff}.proof-review h3{font-family:Fraunces,serif;margin:8px 0 8px;font-size:18px}.proof-review p{margin:0;color:#575046;font-size:14px}.proof-review.featured p{color:#e8dfd3}.proof-review .review-meta{margin-top:12px}
   .mini-gallery{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:10px}.mini-gallery .shot{aspect-ratio:1/1}.mini-gallery .shot:first-child{grid-row:span 2;aspect-ratio:auto}.mini-gallery .shot:nth-child(4){grid-row:span 2;aspect-ratio:auto}
+
+  /* Black and silver client direction */
+  nav{background:rgba(5,5,6,.92);border-bottom:1px solid rgba(242,245,248,.16);box-shadow:0 18px 45px rgba(0,0,0,.45)}
+  .brand,.links a{color:#f7f8fb}.brand b,.kh-mark b,footer .fb{text-shadow:0 0 18px rgba(242,245,248,.32)}.brand b span,footer .fb span{color:#f2f5f8}.links a:hover{color:#f2f5f8}
+  .navcta,.btn{background:linear-gradient(135deg,#050506 0%,#434a55 58%,#f2f5f8 100%);color:#fff!important;border:1px solid rgba(242,245,248,.24);box-shadow:0 18px 38px rgba(0,0,0,.46),inset 0 1px 0 rgba(255,255,255,.22)}
+  .btn.ghost,.hero .btn.ghost{border-color:rgba(242,245,248,.48);color:#f2f5f8!important;background:rgba(255,255,255,.06)}
+  .hero,.kh-hero{background:#030303;color:#fff;border-bottom:1px solid rgba(242,245,248,.14)}
+  .hero:before{background:linear-gradient(100deg,rgba(0,0,0,.98),rgba(10,10,12,.9) 48%,rgba(95,103,116,.48)),url('https://www.kandhdecoratorschichester.co.uk/wp-content/uploads/2021/02/PHOTO-2021-02-01-09-40-31.jpg') center/cover}
+  .kh-hero:before{background:linear-gradient(110deg,rgba(0,0,0,.98) 0%,rgba(12,13,16,.92) 48%,rgba(91,99,112,.54) 100%),url('https://www.kandhdecoratorschichester.co.uk/wp-content/uploads/2021/02/PHOTO-2021-02-01-09-40-31-10.jpg') center/cover}
+  .hero:after,.kh-hero:after{background:radial-gradient(circle,rgba(242,245,248,.22),rgba(142,151,164,.16) 40%,transparent 70%)}
+  .hero h1,.kh-hero h1{text-shadow:0 0 24px rgba(242,245,248,.22),0 24px 64px rgba(0,0,0,.82)}.hero h1 em,.kh-hero h1 em,.hero .eyebrow,.kh-hero .eyebrow,.eyebrow{color:#f2f5f8}
+  .hero p,.kh-hero p,.proof span,.quick-stats span{color:#d5dae2}
+  .proof,.quick-stats div,.kh-panel{background:rgba(255,255,255,.08);border-color:rgba(242,245,248,.18);box-shadow:inset 0 1px 0 rgba(255,255,255,.12)}
+  .scorechip{background:linear-gradient(135deg,#f9fafb,#9aa3af);color:#050506}.scorechip b,.scorechip span{color:#050506}.scorechip .st{color:#050506}
+  .quote-panel,.quote-card,.dock-grid,.planner-card,.project-ledger,.proof-review,.review-card,.contact-box,.mini-card,.step,.card{background:linear-gradient(180deg,#171a20,#101115);border-color:rgba(242,245,248,.16);box-shadow:0 20px 50px rgba(0,0,0,.38),inset 0 1px 0 rgba(255,255,255,.08);color:#f7f8fb}
+  .quote-panel p,.quote-card p,.quote-card li,.dock-item span,.planner-card p,.ledger-copy p,.proof-review p,.review-card p,.review-meta,.sub,.card p,.split p,.prose,.prose p,.contact-box p,footer,.mini-card span,.step p{color:#b5bcc7}
+  .dock-item,.ledger-notes span{background:linear-gradient(180deg,#22262d,#111317);border-color:rgba(242,245,248,.12);color:#f7f8fb}
+  .quote-card li:before,.step b{background:linear-gradient(135deg,#222832,#9aa3af,#f9fafb);color:#050506}
+  .planner-card .num,.card .ic,.band.dark .card .ic{color:#f2f5f8;text-shadow:0 0 16px rgba(242,245,248,.28)}
+  .band.alt,footer{background:#090a0c;border-color:rgba(242,245,248,.14)}
+  .band.dark,.ctaband,.feature-main,.trustbar,.scorewrap{background:linear-gradient(135deg,#020202 0%,#111319 58%,#636d7b 100%);box-shadow:0 20px 54px rgba(0,0,0,.48),inset 0 1px 0 rgba(255,255,255,.1)}
+  .band.dark .sub,.band.dark .card p,.ctaband p,.feature-main p,.feature-list span{color:#d8dde5}
+  .signature-card{box-shadow:0 22px 60px rgba(0,0,0,.5),0 0 0 1px rgba(242,245,248,.12)}.signature-card:after{background:linear-gradient(0deg,rgba(0,0,0,.9),rgba(0,0,0,.16))}
+  .rule{background:linear-gradient(90deg,#ffffff,#8c95a1)}.shot,.ba{border-color:rgba(242,245,248,.18);box-shadow:0 18px 38px rgba(0,0,0,.32)}
   @media(max-width:860px){
     .hero{padding:42px 0 40px}.hero-inner{grid-template-columns:1fr;gap:30px}.split{grid-template-columns:1fr;gap:24px}
     .links a:not(.navcta){display:none}.band{padding:54px 0}.gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
@@ -919,7 +943,7 @@ WIDGET_JS = """
   var bubble = document.createElement('button');
   bubble.innerHTML = 'Chat';
   bubble.setAttribute('aria-label','Open quote assistant');
-  bubble.style.cssText='position:fixed;right:22px;bottom:22px;z-index:999999;border:0;border-radius:999px;background:linear-gradient(135deg,#101722,#5d2f86 58%,#d6a13a);color:white;font-weight:900;padding:15px 18px;box-shadow:0 12px 34px rgba(0,0,0,.34);cursor:pointer';
+  bubble.style.cssText='position:fixed;right:22px;bottom:22px;z-index:999999;border:1px solid rgba(242,245,248,.28);border-radius:999px;background:linear-gradient(135deg,#050506,#444b55 58%,#f2f5f8);color:white;font-weight:900;padding:15px 18px;box-shadow:0 16px 38px rgba(0,0,0,.46),0 0 22px rgba(242,245,248,.18);cursor:pointer';
   var frame = document.createElement('iframe');
   frame.src = base + '/widget-frame';
   function size(){ frame.style.cssText = window.innerWidth <= 640 ? 'position:fixed;inset:0;width:100vw;height:100dvh;border:0;z-index:999999;display:none;background:white' : 'position:fixed;right:22px;bottom:84px;width:410px;height:610px;border:0;border-radius:18px;box-shadow:0 18px 60px rgba(0,0,0,.45);z-index:999999;display:none;background:white'; }
@@ -932,8 +956,8 @@ WIDGET_JS = """
 
 WIDGET_FRAME = """
 <!DOCTYPE html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><style>
-*{box-sizing:border-box}html,body{margin:0;height:100%;font-family:Manrope,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f5f2ee;color:#17141b;overflow:hidden}
-#chatWindow{height:100dvh;display:flex;flex-direction:column;background:#f5f2ee}#chatHeader{background:#050506;color:white;padding:16px;display:flex;align-items:center;gap:12px;justify-content:space-between}.hbrand{display:flex;gap:10px;align-items:center}.hbrand img{width:42px;height:42px;border-radius:8px;object-fit:cover}.title{font-weight:900}.sub{font-size:12px;color:#d9ccff}.close{font-size:28px;color:#d6a13a;cursor:pointer;padding:2px 8px}.progress{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;padding:10px 14px;background:#fff;border-bottom:1px solid #ded6e8}.bar{height:6px;border-radius:99px;background:#e6dff0}.bar.on{background:linear-gradient(90deg,#101722,#5d2f86,#d6a13a)}#status{font-size:12px;color:#6b6178;background:#fff;padding:0 14px 10px;border-bottom:1px solid #ded6e8}#chatbox{flex:1;overflow:auto;padding:16px;-webkit-overflow-scrolling:touch}.msg{max-width:84%;margin:10px 0;padding:12px 14px;border-radius:16px;line-height:1.45;font-size:15px}.bot{background:#fff;border:1px solid #ded6e8}.user{margin-left:auto;background:#100d18;color:white}.photo-msg{padding:5px;background:#100d18}.photo{width:210px;border-radius:12px}#inputRow{flex:none;display:flex;gap:8px;padding:10px;background:white;border-top:1px solid #ded6e8;padding-bottom:max(10px,env(safe-area-inset-bottom))}#userInput{flex:1;min-width:0;border:1px solid #cabfe0;border-radius:999px;padding:12px 14px;font-size:16px;outline:none}#sendBtn,#attachBtn{border:0;border-radius:50%;width:46px;height:46px;display:grid;place-items:center;background:#100d18;color:white;font-weight:900;cursor:pointer;flex:none}#attachBtn{background:#eee8f8;color:#100d18}#fileInput{display:none}.typing{color:#8c819e}
+*{box-sizing:border-box}html,body{margin:0;height:100%;font-family:Manrope,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0a0b0d;color:#f7f8fb;overflow:hidden}
+#chatWindow{height:100dvh;display:flex;flex-direction:column;background:#0a0b0d}#chatHeader{background:#050506;color:white;padding:16px;display:flex;align-items:center;gap:12px;justify-content:space-between;box-shadow:0 16px 36px rgba(0,0,0,.32)}.hbrand{display:flex;gap:10px;align-items:center}.hbrand img{width:42px;height:42px;border-radius:8px;object-fit:cover}.title{font-weight:900;text-shadow:0 0 16px rgba(242,245,248,.3)}.sub{font-size:12px;color:#cdd4de}.close{font-size:28px;color:#f2f5f8;cursor:pointer;padding:2px 8px}.progress{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;padding:10px 14px;background:#111317;border-bottom:1px solid rgba(242,245,248,.16)}.bar{height:6px;border-radius:99px;background:#2a2d33}.bar.on{background:linear-gradient(90deg,#f2f5f8,#8d96a3,#414852)}#status{font-size:12px;color:#b5bcc7;background:#111317;padding:0 14px 10px;border-bottom:1px solid rgba(242,245,248,.16)}#chatbox{flex:1;overflow:auto;padding:16px;-webkit-overflow-scrolling:touch}.msg{max-width:84%;margin:10px 0;padding:12px 14px;border-radius:16px;line-height:1.45;font-size:15px}.bot{background:#171a20;border:1px solid rgba(242,245,248,.16);color:#f7f8fb}.user{margin-left:auto;background:linear-gradient(135deg,#050506,#454d59);color:white}.photo-msg{padding:5px;background:#050506}.photo{width:210px;border-radius:12px}#inputRow{flex:none;display:flex;gap:8px;padding:10px;background:#111317;border-top:1px solid rgba(242,245,248,.16);padding-bottom:max(10px,env(safe-area-inset-bottom))}#userInput{flex:1;min-width:0;border:1px solid rgba(242,245,248,.24);border-radius:999px;padding:12px 14px;font-size:16px;outline:none;background:#050506;color:#fff}#userInput::placeholder{color:#858d99}#sendBtn,#attachBtn{border:0;border-radius:50%;width:46px;height:46px;display:grid;place-items:center;background:linear-gradient(135deg,#050506,#4b535f,#f2f5f8);color:white;font-weight:900;cursor:pointer;flex:none}#attachBtn{background:#242830;color:#f2f5f8;border:1px solid rgba(242,245,248,.2)}#fileInput{display:none}.typing{color:#8c96a3}
 </style></head><body><div id="chatWindow"><div id="chatHeader"><div class="hbrand"><img src="https://www.kandhdecoratorschichester.co.uk/wp-content/uploads/2021/02/cropped-Untitled-design-1-270x270.png"><div><div class="title">K&H Decorators Assistant</div><div class="sub">Quote details captured in minutes</div></div></div><div class="close" onclick="window.parent.postMessage('close-au-chat','*')">&times;</div></div><div class="progress"><span class="bar on"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span></div><div id="status">Quote progress: tell us what needs doing</div><div id="chatbox"></div><div id="inputRow"><label id="attachBtn" title="Attach photos"><input type="file" id="fileInput" accept="image/*" multiple onchange="handleFiles(this)">+</label><input type="text" id="hpField" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0"><input id="userInput" type="text" placeholder="Type your message..." onkeypress="if(event.key==='Enter')sendMessage()"><button id="sendBtn" onclick="sendMessage()">></button></div></div>
 <script>
 var messages=0; addMessage("Hi, I can help get a free quote for plastering, painting or decorating. What needs doing?", "bot");
