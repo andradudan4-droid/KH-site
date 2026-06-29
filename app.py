@@ -469,170 +469,138 @@ include the internal tag [[READY]]. Do not show or mention the tag.
 KH_LOGO = "https://www.kandhdecoratorschichester.co.uk/wp-content/uploads/2021/02/cropped-Untitled-design-1-270x270.png"
 IMG = "https://www.kandhdecoratorschichester.co.uk/wp-content/uploads/"
 
+
+KH_LOGO = "https://www.kandhdecoratorschichester.co.uk/wp-content/uploads/2021/02/cropped-Untitled-design-1-270x270.png"
+
 BASE_STYLE = """
 <link rel="icon" type="image/png" href=\"""" + KH_LOGO + """\">
-  <meta name="theme-color" content="#050506">
+<meta name="theme-color" content="#0a0a0c">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="K&H Decorators Chichester">
 <meta property="og:title" content="K&H Decorators - Painting & Decorating, Chichester">
-<meta property="og:description" content="Painting, decorating and plastering across Chichester and West Sussex. Rated 10/10 on Checkatrade. Free estimates.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<meta property="og:description" content="Painting, decorating, plastering and Venetian finishes across Chichester & West Sussex. Rated 10/10 on Checkatrade.">
+<meta property="og:image" content="/static/images/hero.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#050506; --paper:#111317; --ink:#f7f8fb; --mut:#b5bcc7; --line:rgba(236,240,245,.16);
-    --green:#cfd6df; --green-d:#050506; --brass:#f2f5f8; --sage:#171a20; --lime:#dde3eb; --plum:#8d96a3;
+    --bg:#0a0a0c; --panel:#121217; --panel2:#17171d; --ink:#f3f4f6; --mut:#9aa1ab;
+    --line:rgba(255,255,255,.10); --silver:#cfd4db; --silver-d:#878d97;
   }
   *{box-sizing:border-box} html{scroll-behavior:smooth}
-  body{margin:0;background:radial-gradient(circle at 8% -6%,rgba(255,255,255,.16),transparent 26%),radial-gradient(circle at 92% 4%,rgba(151,160,173,.16),transparent 28%),linear-gradient(180deg,#030303 0%,#0b0c0f 48%,#171a20 100%);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-  a{color:var(--green)} img,video{max-width:100%;display:block}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:var(--silver)} img,video{max-width:100%;display:block}
   .serif{font-family:Fraunces,Georgia,serif}
-  .wrap{max-width:1160px;margin:0 auto;width:100%;padding:0 24px}.narrow{max-width:780px}
-  nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:14px 24px;background:rgba(255,253,248,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(22,61,104,.16);box-shadow:0 10px 30px rgba(16,23,34,.07)}
-  .brand{display:flex;align-items:center;gap:11px;color:var(--ink);text-decoration:none}
-  .brand img{width:40px;height:40px;border-radius:8px;object-fit:cover}
-  .brand b{font-family:Fraunces,serif;font-weight:700;font-size:19px;letter-spacing:.01em}
-  .brand b span{color:var(--green)}
-  .links{display:flex;align-items:center;gap:24px}.links a{color:#3b372f;text-decoration:none;font-size:14px;font-weight:600}.links a:hover{color:var(--green)}
-  .navcta{background:linear-gradient(135deg,var(--green),#2f67a1 58%,var(--brass));color:#fff!important;padding:10px 17px;border-radius:999px;font-size:13px;box-shadow:0 12px 28px rgba(22,61,104,.24)}
-  .hero{position:relative;isolation:isolate;padding:58px 0 52px;background:#101722;color:#fff;overflow:hidden;border-bottom:0}
-  .hero:before{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(10,13,20,.96),rgba(22,61,104,.84) 48%,rgba(93,47,134,.45)),url('https://www.kandhdecoratorschichester.co.uk/wp-content/uploads/2021/02/PHOTO-2021-02-01-09-40-31.jpg') center/cover;z-index:-2}
-  .hero:after{content:"";position:absolute;inset:auto -10% -34% 24%;height:420px;background:radial-gradient(circle,rgba(214,161,58,.24),rgba(93,47,134,.16) 38%,rgba(214,161,58,0) 68%);z-index:-1;pointer-events:none}
-  .hero-inner{display:grid;grid-template-columns:minmax(0,.98fr) minmax(280px,.72fr);gap:38px;align-items:center}
-  .eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--brass);font-weight:700}
-  h1{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:clamp(40px,6vw,66px);line-height:1.04;margin:16px 0 18px;letter-spacing:-.01em}
-  h1 em{font-style:italic;color:var(--green)}
-  .hero p{font-size:18px;color:#ece4d8;max-width:560px;margin:0 0 26px}
-  .hero h1{color:#fff;text-shadow:0 14px 42px rgba(0,0,0,.32)}
-  .hero h1 em{color:#e4c176}
-  .hero .eyebrow{color:#e4c176}
-  .btns{display:flex;gap:12px;flex-wrap:wrap}
-  .btn{display:inline-flex;align-items:center;gap:9px;justify-content:center;border:0;border-radius:999px;background:linear-gradient(135deg,var(--green),#2f67a1 62%,var(--brass));color:#fff;text-decoration:none;font-weight:700;padding:14px 24px;box-shadow:0 16px 30px rgba(22,61,104,.24);font-size:15px}
+  .wrap{max-width:1180px;margin:0 auto;width:100%;padding:0 26px}.narrow{max-width:780px}
+  .silver{background:linear-gradient(176deg,#ffffff 6%,#d3d7dd 46%,#8b929c 96%);-webkit-background-clip:text;background-clip:text;color:transparent}
+  /* nav */
+  nav{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:16px 26px;transition:background .3s,padding .3s,border-color .3s;border-bottom:1px solid transparent}
+  nav.solid{background:rgba(10,10,12,.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:11px 26px}
+  .brand{display:flex;align-items:center;gap:11px;color:#fff;text-decoration:none;font-family:Fraunces,serif;font-weight:600;font-size:21px;letter-spacing:.04em}
+  .brand .amp{color:var(--silver-d)}
+  .links{display:flex;align-items:center;gap:26px}.links a{color:#e9eaee;text-decoration:none;font-size:13.5px;font-weight:600;letter-spacing:.01em}.links a:hover{color:#fff}
+  .navcta{border:1px solid rgba(255,255,255,.4);padding:9px 16px;border-radius:999px;color:#fff!important;font-size:13px}
+  .navcta:hover{background:#fff;color:#0a0a0c!important}
+  /* hero full bleed */
+  .hero{position:relative;min-height:92vh;display:flex;align-items:flex-end;overflow:hidden}
+  .hero-bg{position:absolute;inset:0;background:url('/static/images/hero.jpg') center/cover;z-index:-2;transform:scale(1.04)}
+  .hero:before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(8,8,10,.72) 0%,rgba(8,8,10,.28) 36%,rgba(8,8,10,.62) 72%,rgba(8,8,10,.96) 100%)}
+  .hero-inner{position:relative;padding:0 0 64px}
+  .hero .eyebrow{color:var(--silver)}
+  .hero h1{font-family:Fraunces,serif;font-weight:600;font-size:clamp(46px,8vw,92px);line-height:.98;letter-spacing:-.015em;margin:14px 0 20px;max-width:14ch;text-shadow:0 18px 60px rgba(0,0,0,.6)}
+  .hero p{font-size:19px;color:#dfe2e7;max-width:520px;margin:0 0 30px;text-shadow:0 2px 18px rgba(0,0,0,.6)}
+  .eyebrow{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--silver-d);font-weight:700}
+  .btns{display:flex;gap:13px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:9px;justify-content:center;border:0;border-radius:8px;background:linear-gradient(180deg,#f4f5f7,#c4c9d1);color:#0c0c0f;text-decoration:none;font-weight:700;padding:15px 26px;font-size:15px;box-shadow:0 14px 40px rgba(180,188,200,.18),0 2px 0 rgba(255,255,255,.4) inset}
+  .btn:hover{filter:brightness(1.06)}
   .btn svg{width:18px;height:18px;fill:currentColor}
-  .btn.ghost{background:transparent;border:1px solid var(--green);color:var(--green);box-shadow:none}
-  .hero .btn.ghost{color:#fff;border-color:rgba(255,255,255,.5);background:rgba(255,255,255,.08)}
-  .btn.wa{background:#1faa53}
-  .hero-cluster{position:relative;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:12px;max-width:430px;justify-self:end}
-  .hero-cluster figure{margin:0;border-radius:12px;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.24);background:#ded8cc;border:1px solid rgba(255,255,255,.12)}
-  .hero-cluster img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/3}
-  .hero-cluster figure:first-child{grid-row:span 2}.hero-cluster figure:first-child img{aspect-ratio:4/5}
-  .scorechip{position:absolute;right:14px;bottom:14px;background:linear-gradient(135deg,#fff,var(--lime));border:1px solid rgba(255,255,255,.4);border-radius:999px;padding:10px 15px;box-shadow:0 16px 40px rgba(0,0,0,.2);text-align:center}
-  .scorechip b{font-family:Fraunces,serif;font-size:26px;color:var(--green);display:block;line-height:1}
-  .scorechip .st{color:#e0a92e;font-size:12px;letter-spacing:1px}.scorechip span{font-size:11px;color:var(--mut);font-weight:600}
-  .hero-proof{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;max-width:580px;margin-top:28px}
-  .proof{border:1px solid rgba(245,210,122,.3);background:rgba(255,255,255,.1);backdrop-filter:blur(10px);border-radius:12px;padding:13px 14px;box-shadow:inset 0 2px 0 rgba(217,164,65,.28)}
-  .proof b{display:block;color:#fff;font-family:Fraunces,serif;font-size:22px;line-height:1}.proof span{display:block;color:#d5cfbf;font-size:12px;font-weight:700;margin-top:4px}
-  .quote-panel{position:absolute;left:-28px;bottom:34px;width:min(280px,70vw);background:rgba(255,255,255,.94);color:var(--ink);border:1px solid rgba(255,255,255,.5);border-radius:14px;padding:15px;box-shadow:0 20px 50px rgba(0,0,0,.28)}
-  .quote-panel .mini{font-size:11px;color:var(--brass);font-weight:900;letter-spacing:.14em;text-transform:uppercase}.quote-panel p{font-size:13px;color:#514b43;margin:7px 0 0}
-  .trustbar{background:linear-gradient(90deg,var(--green-d),var(--green),var(--plum));color:#f5efe3}
-  .trustbar .row{display:flex;flex-wrap:wrap;gap:10px 36px;justify-content:center;padding:16px 24px;max-width:1160px;margin:0 auto;font-size:13.5px;font-weight:600}
-  .trustbar .row span b{color:#fff}.trustbar .star{color:#ffd66e}
-  .band{padding:80px 0}.band.alt{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-  .band.dark{background:linear-gradient(135deg,#101722 0%,#163d68 58%,#5d2f86 100%);color:#fff}
-  .band.dark .head h2,.band.dark .card h3{color:#fff}.band.dark .sub,.band.dark .card p{color:#d2ccbf}.band.dark .card{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12)}
-  .band.dark .card .ic{color:#e4c176}.band.dark .eyebrow{color:#e4c176}.band.dark .rule{background:#e4c176}
-  .head{margin-bottom:38px;max-width:720px}.head h2{font-family:Fraunces,serif;font-weight:600;font-size:clamp(28px,4.4vw,46px);line-height:1.08;margin:12px 0}.sub{color:var(--mut);font-size:16.5px}
-  .rule{width:46px;height:2px;background:var(--brass)}
-  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
-  .card{background:var(--paper);border:1px solid rgba(22,61,104,.14);border-radius:12px;padding:26px;transition:transform .25s,box-shadow .25s;box-shadow:0 10px 24px rgba(22,61,104,.05)}
-  .card:hover{transform:translateY(-3px);box-shadow:0 16px 36px rgba(22,61,104,.11)}
-  .card .ic{width:38px;height:38px;color:var(--green)}.card h3{font-family:Fraunces,serif;font-weight:600;margin:14px 0 7px;font-size:19px}.card p{margin:0;color:var(--mut);font-size:14.5px}
-  .process{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:22px}
-  .step{position:relative;background:linear-gradient(180deg,#fffdf8,#fff7e6);border:1px solid rgba(22,61,104,.14);border-radius:12px;padding:22px;box-shadow:0 12px 26px rgba(22,61,104,.06)}
-  .step b{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--green),var(--brass));color:#fff;margin-bottom:12px}.step h3{font-family:Fraunces,serif;margin:0 0 6px;font-size:19px}.step p{margin:0;color:var(--mut);font-size:14.5px}
-  .feature-strip{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:stretch}
-  .feature-main{background:linear-gradient(135deg,var(--green),#16243a 58%,var(--plum));color:#fff;border-radius:16px;padding:34px;border:1px solid rgba(255,255,255,.12);box-shadow:0 20px 52px rgba(22,61,104,.18)}
-  .feature-main h2{font-family:Fraunces,serif;font-size:clamp(26px,4vw,42px);line-height:1.08;margin:10px 0}.feature-main p{color:#e9e4da;margin:0 0 18px}.feature-list{display:grid;gap:10px}.feature-list span{display:flex;gap:10px;align-items:flex-start;font-weight:700;color:#fff}.feature-list span:before{content:"";width:9px;height:9px;border-radius:50%;background:#e4c176;margin-top:8px;flex:none}
-  .feature-side{display:grid;gap:14px}.mini-card{background:linear-gradient(180deg,#fffdf8,#fff7df);border:1px solid rgba(217,164,65,.32);border-radius:14px;padding:22px;box-shadow:0 12px 28px rgba(22,61,104,.06)}.mini-card b{font-family:Fraunces,serif;color:var(--green);font-size:28px;line-height:1}.mini-card span{display:block;color:var(--mut);font-size:13px;font-weight:700;margin-top:5px}
-  #work .split{grid-template-columns:minmax(280px,520px) minmax(0,1fr)}
-  .ba{position:relative;--pos:50%;border-radius:14px;overflow:hidden;border:1px solid rgba(22,61,104,.18);box-shadow:0 18px 38px rgba(22,61,104,.14);background:#ded8cc}
-  .ba .spacer img{width:100%;aspect-ratio:16/10;object-fit:cover;opacity:0}
+  .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,.45);color:#fff;box-shadow:none}
+  .btn.wa{background:linear-gradient(180deg,#2bd96f,#1faa53);color:#fff}
+  .hero-badge{position:absolute;right:0;bottom:64px;display:flex;align-items:center;gap:13px;background:rgba(18,18,23,.7);backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:14px;padding:14px 18px;box-shadow:0 20px 50px rgba(0,0,0,.5)}
+  .hero-badge b{font-family:Fraunces,serif;font-size:30px;line-height:1}.hero-badge .st{color:#e8c45f;font-size:13px;letter-spacing:2px}.hero-badge span{display:block;font-size:11px;color:var(--mut)}
+  /* marquee */
+  .marquee{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#0c0c10}
+  .marquee .track{display:inline-flex;white-space:nowrap;animation:mq 34s linear infinite}.marquee:hover .track{animation-play-state:paused}
+  .marquee .grp{display:inline-flex;align-items:center;padding:15px 0;font-size:13px;font-weight:600;letter-spacing:.04em;color:#cdd2da;text-transform:uppercase}
+  .marquee .grp i{margin:0 22px;color:var(--silver-d);font-style:normal}.marquee .star{color:#e8c45f;margin-right:7px}
+  @keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  /* sections */
+  .band{padding:96px 0}.tight{padding:70px 0}
+  .head{max-width:760px;margin-bottom:46px}.head h2{font-family:Fraunces,serif;font-weight:600;font-size:clamp(30px,5vw,54px);line-height:1.03;margin:14px 0;letter-spacing:-.01em}.sub{color:var(--mut);font-size:17px}
+  .rule{width:54px;height:2px;background:linear-gradient(90deg,#eef0f3,var(--silver-d))}
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  .split.rev .txt{order:2}
+  .split .txt h2{font-family:Fraunces,serif;font-weight:600;font-size:clamp(28px,4.4vw,46px);line-height:1.05;margin:14px 0 16px}
+  .split .txt p{color:#c3c8d0;margin:0 0 14px;font-size:16.5px}
+  .ph{border-radius:16px;overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,.55),0 0 0 1px var(--line);background:#1a1a20}
+  .ph img{width:100%;height:100%;object-fit:cover;display:block}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:30px}
+  .stat b{font-family:Fraunces,serif;font-size:34px;display:block;line-height:1}.stat span{color:var(--mut);font-size:13px}
+  /* before after */
+  .ba{position:relative;--pos:50%;border-radius:16px;overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,.55),0 0 0 1px var(--line);background:#1a1a20;max-width:560px}
+  .ba .spacer img{width:100%;aspect-ratio:3/4;object-fit:cover;opacity:0}
   .ba .layer{position:absolute;inset:0}.ba .layer img{width:100%;height:100%;object-fit:cover}
   .ba .before{clip-path:inset(0 calc(100% - var(--pos)) 0 0)}
   .ba input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;z-index:5}
-  .ba:before{content:"";position:absolute;top:0;bottom:0;left:var(--pos);width:2px;background:#fff;z-index:3}
-  .knob{position:absolute;left:var(--pos);top:50%;translate:-50% -50%;z-index:4;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:#fff;color:var(--green);font-weight:800;box-shadow:0 6px 18px rgba(0,0,0,.25)}.knob:after{content:"\\2039 \\203A"}
-  .tag{position:absolute;top:13px;z-index:4;background:rgba(35,33,28,.74);color:#fff;border-radius:999px;padding:5px 12px;font-size:11px;font-weight:700;letter-spacing:.1em}.tag.b{left:13px}.tag.a{right:13px}
-  .split{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
-  .split h2{font-family:Fraunces,serif;font-weight:600;font-size:clamp(26px,4vw,40px);margin:10px 0 14px}
-  .split p{color:#544d43;margin:0 0 12px}
-  .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}
-  .shot{margin:0;border-radius:10px;overflow:hidden;background:#e3ddd1;cursor:zoom-in;border:1px solid rgba(22,61,104,.14);aspect-ratio:4/3;box-shadow:0 12px 28px rgba(22,61,104,.08)}
-  .shot img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}.shot:hover img{transform:scale(1.05)}
-  .reviews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
-  .review-card{background:var(--paper);border:1px solid rgba(22,61,104,.14);border-radius:12px;padding:24px;box-shadow:0 12px 28px rgba(22,61,104,.07)}
-  .stars{color:#e0a92e;letter-spacing:.1em;font-size:14px}.review-card h3{font-family:Fraunces,serif;font-weight:600;margin:10px 0 8px;font-size:17px}.review-card p{margin:0;color:#554d43;font-size:14.5px}.review-meta{margin-top:14px;color:#8a8275;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
-  .scorewrap{display:flex;align-items:center;gap:22px;flex-wrap:wrap;background:linear-gradient(135deg,var(--green),#16243a 58%,var(--brass));color:#fff;border-radius:14px;padding:24px 28px;margin-bottom:24px;box-shadow:0 18px 42px rgba(22,61,104,.18)}
-  .scorewrap b{font-family:Fraunces,serif;font-size:46px;line-height:1}.scorewrap .st{color:#ffd66e;font-size:18px;letter-spacing:2px}.scorewrap span{color:#eee5d6;font-weight:600}
-  .contact-box{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:30px}.contact-box p{margin:10px 0}.contact-box strong{color:var(--ink)}
-  .prose{color:#4c4539;max-width:760px}.prose h3{font-family:Fraunces,serif;color:var(--ink);font-size:19px;margin:26px 0 8px}.prose p{margin:0 0 12px}
-  .ctaband{background:linear-gradient(135deg,var(--green),#16243a 55%,var(--brass));border-radius:18px;padding:48px;text-align:center;color:#fff;box-shadow:0 18px 42px rgba(22,61,104,.22)}
-  .ctaband h2{font-family:Fraunces,serif;font-weight:600;font-size:clamp(26px,4vw,40px);margin:0 0 10px}.ctaband p{color:#eee5d6;margin:0 0 24px}
-  .ctaband .btn{background:#fff;color:var(--green)}.ctaband .btn.wa{background:#1faa53;color:#fff}
+  .ba:before{content:"";position:absolute;top:0;bottom:0;left:var(--pos);width:2px;background:linear-gradient(#fff,#aeb4bd);z-index:3}
+  .knob{position:absolute;left:var(--pos);top:50%;translate:-50% -50%;z-index:4;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(180deg,#fff,#c4c9d1);color:#0c0c0f;font-weight:800;box-shadow:0 8px 24px rgba(0,0,0,.45)}.knob:after{content:"\\2039 \\203A"}
+  .tag{position:absolute;top:13px;z-index:4;background:rgba(8,8,10,.72);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:999px;padding:5px 12px;font-size:11px;font-weight:700;letter-spacing:.12em}.tag.b{left:13px}.tag.a{right:13px}
+  /* venetian parallax feature */
+  .feature{position:relative;min-height:78vh;display:flex;align-items:center;overflow:hidden}
+  .feature-bg{position:absolute;inset:0;background:url('/static/images/venetian.jpg') center/cover;background-attachment:fixed;z-index:-2}
+  .feature:before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(8,8,10,.92) 0%,rgba(8,8,10,.7) 42%,rgba(8,8,10,.32) 100%)}
+  .feature .card{max-width:540px}
+  .feature h2{font-family:Fraunces,serif;font-weight:600;font-size:clamp(30px,4.6vw,50px);line-height:1.04;margin:14px 0 16px}
+  .feature p{color:#d3d7dd;font-size:17px;margin:0 0 14px}
+  /* services */
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(232px,1fr));gap:16px}
+  .card{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:14px;padding:26px;transition:transform .25s,border-color .25s}
+  .card:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.25)}
+  .card .ic{width:34px;height:34px;color:var(--silver)}.card h3{font-family:Fraunces,serif;font-weight:600;margin:14px 0 7px;font-size:18px}.card p{margin:0;color:var(--mut);font-size:14.5px}
+  /* gallery masonry */
+  .gallery{columns:3 280px;column-gap:14px}
+  .shot{margin:0 0 14px;border-radius:12px;overflow:hidden;background:#17171d;break-inside:avoid;cursor:zoom-in;border:1px solid var(--line);position:relative}
+  .shot img{width:100%;display:block;transition:transform .55s}.shot:hover img{transform:scale(1.05)}
+  .shot figcaption{position:absolute;left:0;right:0;bottom:0;padding:28px 13px 11px;background:linear-gradient(transparent,rgba(0,0,0,.8));font-size:12px;font-weight:600;color:#fff;letter-spacing:.02em}
+  /* steve / on site */
+  .reel{border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 70px rgba(0,0,0,.5);background:#000}
+  .reel video{width:100%;aspect-ratio:9/16;object-fit:cover;background:#000;display:block}
+  /* reviews */
+  .scorewrap{display:flex;align-items:center;gap:24px;flex-wrap:wrap;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:16px;padding:26px 30px;margin-bottom:24px}
+  .scorewrap b{font-family:Fraunces,serif;font-size:50px;line-height:1}.scorewrap .st{color:#e8c45f;font-size:18px;letter-spacing:2px}.scorewrap span{color:var(--mut);font-weight:600}
+  .reviews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:15px}
+  .review-card{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:14px;padding:24px}
+  .stars{color:#e8c45f;letter-spacing:.1em;font-size:14px}.review-card h3{font-family:Fraunces,serif;font-weight:600;margin:10px 0 8px;font-size:17px;color:#fff}.review-card p{margin:0;color:#c3c8d0;font-size:14.5px}.review-meta{margin-top:14px;color:#7e858f;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+  /* contact + cta */
+  .contact-box{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:16px;padding:30px}.contact-box p{margin:11px 0}.contact-box strong{color:#fff}
+  .prose{color:#bcc1ca;max-width:760px}.prose h3{font-family:Fraunces,serif;color:#fff;font-size:19px;margin:26px 0 8px}.prose p{margin:0 0 12px}
+  .ctaband{position:relative;border-radius:20px;overflow:hidden;padding:60px 40px;text-align:center;border:1px solid var(--line)}
+  .ctaband:before{content:"";position:absolute;inset:0;background:url('/static/images/lounge-2.jpg') center/cover;z-index:-2}
+  .ctaband:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,8,10,.82),rgba(8,8,10,.9));z-index:-1}
+  .ctaband h2{font-family:Fraunces,serif;font-weight:600;font-size:clamp(28px,4.4vw,46px);margin:0 0 12px}.ctaband p{color:#d3d7dd;margin:0 0 24px}
   .badges{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:18px}
-  .badge{font-size:12px;font-weight:700;color:#efe7d9;border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:7px 13px}
-  footer{padding:50px 24px 34px;text-align:center;color:var(--mut);background:var(--paper);border-top:1px solid var(--line)}
-  footer .fb{font-family:Fraunces,serif;font-size:22px;color:var(--ink)}footer .fb span{color:var(--green)}
-  .wa-float{position:fixed;left:20px;bottom:22px;z-index:999998;width:56px;height:56px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 12px 30px rgba(0,0,0,.3)}.wa-float svg{width:31px;height:31px;fill:#fff}
-  .lb{position:fixed;inset:0;z-index:1000000;background:rgba(20,18,14,.92);display:none;align-items:center;justify-content:center;padding:24px;cursor:zoom-out}.lb.open{display:flex}.lb img{max-width:92vw;max-height:90vh;border-radius:10px}.lb .x{position:absolute;top:16px;right:22px;color:#fff;font-size:34px;cursor:pointer}
-  .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s,transform .7s}.reveal.in{opacity:1;transform:none}
-  .kh-hero{position:relative;overflow:hidden;background:#100f18;color:#fff;padding:54px 0 42px;border-bottom:1px solid rgba(255,255,255,.1)}
-  .kh-hero:before{content:"";position:absolute;inset:0;background:linear-gradient(110deg,rgba(16,15,24,.97) 0%,rgba(25,28,45,.9) 48%,rgba(93,47,134,.56) 100%),url('https://www.kandhdecoratorschichester.co.uk/wp-content/uploads/2021/02/PHOTO-2021-02-01-09-40-31-10.jpg') center/cover;opacity:.95}
-  .kh-hero:after{content:"";position:absolute;right:-18%;top:-28%;width:54vw;height:54vw;background:radial-gradient(circle,rgba(214,161,58,.28),rgba(93,47,134,.16) 42%,transparent 70%);pointer-events:none}
-  .kh-hero-grid{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,.72fr);gap:30px;align-items:end}
-  .kh-panel{background:rgba(255,253,248,.1);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(16px);border-radius:18px;padding:28px;box-shadow:0 28px 70px rgba(0,0,0,.26)}
-  .kh-mark{display:flex;align-items:center;gap:13px;margin-bottom:22px}.kh-mark img{width:58px;height:58px;border-radius:14px;object-fit:cover;border:1px solid rgba(255,255,255,.28)}.kh-mark b{font-family:Fraunces,serif;font-size:22px}
-  .kh-hero h1{margin:0 0 18px;color:#fff;font-size:clamp(43px,7vw,78px);max-width:820px}.kh-hero h1 em{color:#e4c176}
-  .kh-hero p{color:#eee7df;max-width:650px;font-size:18px;margin:0 0 24px}
-  .quick-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:26px;max-width:640px}.quick-stats div{border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:14px;background:rgba(255,255,255,.08)}.quick-stats b{display:block;font-family:Fraunces,serif;font-size:24px;color:#fff}.quick-stats span{display:block;color:#d9d0c7;font-size:12px;font-weight:700}
-  .quote-card{position:relative;background:#fffdf8;color:var(--ink);border-radius:18px;padding:26px;box-shadow:0 22px 58px rgba(0,0,0,.28)}.quote-card h2{font-family:Fraunces,serif;margin:0 0 12px;font-size:28px}.quote-card p{color:#5e574e;margin:0 0 14px;font-size:14px}.quote-card ol{margin:18px 0 0;padding:0;list-style:none;display:grid;gap:10px}.quote-card li{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:#3d372f;font-weight:700}.quote-card li:before{content:attr(data-step);display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--plum),var(--brass));color:#fff;font-size:12px;flex:none}
-  .service-dock{margin-top:-24px;position:relative;z-index:3}.dock-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;background:#fffdf8;border:1px solid rgba(22,61,104,.12);border-radius:18px;padding:12px;box-shadow:0 20px 50px rgba(16,23,34,.13)}.dock-item{border-radius:14px;padding:20px;background:linear-gradient(180deg,#fff,#f7f0e4);border:1px solid rgba(23,24,32,.08)}.dock-item b{display:block;font-family:Fraunces,serif;font-size:20px}.dock-item span{display:block;color:var(--mut);font-size:13px;margin-top:5px}
-  .planner{display:grid;grid-template-columns:.9fr 1.1fr;gap:28px;align-items:start}.planner-board{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.planner-card{background:#fffdf8;border:1px solid rgba(22,61,104,.14);border-radius:14px;padding:20px;box-shadow:0 12px 30px rgba(16,23,34,.06)}.planner-card .num{font-family:Fraunces,serif;color:var(--plum);font-size:28px}.planner-card h3{font-family:Fraunces,serif;margin:6px 0 6px;font-size:19px}.planner-card p{font-size:13.5px;color:var(--mut);margin:0}
-  .signature{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}.signature-card{min-height:220px;border-radius:18px;overflow:hidden;position:relative;background:#111;color:#fff;border:1px solid rgba(255,255,255,.12)}.signature-card img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;opacity:.72}.signature-card:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(10,10,16,.88),rgba(10,10,16,.12))}.signature-card div{position:absolute;left:22px;right:22px;bottom:20px;z-index:2}.signature-card h3{font-family:Fraunces,serif;margin:0 0 6px;font-size:24px}.signature-card p{margin:0;color:#eee2d4;font-size:14px}.signature-stack{display:grid;gap:18px}
-  .project-ledger{display:grid;grid-template-columns:minmax(300px,520px) 1fr;gap:24px;align-items:center;background:#fffdf8;border:1px solid rgba(22,61,104,.13);border-radius:20px;padding:18px;box-shadow:0 18px 44px rgba(16,23,34,.09)}.ledger-copy{padding:12px 12px 12px 6px}.ledger-copy h2{font-family:Fraunces,serif;font-size:clamp(26px,4vw,42px);margin:8px 0 12px}.ledger-copy p{color:#524b43}.ledger-notes{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:18px}.ledger-notes span{border-radius:12px;background:#f2ebdf;border:1px solid rgba(23,24,32,.09);padding:12px;font-size:12px;font-weight:800;color:#3e372f}
-  .proof-wall{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}.proof-review{background:#fffdf8;border:1px solid rgba(22,61,104,.13);border-radius:16px;padding:20px;box-shadow:0 12px 30px rgba(16,23,34,.06)}.proof-review.featured{grid-row:span 2;background:linear-gradient(135deg,#171820,#2f1a48);color:#fff}.proof-review h3{font-family:Fraunces,serif;margin:8px 0 8px;font-size:18px}.proof-review p{margin:0;color:#575046;font-size:14px}.proof-review.featured p{color:#e8dfd3}.proof-review .review-meta{margin-top:12px}
-  .mini-gallery{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:10px}.mini-gallery .shot{aspect-ratio:1/1}.mini-gallery .shot:first-child{grid-row:span 2;aspect-ratio:auto}.mini-gallery .shot:nth-child(4){grid-row:span 2;aspect-ratio:auto}
-
-  /* Black and silver client direction */
-  nav{background:rgba(5,5,6,.92);border-bottom:1px solid rgba(242,245,248,.16);box-shadow:0 18px 45px rgba(0,0,0,.45)}
-  .brand,.links a{color:#f7f8fb}.brand b,.kh-mark b,footer .fb{text-shadow:0 0 18px rgba(242,245,248,.32)}.brand b span,footer .fb span{color:#f2f5f8}.links a:hover{color:#f2f5f8}
-  .navcta,.btn{background:linear-gradient(135deg,#050506 0%,#434a55 58%,#f2f5f8 100%);color:#fff!important;border:1px solid rgba(242,245,248,.24);box-shadow:0 18px 38px rgba(0,0,0,.46),inset 0 1px 0 rgba(255,255,255,.22)}
-  .btn.ghost,.hero .btn.ghost{border-color:rgba(242,245,248,.48);color:#f2f5f8!important;background:rgba(255,255,255,.06)}
-  .hero,.kh-hero{background:#030303;color:#fff;border-bottom:1px solid rgba(242,245,248,.14)}
-  .hero:before{background:linear-gradient(100deg,rgba(0,0,0,.98),rgba(10,10,12,.9) 48%,rgba(95,103,116,.48)),url('https://www.kandhdecoratorschichester.co.uk/wp-content/uploads/2021/02/PHOTO-2021-02-01-09-40-31.jpg') center/cover}
-  .kh-hero:before{background:linear-gradient(110deg,rgba(0,0,0,.98) 0%,rgba(12,13,16,.92) 48%,rgba(91,99,112,.54) 100%),url('https://www.kandhdecoratorschichester.co.uk/wp-content/uploads/2021/02/PHOTO-2021-02-01-09-40-31-10.jpg') center/cover}
-  .hero:after,.kh-hero:after{background:radial-gradient(circle,rgba(242,245,248,.22),rgba(142,151,164,.16) 40%,transparent 70%)}
-  .hero h1,.kh-hero h1{text-shadow:0 0 24px rgba(242,245,248,.22),0 24px 64px rgba(0,0,0,.82)}.hero h1 em,.kh-hero h1 em,.hero .eyebrow,.kh-hero .eyebrow,.eyebrow{color:#f2f5f8}
-  .hero p,.kh-hero p,.proof span,.quick-stats span{color:#d5dae2}
-  .proof,.quick-stats div,.kh-panel{background:rgba(255,255,255,.08);border-color:rgba(242,245,248,.18);box-shadow:inset 0 1px 0 rgba(255,255,255,.12)}
-  .scorechip{background:linear-gradient(135deg,#f9fafb,#9aa3af);color:#050506}.scorechip b,.scorechip span{color:#050506}.scorechip .st{color:#050506}
-  .quote-panel,.quote-card,.dock-grid,.planner-card,.project-ledger,.proof-review,.review-card,.contact-box,.mini-card,.step,.card{background:linear-gradient(180deg,#171a20,#101115);border-color:rgba(242,245,248,.16);box-shadow:0 20px 50px rgba(0,0,0,.38),inset 0 1px 0 rgba(255,255,255,.08);color:#f7f8fb}
-  .quote-panel p,.quote-card p,.quote-card li,.dock-item span,.planner-card p,.ledger-copy p,.proof-review p,.review-card p,.review-meta,.sub,.card p,.split p,.prose,.prose p,.contact-box p,footer,.mini-card span,.step p{color:#b5bcc7}
-  .dock-item,.ledger-notes span{background:linear-gradient(180deg,#22262d,#111317);border-color:rgba(242,245,248,.12);color:#f7f8fb}
-  .quote-card li:before,.step b{background:linear-gradient(135deg,#222832,#9aa3af,#f9fafb);color:#050506}
-  .planner-card .num,.card .ic,.band.dark .card .ic{color:#f2f5f8;text-shadow:0 0 16px rgba(242,245,248,.28)}
-  .band.alt,footer{background:#090a0c;border-color:rgba(242,245,248,.14)}
-  .band.dark,.ctaband,.feature-main,.trustbar,.scorewrap{background:linear-gradient(135deg,#020202 0%,#111319 58%,#636d7b 100%);box-shadow:0 20px 54px rgba(0,0,0,.48),inset 0 1px 0 rgba(255,255,255,.1)}
-  .band.dark .sub,.band.dark .card p,.ctaband p,.feature-main p,.feature-list span{color:#d8dde5}
-  .signature-card{box-shadow:0 22px 60px rgba(0,0,0,.5),0 0 0 1px rgba(242,245,248,.12)}.signature-card:after{background:linear-gradient(0deg,rgba(0,0,0,.9),rgba(0,0,0,.16))}
-  .rule{background:linear-gradient(90deg,#ffffff,#8c95a1)}.shot,.ba{border-color:rgba(242,245,248,.18);box-shadow:0 18px 38px rgba(0,0,0,.32)}
+  .badge{font-size:12px;font-weight:700;color:#cdd2da;border:1px solid var(--line);border-radius:999px;padding:7px 13px}
+  footer{padding:54px 26px 36px;text-align:center;color:var(--mut);border-top:1px solid var(--line);background:#08080a}
+  footer .fb{font-family:Fraunces,serif;font-size:24px;color:#fff}
+  .wa-float{position:fixed;left:20px;bottom:22px;z-index:999998;width:56px;height:56px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 12px 30px rgba(0,0,0,.4)}.wa-float svg{width:31px;height:31px;fill:#fff}
+  .lb{position:fixed;inset:0;z-index:1000000;background:rgba(5,5,7,.94);display:none;align-items:center;justify-content:center;padding:24px;cursor:zoom-out}.lb.open{display:flex}.lb img{max-width:92vw;max-height:90vh;border-radius:10px}.lb .x{position:absolute;top:16px;right:22px;color:#fff;font-size:34px;cursor:pointer}
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .8s,transform .8s}.reveal.in{opacity:1;transform:none}
   @media(max-width:860px){
-    .hero{padding:42px 0 40px}.hero-inner{grid-template-columns:1fr;gap:30px}.split{grid-template-columns:1fr;gap:24px}
-    .links a:not(.navcta){display:none}.band{padding:54px 0}.gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-    .hero-cluster{max-width:100%;justify-self:stretch}.hero-cluster img{aspect-ratio:5/4}.hero-cluster figure:first-child img{aspect-ratio:4/5}
-    .hero-proof{grid-template-columns:1fr 1fr}.quote-panel{position:relative;left:auto;bottom:auto;width:100%;margin-top:14px}.feature-strip{grid-template-columns:1fr}
-    .kh-hero{padding:34px 0 34px}.kh-hero-grid,.planner,.signature,.project-ledger{grid-template-columns:1fr}.quick-stats,.dock-grid,.planner-board,.proof-wall{grid-template-columns:1fr 1fr}.dock-grid{gap:8px}.dock-item{padding:16px}.mini-gallery{grid-template-columns:1fr 1fr}.proof-review.featured{grid-row:auto}.ledger-notes{grid-template-columns:1fr}
+    .links a:not(.navcta){display:none}
+    .hero{min-height:84vh}.hero-badge{right:auto;left:0;bottom:18px}
+    .band{padding:60px 0}.feature{min-height:auto;padding:64px 0}.feature-bg{background-attachment:scroll}
+    .split,.split.rev{grid-template-columns:1fr;gap:26px}.split.rev .txt{order:0}
+    .gallery{columns:2 150px}.stats{grid-template-columns:1fr 1fr}
   }
 </style>
 """
 
 NAV = """
-<nav>
-  <a class="brand" href="/"><img src=\"""" + KH_LOGO + """\" alt="K&H Decorators"><b>K<span>&amp;</span>H Decorators</b></a>
+<nav id="nav">
+  <a class="brand" href="/">K<span class="amp">&amp;</span>H <span style="font-size:13px;letter-spacing:.22em;font-family:Inter;align-self:center;color:#aeb4bd;margin-left:2px">DECORATORS</span></a>
   <div class="links">
-    <a href="/#work">Our work</a><a href="/#services">Services</a><a href="/#reviews">Reviews</a>
-    <a href="/gallery">Gallery</a><a href="/contact">Contact</a>
+    <a href="/#work">Our work</a><a href="/#venetian">Venetian</a><a href="/#services">Services</a>
+    <a href="/gallery">Gallery</a><a href="/#reviews">Reviews</a><a href="/contact">Contact</a>
     <a class="navcta" href="tel:+447908701460">Free estimate</a>
   </div>
 </nav>
@@ -642,14 +610,15 @@ WA_SVG = '<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 .4C7.4.4.5 7.
 
 FOOTER = """
 <section class="band"><div class="wrap"><div class="ctaband reveal">
-  <h2 class="serif">Planning a job? Let's talk.</h2>
-  <p>Send a few photos through the chat for a free, no-obligation estimate &mdash; or call Steve directly.</p>
+  <div class="eyebrow" style="color:#cfd4db">Free, no-obligation</div>
+  <h2 class="serif silver">Let's get your estimate.</h2>
+  <p>Send a few photos through the chat or message Steve directly &mdash; quick reply, honest pricing.</p>
   <div class="btns" style="justify-content:center"><a class="btn" href="tel:+447908701460">Call 07908 701460</a><a class="btn wa" href="https://wa.me/447908701460" target="_blank" rel="noopener">WhatsApp</a></div>
-  <div class="badges"><span class="badge">&#9733; 10/10 Checkatrade</span><span class="badge">225 reviews</span><span class="badge">CITB &amp; City &amp; Guilds</span><span class="badge">&pound;1,000 guarantee</span><span class="badge">Est. 2010</span></div>
+  <div class="badges"><span class="badge">&#9733; 10/10 Checkatrade</span><span class="badge">225 reviews</span><span class="badge">CITB &amp; City &amp; Guilds</span><span class="badge">&pound;1,000 guarantee</span></div>
 </div></div></section>
 <footer>
-  <div class="fb">K<span>&amp;</span>H Decorators</div>
-  <div style="margin-top:6px">Painting, decorating &amp; plastering &middot; Chichester &amp; West Sussex</div>
+  <div class="fb">K&amp;H Decorators</div>
+  <div style="margin-top:6px">Painting, decorating, plastering &amp; Venetian finishes &middot; Chichester &amp; West Sussex</div>
   <div style="margin-top:12px"><a href="tel:+447908701460">07908 701460</a> &nbsp;|&nbsp; <a href="tel:+441243778091">01243 778091</a> &nbsp;|&nbsp; <a href="mailto:steve25hamblin@hotmail.com">steve25hamblin@hotmail.com</a> &nbsp;|&nbsp; <a href="/privacy-policy">Privacy</a></div>
 </footer>
 <a class="wa-float" href="https://wa.me/447908701460" target="_blank" rel="noopener" aria-label="WhatsApp K&H Decorators">""" + WA_SVG + """</a>
@@ -661,260 +630,163 @@ GOOGLE_TAG = ""
 
 SCRIPTS = """
 <script>
+(function(){var n=document.getElementById('nav');function s(){n.classList.toggle('solid',window.scrollY>40);}s();window.addEventListener('scroll',s,{passive:true});})();
 document.querySelectorAll('.ba').forEach(function(ba){var r=ba.querySelector('input');function u(){ba.style.setProperty('--pos',r.value+'%');}r.addEventListener('input',u);u();});
 (function(){var lb=document.getElementById('lb'),img=document.getElementById('lbimg');if(!lb)return;document.querySelectorAll('.shot img').forEach(function(im){im.addEventListener('click',function(){img.src=im.src;lb.classList.add('open');});});})();
 (function(){var els=document.querySelectorAll('.reveal');if(!('IntersectionObserver'in window)){els.forEach(function(e){e.classList.add('in')});return;}var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.12});els.forEach(function(e){io.observe(e)});})();
 </script>
 """
 
+MQ_GRP = '<span class="grp"><span class="star">&#9733;</span> 10/10 Checkatrade <i>/</i> 225 verified reviews <i>/</i> 26 years experience <i>/</i> CITB &amp; City &amp; Guilds <i>/</i> &pound;1,000 guarantee <i>/</i> Free estimates <i>/</i> Listed &amp; heritage specialists <i>/</i> Chichester &amp; West Sussex <i>/</i></span>'
+MARQUEE = '<div class="marquee"><div class="track">' + MQ_GRP + MQ_GRP + '</div></div>'
+
 def _ba(before, after, title):
-    return ('<div class="ba"><div class="spacer"><img src="' + after + '" alt=""></div>'
-            '<div class="layer"><img src="' + after + '" alt="' + title + ' after"></div>'
-            '<div class="layer before"><img src="' + before + '" alt="' + title + ' before"></div>'
+    return ('<div class="ba"><div class="spacer"><img src="/static/images/' + after + '" alt=""></div>'
+            '<div class="layer"><img src="/static/images/' + after + '" alt="' + title + ' after"></div>'
+            '<div class="layer before"><img src="/static/images/' + before + '" alt="' + title + ' before"></div>'
             '<span class="tag b">Before</span><span class="tag a">After</span><div class="knob"></div>'
             '<input type="range" min="0" max="100" value="50" aria-label="Compare"></div>')
 
-GAL = [
- "2021/02/PHOTO-2021-02-01-09-40-31.jpg","2022/06/WhatsApp-Image-2022-06-23-at-11.59.01-AM.jpeg",
- "2021/02/PHOTO-2021-02-01-09-40-31-10.jpg","2022/06/WhatsApp-Image-2022-06-23-at-11.58.37-AM.jpeg",
- "2021/02/PHOTO-2021-02-01-09-39-42-5.jpg","2022/06/WhatsApp-Image-2022-06-23-at-11.59.00-AM.jpeg",
- "2021/02/PHOTO-2021-02-01-09-40-31-15.jpg","2022/06/WhatsApp-Image-2022-06-23-at-11.58.34-AM.jpeg",
- "2021/02/PHOTO-2021-02-01-09-39-42-10.jpg","2021/02/PHOTO-2021-02-01-09-40-31-3.jpg",
- "2022/06/WhatsApp-Image-2022-06-23-at-11.59.01-AM-2.jpeg","2021/02/PHOTO-2021-02-01-09-39-42.jpg",
- "2021/02/PHOTO-2021-02-01-09-40-31-2.jpg","2022/06/WhatsApp-Image-2022-06-23-at-11.58.37-AM-3.jpeg",
- "2021/02/PHOTO-2021-02-01-09-40-31-20.jpg","2021/02/PHOTO-2021-02-01-09-39-42-13.jpg",
-]
 def _shots(items):
-    out = []
-    for fn in items:
-        out.append('<figure class="shot"><img src="' + IMG + fn + '" alt="K&H decorating work" loading="lazy" onerror="this.closest(&quot;.shot&quot;).style.display=&quot;none&quot;"></figure>')
-    return "".join(out)
+    return "".join('<figure class="shot"><img src="/static/images/' + fn + '" alt="' + cap + '" loading="lazy"><figcaption>' + cap + '</figcaption></figure>' for fn, cap in items)
 
 HOME_PAGE = """
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>K&H Decorators - Painting &amp; Decorating in Chichester</title>
-<meta name="description" content="K&H Decorators: painting, decorating and plastering across Chichester and West Sussex. Rated 10/10 on Checkatrade from 225 reviews. Free estimates, all work guaranteed.">
+<meta name="description" content="K&H Decorators: painting, decorating, plastering and Venetian finishes across Chichester and West Sussex. 10/10 on Checkatrade from 225 reviews. Free estimates.">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 """ + BASE_STYLE + """</head><body>""" + NAV + """
-<header class="hero"><div class="wrap hero-inner">
-  <div>
-    <div class="eyebrow">Chichester &amp; West Sussex &middot; Est. 2010</div>
-    <h1 class="serif">Painting &amp; decorating, <em>finished properly.</em></h1>
-    <p>K&H Decorators is a small, trusted team led by Steve &mdash; interior and exterior decorating, plastering and wallpapering for homes, businesses and heritage properties, left immaculate every time.</p>
-    <div class="btns">
-      <a class="btn" href="tel:+447908701460"><svg viewBox="0 0 24 24"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.3 1l-2.1 2.2z"/></svg> Call Steve</a>
-      <a class="btn ghost" href="https://wa.me/447908701460" target="_blank" rel="noopener">WhatsApp</a>
-    </div>
-    <div class="hero-proof">
-      <div class="proof"><b>225</b><span>verified reviews</span></div>
-      <div class="proof"><b>10/10</b><span>Checkatrade rating</span></div>
-      <div class="proof"><b>26 yrs</b><span>decorating experience</span></div>
+<header class="hero"><div class="hero-bg"></div><div class="wrap"><div class="hero-inner">
+  <div class="eyebrow">Chichester &amp; West Sussex</div>
+  <h1 class="serif silver">A finish worth living with.</h1>
+  <p>Painting, decorating, plastering and Venetian finishes for homes and businesses &mdash; carried out by Steve and the K&H team, and left immaculate.</p>
+  <div class="btns">
+    <a class="btn" href="tel:+447908701460"><svg viewBox="0 0 24 24"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.3 1l-2.1 2.2z"/></svg> Call Steve</a>
+    <a class="btn ghost" href="https://wa.me/447908701460" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+  <div class="hero-badge"><div><div class="st">&#9733;&#9733;&#9733;&#9733;&#9733;</div><b class="serif">10/10</b></div><div><span style="color:#fff;font-weight:700">Checkatrade</span><span>225 reviews</span></div></div>
+</div></div></header>
+""" + MARQUEE + """
+
+<section class="band"><div class="wrap"><div class="split">
+  <div class="txt reveal">
+    <div class="rule"></div><div class="eyebrow" style="margin-top:12px">Since 2010</div>
+    <h2 class="serif">Decorating done to a standard you'll notice.</h2>
+    <p>K&H is a small, trusted team led by Steve, with his son Harvey alongside him. Twenty-six years in, the approach hasn't changed: careful preparation, clean lines and a tidy site, every job.</p>
+    <p>From a single room to a full refurbishment &mdash; interior or exterior, domestic or commercial &mdash; the work is guaranteed and the estimate is free.</p>
+    <div class="stats">
+      <div class="stat"><b class="serif silver">10/10</b><span>Checkatrade</span></div>
+      <div class="stat"><b class="serif silver">225</b><span>reviews</span></div>
+      <div class="stat"><b class="serif silver">26</b><span>years</span></div>
+      <div class="stat"><b class="serif silver">&pound;1k</b><span>guarantee</span></div>
     </div>
   </div>
-  <div class="hero-cluster reveal">
-    <figure><img src=\"""" + IMG + """2021/02/PHOTO-2021-02-01-09-40-31.jpg" alt="Decorating work by K&H" onerror="this.parentNode.style.display='none'"></figure>
-    <figure><img src=\"""" + IMG + """2022/06/WhatsApp-Image-2022-06-23-at-11.59.01-AM.jpeg" alt="Decorating work by K&H" onerror="this.parentNode.style.display='none'"></figure>
-    <figure><img src=\"""" + IMG + """2021/02/PHOTO-2021-02-01-09-39-42-5.jpg" alt="Decorating work by K&H" onerror="this.parentNode.style.display='none'"></figure>
-    <div class="scorechip"><div class="st">&#9733;&#9733;&#9733;&#9733;&#9733;</div><b>10/10</b><span>225 reviews</span></div>
-    <div class="quote-panel"><div class="mini">24/7 quote assistant</div><p>Customers can send job details and photos instantly, so Steve gets a cleaner enquiry before calling back.</p></div>
-  </div>
-</div></header>
+  <div class="ph reveal"><img src="/static/images/lounge-1.jpg" alt="Living room decorated by K&H"></div>
+</div></div></section>
 
-<div class="trustbar"><div class="row">
-  <span><span class="star">&#9733;</span> <b>10/10</b> Checkatrade</span><span><b>225</b> reviews</span><span><b>26</b> years' experience</span><span><b>CITB</b> &amp; City &amp; Guilds</span><span><b>&pound;1,000</b> guarantee</span>
-</div></div>
-
-<section class="band alt" id="work"><div class="wrap">
-  <div class="head reveal"><div class="rule"></div><div class="eyebrow" style="margin-top:12px">Before &amp; after</div><h2 class="serif">See the difference.</h2><p class="sub">Drag the slider on a real K&H job &mdash; from tired and dated to a clean, fresh finish.</p></div>
+<section class="band" id="work" style="background:#0c0c10;border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><div class="wrap">
+  <div class="head reveal"><div class="rule"></div><div class="eyebrow" style="margin-top:12px">Before &amp; after</div><h2 class="serif">Drag to see the difference.</h2><p class="sub">A weathered exterior door and frame, stripped, repaired and repainted by hand.</p></div>
   <div class="split">
-    <div class="reveal">""" + _ba(IMG+"2021/02/image-1_.jpg", IMG+"2021/02/image-3_.jpg", "Room repaint") + """</div>
-    <div class="reveal">
-      <div class="eyebrow">Quality you can see</div>
-      <h2 class="serif">Prepped, painted, perfected.</h2>
-      <p>Proper preparation is what separates a decent job from a flawless one. Walls filled and sanded, edges cut in by hand, surfaces protected and the site left spotless.</p>
-      <p>Every job is guaranteed and backed by Checkatrade's &pound;1,000 guarantee for total peace of mind.</p>
-      <a class="btn" href="/gallery">View the gallery</a>
+    <div class="reveal">""" + _ba("door-before.jpg","door-after.jpg","Exterior door restoration") + """</div>
+    <div class="txt reveal">
+      <h2 class="serif">Exterior door restoration.</h2>
+      <p>Years of weather had lifted the paint and opened up the timber. The frame was cut back, repaired and primed, then the door and surround finished in a soft heritage green.</p>
+      <p>It's the prep you don't see that makes the finish last &mdash; and it's where K&H spend the time.</p>
+      <a class="btn ghost" href="/gallery">See more work</a>
     </div>
   </div>
-</div></section>
+</div></div></section>
 
-<section class="band"><div class="wrap">
-  <div class="feature-strip reveal">
-    <div class="feature-main">
-      <div class="eyebrow">Built for real enquiries</div>
-      <h2 class="serif">A smoother way to get a quote.</h2>
-      <p>The site does more than look good: it guides visitors into sending the exact details Steve needs, including photos, location, timescale and contact details.</p>
-      <div class="feature-list">
-        <span>Photo upload built into the chat</span>
-        <span>Lead summary sent straight to the inbox</span>
-        <span>Mobile-first layout for people browsing on-site or at home</span>
-      </div>
-    </div>
-    <div class="feature-side">
-      <div class="mini-card"><b>Photos</b><span>Customers can attach rooms, walls, ceilings or exterior areas.</span></div>
-      <div class="mini-card"><b>Details</b><span>The assistant asks what, where, when and how big the job is.</span></div>
-      <div class="mini-card"><b>Follow-up</b><span>Steve receives a tidy lead instead of a vague message.</span></div>
-    </div>
-  </div>
-</div></section>
+<section class="feature" id="venetian"><div class="feature-bg"></div><div class="wrap"><div class="card reveal" style="background:none;border:0;padding:0">
+  <div class="eyebrow" style="color:#cfd4db">Specialist finish</div>
+  <h2 class="serif silver">Venetian &amp; polished plaster.</h2>
+  <p>A genuine speciality: hand-applied Venetian plaster that brings depth, sheen and a real sense of craft to feature walls, fireplaces and media walls.</p>
+  <p>It's a finish few local decorators offer properly &mdash; and one K&H are known for.</p>
+  <a class="btn" href="https://wa.me/447908701460" target="_blank" rel="noopener" style="margin-top:8px">Ask about Venetian plaster</a>
+</div></div></section>
 
-<section class="band dark" id="services"><div class="wrap">
+<section class="band" id="services"><div class="wrap">
   <div class="head reveal"><div class="rule"></div><div class="eyebrow" style="margin-top:12px">What we do</div><h2 class="serif">Services.</h2><p class="sub">No job too small &mdash; and you can send photos straight through the chat for a quick estimate.</p></div>
   <div class="cards">
-    <div class="card reveal"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 21h18M5 21V8l7-4 7 4v13M9 21v-6h6v6"/></svg><h3>Painting &amp; decorating</h3><p>Interior and exterior, walls, ceilings, woodwork &mdash; neat lines, clean finish.</p></div>
-    <div class="card reveal"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4h16v16H4z M4 9h16 M9 4v5"/></svg><h3>Plastering &amp; skimming</h3><p>Re-skims, overboarding, ceiling repairs and Venetian plaster.</p></div>
-    <div class="card reveal"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 3v18 M5 7h11l-2 3 2 3H5"/></svg><h3>Wallpapering &amp; coving</h3><p>All paper types, coving and decorative plaster ceiling roses.</p></div>
-    <div class="card reveal"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12h18M12 3v18M3 7.5h18M3 16.5h18"/></svg><h3>Tiling &amp; dry lining</h3><p>Wall and floor tiling, dry lining and overboarding.</p></div>
-    <div class="card reveal"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 10l9-7 9 7v10a1 1 0 0 1-1 1h-4v-7H8v7H4a1 1 0 0 1-1-1z"/></svg><h3>Listed &amp; heritage</h3><p>Specialist care for listed buildings and period properties.</p></div>
-    <div class="card reveal"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 7h16M4 12h16M4 17h10"/></svg><h3>Refurbs &amp; maintenance</h3><p>Property refurbishments, fascias, gutters, PVC and general upkeep.</p></div>
+    <div class="card reveal"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18M5 21V8l7-4 7 4v13M9 21v-6h6v6"/></svg><h3>Painting &amp; decorating</h3><p>Interior and exterior, walls, ceilings and woodwork, finished neatly.</p></div>
+    <div class="card reveal"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 6h18v4H3zM7 10v8M17 10v8M3 18h18"/></svg><h3>Venetian &amp; polished plaster</h3><p>Hand-applied decorative finishes for feature walls and media walls.</p></div>
+    <div class="card reveal"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16v16H4zM4 9h16M9 4v5"/></svg><h3>Plastering &amp; skimming</h3><p>Re-skims, overboarding and ceiling repairs, ready to decorate.</p></div>
+    <div class="card reveal"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 3v18M5 7h11l-2 3 2 3H5"/></svg><h3>Wallpapering &amp; coving</h3><p>All paper types, coving and decorative ceiling roses.</p></div>
+    <div class="card reveal"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 10l9-7 9 7v10a1 1 0 0 1-1 1h-4v-7H8v7H4a1 1 0 0 1-1-1z"/></svg><h3>Listed &amp; heritage</h3><p>Specialist care for listed buildings and period properties.</p></div>
+    <div class="card reveal"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h16M4 12h16M4 17h10"/></svg><h3>Refurbs &amp; maintenance</h3><p>Full refurbishments, tiling, dry lining, fascias, gutters and upkeep.</p></div>
   </div>
 </div></section>
 
-<section class="band"><div class="wrap">
-  <div class="head reveal"><div class="rule"></div><div class="eyebrow" style="margin-top:12px">How it works</div><h2 class="serif">From first message to free estimate.</h2><p class="sub">Simple for customers, useful for Steve, and much better than a plain contact form.</p></div>
-  <div class="process">
-    <div class="step reveal"><b>1</b><h3>Send the job</h3><p>Tell the assistant what needs painting, decorating or plastering.</p></div>
-    <div class="step reveal"><b>2</b><h3>Add photos</h3><p>Upload pictures of the area so Steve can understand the condition and finish needed.</p></div>
-    <div class="step reveal"><b>3</b><h3>Confirm details</h3><p>Location, timing, size, budget and contact details are captured cleanly.</p></div>
-    <div class="step reveal"><b>4</b><h3>Get a reply</h3><p>Steve follows up personally with the next step and a free estimate.</p></div>
-  </div>
-</div></section>
-
-<section class="band alt"><div class="wrap">
+<section class="band" style="background:#0c0c10;border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><div class="wrap">
   <div class="head reveal"><div class="rule"></div><div class="eyebrow" style="margin-top:12px">Recent work</div><h2 class="serif">Gallery.</h2><p class="sub">Real K&H jobs across Chichester and West Sussex. Tap any photo to enlarge.</p></div>
-  <div class="gallery reveal">""" + _shots(GAL[:12]) + """</div>
-  <p style="margin-top:22px"><a href="/gallery">See the full gallery &rarr;</a></p>
+  <div class="gallery reveal">""" + _shots([
+      ("lounge-2.jpg","Lounge refresh"),("hallway.jpg","Hallway & doors"),("door-after.jpg","Exterior door, finished"),
+      ("ceiling-skim.jpg","Ceiling re-skim"),("washroom.jpg","Cloakroom"),("door-detail.jpg","Frame repair, before"),
+      ("lounge-before.jpg","Lounge, before"),("venetian.jpg","Venetian plaster detail"),
+  ]) + """</div>
+  <p style="margin-top:24px"><a href="/gallery">See the full gallery &rarr;</a></p>
 </div></section>
 
-<section class="band" id="reviews"><div class="wrap">
+<section class="band"><div class="wrap"><div class="split rev">
+  <div class="ph reveal"><img src="/static/images/steve.jpg" alt="Steve from K&H Decorators on site"></div>
+  <div class="txt reveal">
+    <div class="rule"></div><div class="eyebrow" style="margin-top:12px">On site</div>
+    <h2 class="serif">Steve, on the tools.</h2>
+    <p>With K&H you deal with Steve directly &mdash; the same person who quotes the job does the work. No call centres, no chasing.</p>
+    <p>Reliable, tidy and straight-talking, with every job backed by Checkatrade's &pound;1,000 guarantee.</p>
+    <div class="btns"><a class="btn" href="tel:+447908701460">Call Steve</a></div>
+  </div>
+</div></div></section>
+
+<section class="tight"><div class="wrap">
+  <div class="head reveal" style="text-align:center;margin:0 auto 30px"><div class="eyebrow">On site</div><h2 class="serif">A look at the work.</h2></div>
+  <div class="reveal" style="max-width:540px;margin:0 auto;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 70px rgba(0,0,0,.5);background:#000">
+    <video controls preload="metadata" playsinline style="width:100%;max-height:74vh;display:block;background:#000;object-fit:contain" src="/static/videos/reel-1.mp4"></video>
+  </div>
+</div></section>
+
+<section class="band" id="reviews" style="background:#0c0c10;border-top:1px solid var(--line)"><div class="wrap">
   <div class="head reveal"><div class="rule"></div><div class="eyebrow" style="margin-top:12px">Reviews</div><h2 class="serif">A perfect 10, 225 times over.</h2></div>
-  <div class="scorewrap reveal"><b class="serif">10/10</b><div><div class="st">&#9733;&#9733;&#9733;&#9733;&#9733;</div><span>Checkatrade average from 225 verified reviews</span></div></div>
+  <div class="scorewrap reveal"><b class="serif silver">10/10</b><div><div class="st">&#9733;&#9733;&#9733;&#9733;&#9733;</div><span>Checkatrade average from 225 verified reviews</span></div></div>
   <div class="reviews-grid">
-    <article class="review-card"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><h3>Hall, stairs, landing &amp; bedroom</h3><p>An exceptional job throughout. Steve is friendly, polite and hardworking &mdash; nothing was too much trouble. Will use again and highly recommend.</p><div class="review-meta">Verified review &middot; PO19</div></article>
-    <article class="review-card"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><h3>Internal &amp; external decorating</h3><p>Steve and his son Harvey decorated our rental to an exceptionally high standard. Attention to detail, workmanship and finish were outstanding.</p><div class="review-meta">Verified review &middot; BN18</div></article>
-    <article class="review-card"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><h3>Whole property painted</h3><p>Quick to quote, broken down room by room and highly competitive. Professional, responsive and the quality was exemplary. Our go-to decorator.</p><div class="review-meta">Verified review &middot; PO19</div></article>
-    <article class="review-card"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><h3>Kitchen decorated</h3><p>Efficient, punctual, tidy and friendly. Solved an awkward infill creatively &mdash; the kitchen looks immaculate. Wouldn't hesitate to use again.</p><div class="review-meta">Verified review &middot; PO19</div></article>
+    <article class="review-card"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><h3>Hall, stairs, landing &amp; bedroom</h3><p>An exceptional job throughout. Steve is friendly, polite and hardworking &mdash; nothing was too much trouble. Highly recommend.</p><div class="review-meta">Verified review &middot; PO19</div></article>
+    <article class="review-card"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><h3>Internal &amp; external decorating</h3><p>Steve and his son Harvey decorated our rental to an exceptionally high standard. Attention to detail and finish were outstanding.</p><div class="review-meta">Verified review &middot; BN18</div></article>
+    <article class="review-card"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><h3>Whole property painted</h3><p>Quick to quote, broken down room by room and highly competitive. Professional, responsive and exemplary quality. Our go-to decorator.</p><div class="review-meta">Verified review &middot; PO19</div></article>
+    <article class="review-card"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><h3>Kitchen decorated</h3><p>Efficient, punctual, tidy and friendly. Solved an awkward infill creatively &mdash; the kitchen looks immaculate.</p><div class="review-meta">Verified review &middot; PO19</div></article>
     <article class="review-card"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><h3>Lounge plastered &amp; decorated</h3><p>Steve and Harvey did a magnificent job plastering and decorating the lounge. Highly recommend this company.</p><div class="review-meta">Verified review &middot; PO10</div></article>
     <article class="review-card"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><h3>Ceiling repair after a leak</h3><p>Repaired and repainted the ceiling after a leak &mdash; quick, clean and a great result.</p><div class="review-meta">Verified review &middot; PO21</div></article>
   </div>
 </div></section>
 """ + FOOTER + SCRIPTS + WIDGET_INCLUDE + "</body></html>"
 
-HOME_PAGE = """
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>K&H Decorators - Painting, Decorating &amp; Plastering in Chichester</title>
-<meta name="description" content="K&H Decorators: trusted painting, decorating, plastering and heritage property work across Chichester and West Sussex. Free estimates.">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-""" + BASE_STYLE + """</head><body>""" + NAV + """
-<header class="kh-hero"><div class="wrap kh-hero-grid">
-  <div class="reveal">
-    <div class="kh-mark"><img src=\"""" + KH_LOGO + """\" alt="K&H Decorators"><b>K&amp;H Decorators</b></div>
-    <div class="eyebrow">Chichester decorators &middot; homes, heritage &amp; commercial</div>
-    <h1 class="serif">Beautiful rooms start with <em>proper preparation.</em></h1>
-    <p>Painting, decorating, plastering, wallpapering and listed-property work across Chichester and West Sussex. A cleaner, more personal way to get a free estimate.</p>
-    <div class="btns">
-      <a class="btn" href="tel:+447908701460">Call Steve</a>
-      <a class="btn ghost" href="#planner">Plan my quote</a>
-    </div>
-    <div class="quick-stats">
-      <div><b>10/10</b><span>Checkatrade rating</span></div>
-      <div><b>225</b><span>verified reviews</span></div>
-      <div><b>2010</b><span>established locally</span></div>
-    </div>
-  </div>
-  <aside class="quote-card reveal">
-    <div class="eyebrow">Smart quote assistant</div>
-    <h2 class="serif">No vague messages.</h2>
-    <p>The assistant asks for photos, location, timing and contact details, then sends Steve a tidy lead summary.</p>
-    <ol>
-      <li data-step="1">Describe the room, wall, ceiling or exterior.</li>
-      <li data-step="2">Attach a few photos from your phone.</li>
-      <li data-step="3">Confirm where you are and when you need it.</li>
-      <li data-step="4">Steve follows up with a free estimate.</li>
-    </ol>
-  </aside>
-</div></header>
-
-<section class="service-dock"><div class="wrap"><div class="dock-grid reveal">
-  <div class="dock-item"><b>Decorating</b><span>Walls, ceilings, woodwork and exterior finishes.</span></div>
-  <div class="dock-item"><b>Plastering</b><span>Skimming, overboarding and ceiling repairs.</span></div>
-  <div class="dock-item"><b>Wallpapering</b><span>Feature walls, delicate papers and clean seams.</span></div>
-  <div class="dock-item"><b>Heritage</b><span>Listed buildings and period property care.</span></div>
-</div></div></section>
-
-<section class="band" id="planner"><div class="wrap planner">
-  <div class="head reveal"><div class="rule"></div><div class="eyebrow" style="margin-top:12px">Quote planner</div><h2 class="serif">Built around how customers actually ask for work.</h2><p class="sub">Instead of making people dig around for a contact form, the site gently collects the useful details in the right order.</p><div class="btns"><a class="btn" href="javascript:void(0)" onclick="document.querySelector('button[aria-label=&quot;Open quote assistant&quot;]')?.click()">Open assistant</a><a class="btn ghost" href="https://wa.me/447908701460" target="_blank" rel="noopener">WhatsApp</a></div></div>
-  <div class="planner-board">
-    <div class="planner-card reveal"><div class="num">01</div><h3>Photos first</h3><p>Customers can upload photos of walls, ceilings, exterior areas, repairs or wallpaper jobs.</p></div>
-    <div class="planner-card reveal"><div class="num">02</div><h3>Scope captured</h3><p>The bot asks what needs doing, how big the area is and whether prep or plastering is needed.</p></div>
-    <div class="planner-card reveal"><div class="num">03</div><h3>Timing noted</h3><p>Urgent jobs, preferred dates and flexible times are captured for a faster call-back.</p></div>
-    <div class="planner-card reveal"><div class="num">04</div><h3>Lead delivered</h3><p>Steve gets a tidy summary by email rather than a half-finished enquiry.</p></div>
-  </div>
-</div></section>
-
-<section class="band alt" id="work"><div class="wrap">
-  <div class="project-ledger reveal">
-    <div>""" + _ba(IMG+"2021/02/image-1_.jpg", IMG+"2021/02/image-3_.jpg", "K&H before and after") + """</div>
-    <div class="ledger-copy">
-      <div class="eyebrow">Project ledger</div>
-      <h2 class="serif">A site that sells the finish, not just the phone number.</h2>
-      <p>This layout puts the work, trust and quote process together in one place, so visitors understand the standard before they even message.</p>
-      <div class="ledger-notes"><span>Prep-led finish</span><span>Photo-led quotes</span><span>Local proof</span></div>
-    </div>
-  </div>
-</div></section>
-
-<section class="band dark" id="services"><div class="wrap">
-  <div class="head reveal"><div class="rule"></div><div class="eyebrow" style="margin-top:12px">Signature work</div><h2 class="serif">More than a paint job.</h2><p class="sub">The site now presents K&H as a careful local specialist rather than a generic trades page.</p></div>
-  <div class="signature">
-    <article class="signature-card reveal"><img src=\"""" + IMG + """2021/02/PHOTO-2021-02-01-09-40-31.jpg" alt="K&H decorated room" onerror="this.style.display='none'"><div><h3>Full room transformations</h3><p>Preparation, plastering, decorating and finishing details handled as one project.</p></div></article>
-    <div class="signature-stack">
-      <article class="signature-card reveal"><img src=\"""" + IMG + """2022/06/WhatsApp-Image-2022-06-23-at-11.59.01-AM.jpeg" alt="Decorating finish" onerror="this.style.display='none'"><div><h3>Commercial refreshes</h3><p>Clean, practical finishes for offices and rental properties.</p></div></article>
-      <article class="signature-card reveal"><img src=\"""" + IMG + """2021/02/PHOTO-2021-02-01-09-39-42-5.jpg" alt="Heritage decorating" onerror="this.style.display='none'"><div><h3>Period property care</h3><p>Listed buildings, heritage surfaces and the right materials for the job.</p></div></article>
-    </div>
-  </div>
-</div></section>
-
-<section class="band"><div class="wrap">
-  <div class="head reveal"><div class="rule"></div><div class="eyebrow" style="margin-top:12px">Photo proof</div><h2 class="serif">Smaller, sharper gallery moments.</h2><p class="sub">Less giant image blocks, more quick proof points that keep the page moving.</p></div>
-  <div class="mini-gallery reveal">""" + _shots(GAL[:8]) + """</div>
-  <p style="margin-top:22px"><a href="/gallery">Open full gallery &rarr;</a></p>
-</div></section>
-
-<section class="band alt" id="reviews"><div class="wrap">
-  <div class="head reveal"><div class="rule"></div><div class="eyebrow" style="margin-top:12px">Customer proof</div><h2 class="serif">225 reasons to trust Steve.</h2><p class="sub">A review wall with the strongest messages upfront, not a plain row of identical cards.</p></div>
-  <div class="proof-wall">
-    <article class="proof-review featured reveal"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><h3>Hall, stairs, landing &amp; bedroom</h3><p>An exceptional job throughout. Steve is friendly, polite and hardworking. Nothing was too much trouble and we will use again.</p><div class="review-meta">Verified review &middot; PO19</div></article>
-    <article class="proof-review reveal"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><h3>Internal &amp; external decorating</h3><p>Attention to detail, workmanship and finish were outstanding.</p><div class="review-meta">BN18</div></article>
-    <article class="proof-review reveal"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><h3>Kitchen decorated</h3><p>Efficient, punctual, tidy and friendly. The kitchen looks immaculate.</p><div class="review-meta">PO19</div></article>
-    <article class="proof-review reveal"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><h3>Lounge plastered</h3><p>A magnificent job plastering and decorating the lounge.</p><div class="review-meta">PO10</div></article>
-    <article class="proof-review reveal"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><h3>Ceiling repair</h3><p>Quick, clean and a great result after a leak.</p><div class="review-meta">PO21</div></article>
-  </div>
-</div></section>
-""" + FOOTER + SCRIPTS + WIDGET_INCLUDE + "</body></html>"
-
 GALLERY_PAGE = """
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Gallery - K&H Decorators</title><meta name="viewport" content="width=device-width, initial-scale=1">""" + BASE_STYLE + """</head><body>""" + NAV + """
-<section class="band"><div class="wrap">
-  <div class="head reveal"><div class="rule"></div><div class="eyebrow" style="margin-top:12px">Our work</div><h2 class="serif">Gallery.</h2><p class="sub">A selection of recent painting, decorating and plastering jobs. Tap any photo to enlarge.</p></div>
-  <div class="gallery reveal">""" + _shots(GAL) + """</div>
+<section class="band" style="padding-top:120px"><div class="wrap">
+  <div class="head reveal"><div class="rule"></div><div class="eyebrow" style="margin-top:12px">Our work</div><h2 class="serif">Gallery.</h2><p class="sub">A selection of recent painting, decorating, plastering and Venetian work. Tap any photo to enlarge.</p></div>
+  <div class="gallery reveal">""" + _shots([
+      ("hero.jpg","Living room & media wall"),("lounge-1.jpg","Bay window lounge"),("lounge-2.jpg","Lounge refresh"),
+      ("hallway.jpg","Hallway & doors"),("venetian.jpg","Venetian plaster detail"),("door-after.jpg","Exterior door, finished"),
+      ("door-before.jpg","Exterior door, before"),("door-detail.jpg","Frame repair, before"),("washroom.jpg","Cloakroom"),
+      ("ceiling-skim.jpg","Ceiling re-skim"),("lounge-before.jpg","Lounge, before"),("steve.jpg","On site"),
+  ]) + """</div>
 </div></section>""" + FOOTER + SCRIPTS + WIDGET_INCLUDE + "</body></html>"
 
 SERVICES_PAGE = """
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Services - K&H Decorators</title><meta name="viewport" content="width=device-width, initial-scale=1">""" + BASE_STYLE + """</head><body>""" + NAV + """
-<section class="band"><div class="wrap"><div class="head reveal"><div class="rule"></div><div class="eyebrow" style="margin-top:12px">What we do</div><h2 class="serif">Services.</h2><p class="sub">Domestic and commercial work across Chichester, Bognor Regis, Arundel and the wider West Sussex area. All work guaranteed, free estimates.</p></div><div class="cards">
+<section class="band" style="padding-top:120px"><div class="wrap"><div class="head reveal"><div class="rule"></div><div class="eyebrow" style="margin-top:12px">What we do</div><h2 class="serif">Services.</h2><p class="sub">Domestic and commercial work across Chichester and the wider West Sussex area. All work guaranteed, free estimates.</p></div><div class="cards">
 <div class="card reveal"><h3>Painting &amp; decorating</h3><p>Interior and exterior painting, walls, ceilings, doors, frames and skirting.</p></div>
-<div class="card reveal"><h3>Plastering &amp; skimming</h3><p>Re-skims, overboarding, ceiling repairs, Venetian plaster and patch repairs.</p></div>
-<div class="card reveal"><h3>Wallpapering</h3><p>All paper types hung neatly, including feature walls and delicate papers.</p></div>
+<div class="card reveal"><h3>Venetian &amp; polished plaster</h3><p>Hand-applied decorative finishes for feature walls, fireplaces and media walls.</p></div>
+<div class="card reveal"><h3>Plastering &amp; skimming</h3><p>Re-skims, overboarding, ceiling repairs and patch repairs.</p></div>
+<div class="card reveal"><h3>Wallpapering</h3><p>All paper types hung neatly, including feature walls.</p></div>
 <div class="card reveal"><h3>Coving &amp; ceiling roses</h3><p>Decorative coving and plaster ceiling roses fitted and finished.</p></div>
-<div class="card reveal"><h3>Tiling</h3><p>Wall and floor tiling for kitchens, bathrooms and more.</p></div>
-<div class="card reveal"><h3>Dry lining &amp; overboarding</h3><p>Dry lining and overboarding to prepare clean, flat surfaces.</p></div>
+<div class="card reveal"><h3>Tiling &amp; dry lining</h3><p>Wall and floor tiling, dry lining and overboarding.</p></div>
 <div class="card reveal"><h3>Fascias, gutters &amp; PVC</h3><p>Replacement and refresh of fascias, gutters and PVC.</p></div>
 <div class="card reveal"><h3>Refurbishments &amp; maintenance</h3><p>Full property refurbishments and ongoing general maintenance.</p></div>
-<div class="card reveal"><h3>Listed buildings &amp; heritage</h3><p>Specialist knowledge for listed and period properties, using the right materials and methods.</p></div>
+<div class="card reveal"><h3>Listed buildings &amp; heritage</h3><p>Specialist knowledge for listed and period properties.</p></div>
 </div></div></section>""" + FOOTER + SCRIPTS + WIDGET_INCLUDE + "</body></html>"
 
 CONTACT_PAGE = """
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Contact - K&H Decorators</title><meta name="viewport" content="width=device-width, initial-scale=1">""" + BASE_STYLE + """</head><body>""" + NAV + """
-<section class="band"><div class="wrap narrow"><div class="head reveal"><div class="rule"></div><div class="eyebrow" style="margin-top:12px">Get in touch</div><h2 class="serif">Free estimate.</h2><p class="sub">Use the chat bubble for the fastest quote, or contact Steve directly.</p></div><div class="contact-box reveal">
+<section class="band" style="padding-top:120px"><div class="wrap narrow"><div class="head reveal"><div class="rule"></div><div class="eyebrow" style="margin-top:12px">Get in touch</div><h2 class="serif">Free estimate.</h2><p class="sub">Use the chat bubble for the fastest quote, or contact Steve directly.</p></div><div class="contact-box reveal">
 <p><strong>Mobile:</strong> <a href="tel:+447908701460">07908 701460</a></p>
 <p><strong>Landline:</strong> <a href="tel:+441243778091">01243 778091</a></p>
 <p><strong>Email:</strong> <a href="mailto:steve25hamblin@hotmail.com">steve25hamblin@hotmail.com</a></p>
@@ -924,7 +796,7 @@ CONTACT_PAGE = """
 
 PRIVACY_PAGE = """
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Privacy Policy - K&H Decorators</title><meta name="viewport" content="width=device-width, initial-scale=1">""" + BASE_STYLE + """</head><body>""" + NAV + """
-<section class="band"><div class="wrap narrow">
+<section class="band" style="padding-top:120px"><div class="wrap narrow">
   <div class="head reveal"><div class="rule"></div><div class="eyebrow" style="margin-top:12px">Legal</div><h2 class="serif">Privacy Policy</h2><p class="sub">How K&H Decorators handles the information you share through this website.</p></div>
   <div class="prose reveal">
     <p>This policy explains what we collect when you use this website or its chat assistant, why, and how it is kept. By sending an enquiry you agree to the points below.</p>
