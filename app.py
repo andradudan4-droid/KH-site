@@ -586,6 +586,8 @@ BASE_STYLE = """
   .badges{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:18px}
   .badge{font-size:12px;font-weight:700;color:#cdd2da;border:1px solid var(--line);border-radius:999px;padding:7px 13px}
   footer{padding:54px 26px 36px;text-align:center;color:var(--mut);border-top:1px solid var(--line);background:#08080a}
+  .hero-logo{max-width:215px;width:55%;border:1px solid rgba(255,255,255,.18);border-radius:12px;margin-bottom:22px;box-shadow:0 18px 50px rgba(0,0,0,.55)}
+  .footer-logo{max-width:300px;width:80%;margin:0 auto 16px;border:1px solid var(--line);border-radius:12px}
   footer .fb{font-family:Fraunces,serif;font-size:24px;color:#fff}
   .wa-float{position:fixed;left:20px;bottom:22px;z-index:999998;width:56px;height:56px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 12px 30px rgba(0,0,0,.4)}.wa-float svg{width:31px;height:31px;fill:#fff}
   .lb{position:fixed;inset:0;z-index:1000000;background:rgba(5,5,7,.94);display:none;align-items:center;justify-content:center;padding:24px;cursor:zoom-out}.lb.open{display:flex}.lb img{max-width:92vw;max-height:90vh;border-radius:10px}.lb .x{position:absolute;top:16px;right:22px;color:#fff;font-size:34px;cursor:pointer}
@@ -623,9 +625,14 @@ FOOTER = """
   <div class="badges"><span class="badge">&#9733; 10/10 Checkatrade</span><span class="badge">225 reviews</span><span class="badge">CITB &amp; City &amp; Guilds</span><span class="badge">&pound;1,000 guarantee</span></div>
 </div></div></section>
 <footer>
-  <div class="fb">K&amp;H Decorators</div>
+  <img class="footer-logo" src="/static/images/logo.png" alt="K&H Decorators">
   <div style="margin-top:6px">Painting, decorating, plastering &amp; Venetian finishes &middot; Chichester &amp; West Sussex</div>
   <div style="margin-top:12px"><a href="tel:+447908701460">07908 701460</a> &nbsp;|&nbsp; <a href="tel:+441243778091">01243 778091</a> &nbsp;|&nbsp; <a href="mailto:steve25hamblin@hotmail.com">steve25hamblin@hotmail.com</a> &nbsp;|&nbsp; <a href="/privacy-policy">Privacy</a></div>
+  <div style="margin-top:18px;display:flex;gap:12px;justify-content:center">
+    <a href="https://www.facebook.com/kandhdecs" target="_blank" rel="noopener" aria-label="K&H Decorators on Facebook" style="width:42px;height:42px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);background:rgba(255,255,255,.03)">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="#cfd4db"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.7l-.4 2.9h-2.3v7A10 10 0 0 0 22 12z"/></svg>
+    </a>
+  </div>
 </footer>
 <a class="wa-float" href="https://wa.me/447908701460" target="_blank" rel="noopener" aria-label="WhatsApp K&H Decorators">""" + WA_SVG + """</a>
 <div class="lb" id="lb" onclick="this.classList.remove('open')"><span class="x">&times;</span><img id="lbimg" src="" alt=""></div>
@@ -662,6 +669,7 @@ HOME_PAGE = """
 <meta name="viewport" content="width=device-width, initial-scale=1">
 """ + BASE_STYLE + """</head><body>""" + NAV + """
 <header class="hero"><div class="hero-bg"></div><div class="wrap"><div class="hero-inner">
+  <img class="hero-logo" src="/static/images/logo.png" alt="K&H Decorators logo">
   <div class="eyebrow">Chichester &amp; West Sussex</div>
   <h1 class="serif silver">A finish worth living with.</h1>
   <p>Painting, decorating, plastering and Venetian finishes for homes and businesses &mdash; carried out by Steve and the K&H team, and left immaculate.</p>
