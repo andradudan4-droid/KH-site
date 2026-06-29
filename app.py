@@ -577,11 +577,28 @@ BASE_STYLE = """
   .wa-float{position:fixed;left:20px;bottom:22px;z-index:999998;width:56px;height:56px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 12px 30px rgba(0,0,0,.3)}.wa-float svg{width:31px;height:31px;fill:#fff}
   .lb{position:fixed;inset:0;z-index:1000000;background:rgba(20,18,14,.92);display:none;align-items:center;justify-content:center;padding:24px;cursor:zoom-out}.lb.open{display:flex}.lb img{max-width:92vw;max-height:90vh;border-radius:10px}.lb .x{position:absolute;top:16px;right:22px;color:#fff;font-size:34px;cursor:pointer}
   .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s,transform .7s}.reveal.in{opacity:1;transform:none}
+  .kh-hero{position:relative;overflow:hidden;background:#100f18;color:#fff;padding:54px 0 42px;border-bottom:1px solid rgba(255,255,255,.1)}
+  .kh-hero:before{content:"";position:absolute;inset:0;background:linear-gradient(110deg,rgba(16,15,24,.97) 0%,rgba(25,28,45,.9) 48%,rgba(93,47,134,.56) 100%),url('https://www.kandhdecoratorschichester.co.uk/wp-content/uploads/2021/02/PHOTO-2021-02-01-09-40-31-10.jpg') center/cover;opacity:.95}
+  .kh-hero:after{content:"";position:absolute;right:-18%;top:-28%;width:54vw;height:54vw;background:radial-gradient(circle,rgba(214,161,58,.28),rgba(93,47,134,.16) 42%,transparent 70%);pointer-events:none}
+  .kh-hero-grid{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,.72fr);gap:30px;align-items:end}
+  .kh-panel{background:rgba(255,253,248,.1);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(16px);border-radius:18px;padding:28px;box-shadow:0 28px 70px rgba(0,0,0,.26)}
+  .kh-mark{display:flex;align-items:center;gap:13px;margin-bottom:22px}.kh-mark img{width:58px;height:58px;border-radius:14px;object-fit:cover;border:1px solid rgba(255,255,255,.28)}.kh-mark b{font-family:Fraunces,serif;font-size:22px}
+  .kh-hero h1{margin:0 0 18px;color:#fff;font-size:clamp(43px,7vw,78px);max-width:820px}.kh-hero h1 em{color:#e4c176}
+  .kh-hero p{color:#eee7df;max-width:650px;font-size:18px;margin:0 0 24px}
+  .quick-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:26px;max-width:640px}.quick-stats div{border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:14px;background:rgba(255,255,255,.08)}.quick-stats b{display:block;font-family:Fraunces,serif;font-size:24px;color:#fff}.quick-stats span{display:block;color:#d9d0c7;font-size:12px;font-weight:700}
+  .quote-card{position:relative;background:#fffdf8;color:var(--ink);border-radius:18px;padding:26px;box-shadow:0 22px 58px rgba(0,0,0,.28)}.quote-card h2{font-family:Fraunces,serif;margin:0 0 12px;font-size:28px}.quote-card p{color:#5e574e;margin:0 0 14px;font-size:14px}.quote-card ol{margin:18px 0 0;padding:0;list-style:none;display:grid;gap:10px}.quote-card li{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:#3d372f;font-weight:700}.quote-card li:before{content:attr(data-step);display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--plum),var(--brass));color:#fff;font-size:12px;flex:none}
+  .service-dock{margin-top:-24px;position:relative;z-index:3}.dock-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;background:#fffdf8;border:1px solid rgba(22,61,104,.12);border-radius:18px;padding:12px;box-shadow:0 20px 50px rgba(16,23,34,.13)}.dock-item{border-radius:14px;padding:20px;background:linear-gradient(180deg,#fff,#f7f0e4);border:1px solid rgba(23,24,32,.08)}.dock-item b{display:block;font-family:Fraunces,serif;font-size:20px}.dock-item span{display:block;color:var(--mut);font-size:13px;margin-top:5px}
+  .planner{display:grid;grid-template-columns:.9fr 1.1fr;gap:28px;align-items:start}.planner-board{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.planner-card{background:#fffdf8;border:1px solid rgba(22,61,104,.14);border-radius:14px;padding:20px;box-shadow:0 12px 30px rgba(16,23,34,.06)}.planner-card .num{font-family:Fraunces,serif;color:var(--plum);font-size:28px}.planner-card h3{font-family:Fraunces,serif;margin:6px 0 6px;font-size:19px}.planner-card p{font-size:13.5px;color:var(--mut);margin:0}
+  .signature{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}.signature-card{min-height:220px;border-radius:18px;overflow:hidden;position:relative;background:#111;color:#fff;border:1px solid rgba(255,255,255,.12)}.signature-card img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;opacity:.72}.signature-card:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(10,10,16,.88),rgba(10,10,16,.12))}.signature-card div{position:absolute;left:22px;right:22px;bottom:20px;z-index:2}.signature-card h3{font-family:Fraunces,serif;margin:0 0 6px;font-size:24px}.signature-card p{margin:0;color:#eee2d4;font-size:14px}.signature-stack{display:grid;gap:18px}
+  .project-ledger{display:grid;grid-template-columns:minmax(300px,520px) 1fr;gap:24px;align-items:center;background:#fffdf8;border:1px solid rgba(22,61,104,.13);border-radius:20px;padding:18px;box-shadow:0 18px 44px rgba(16,23,34,.09)}.ledger-copy{padding:12px 12px 12px 6px}.ledger-copy h2{font-family:Fraunces,serif;font-size:clamp(26px,4vw,42px);margin:8px 0 12px}.ledger-copy p{color:#524b43}.ledger-notes{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:18px}.ledger-notes span{border-radius:12px;background:#f2ebdf;border:1px solid rgba(23,24,32,.09);padding:12px;font-size:12px;font-weight:800;color:#3e372f}
+  .proof-wall{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}.proof-review{background:#fffdf8;border:1px solid rgba(22,61,104,.13);border-radius:16px;padding:20px;box-shadow:0 12px 30px rgba(16,23,34,.06)}.proof-review.featured{grid-row:span 2;background:linear-gradient(135deg,#171820,#2f1a48);color:#fff}.proof-review h3{font-family:Fraunces,serif;margin:8px 0 8px;font-size:18px}.proof-review p{margin:0;color:#575046;font-size:14px}.proof-review.featured p{color:#e8dfd3}.proof-review .review-meta{margin-top:12px}
+  .mini-gallery{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:10px}.mini-gallery .shot{aspect-ratio:1/1}.mini-gallery .shot:first-child{grid-row:span 2;aspect-ratio:auto}.mini-gallery .shot:nth-child(4){grid-row:span 2;aspect-ratio:auto}
   @media(max-width:860px){
     .hero{padding:42px 0 40px}.hero-inner{grid-template-columns:1fr;gap:30px}.split{grid-template-columns:1fr;gap:24px}
     .links a:not(.navcta){display:none}.band{padding:54px 0}.gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
     .hero-cluster{max-width:100%;justify-self:stretch}.hero-cluster img{aspect-ratio:5/4}.hero-cluster figure:first-child img{aspect-ratio:4/5}
     .hero-proof{grid-template-columns:1fr 1fr}.quote-panel{position:relative;left:auto;bottom:auto;width:100%;margin-top:14px}.feature-strip{grid-template-columns:1fr}
+    .kh-hero{padding:34px 0 34px}.kh-hero-grid,.planner,.signature,.project-ledger{grid-template-columns:1fr}.quick-stats,.dock-grid,.planner-board,.proof-wall{grid-template-columns:1fr 1fr}.dock-grid{gap:8px}.dock-item{padding:16px}.mini-gallery{grid-template-columns:1fr 1fr}.proof-review.featured{grid-row:auto}.ledger-notes{grid-template-columns:1fr}
   }
 </style>
 """
@@ -758,6 +775,98 @@ HOME_PAGE = """
 </div></section>
 """ + FOOTER + SCRIPTS + WIDGET_INCLUDE + "</body></html>"
 
+HOME_PAGE = """
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>K&H Decorators - Painting, Decorating &amp; Plastering in Chichester</title>
+<meta name="description" content="K&H Decorators: trusted painting, decorating, plastering and heritage property work across Chichester and West Sussex. Free estimates.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+""" + BASE_STYLE + """</head><body>""" + NAV + """
+<header class="kh-hero"><div class="wrap kh-hero-grid">
+  <div class="reveal">
+    <div class="kh-mark"><img src=\"""" + KH_LOGO + """\" alt="K&H Decorators"><b>K&amp;H Decorators</b></div>
+    <div class="eyebrow">Chichester decorators &middot; homes, heritage &amp; commercial</div>
+    <h1 class="serif">Beautiful rooms start with <em>proper preparation.</em></h1>
+    <p>Painting, decorating, plastering, wallpapering and listed-property work across Chichester and West Sussex. A cleaner, more personal way to get a free estimate.</p>
+    <div class="btns">
+      <a class="btn" href="tel:+447908701460">Call Steve</a>
+      <a class="btn ghost" href="#planner">Plan my quote</a>
+    </div>
+    <div class="quick-stats">
+      <div><b>10/10</b><span>Checkatrade rating</span></div>
+      <div><b>225</b><span>verified reviews</span></div>
+      <div><b>2010</b><span>established locally</span></div>
+    </div>
+  </div>
+  <aside class="quote-card reveal">
+    <div class="eyebrow">Smart quote assistant</div>
+    <h2 class="serif">No vague messages.</h2>
+    <p>The assistant asks for photos, location, timing and contact details, then sends Steve a tidy lead summary.</p>
+    <ol>
+      <li data-step="1">Describe the room, wall, ceiling or exterior.</li>
+      <li data-step="2">Attach a few photos from your phone.</li>
+      <li data-step="3">Confirm where you are and when you need it.</li>
+      <li data-step="4">Steve follows up with a free estimate.</li>
+    </ol>
+  </aside>
+</div></header>
+
+<section class="service-dock"><div class="wrap"><div class="dock-grid reveal">
+  <div class="dock-item"><b>Decorating</b><span>Walls, ceilings, woodwork and exterior finishes.</span></div>
+  <div class="dock-item"><b>Plastering</b><span>Skimming, overboarding and ceiling repairs.</span></div>
+  <div class="dock-item"><b>Wallpapering</b><span>Feature walls, delicate papers and clean seams.</span></div>
+  <div class="dock-item"><b>Heritage</b><span>Listed buildings and period property care.</span></div>
+</div></div></section>
+
+<section class="band" id="planner"><div class="wrap planner">
+  <div class="head reveal"><div class="rule"></div><div class="eyebrow" style="margin-top:12px">Quote planner</div><h2 class="serif">Built around how customers actually ask for work.</h2><p class="sub">Instead of making people dig around for a contact form, the site gently collects the useful details in the right order.</p><div class="btns"><a class="btn" href="javascript:void(0)" onclick="document.querySelector('button[aria-label=&quot;Open quote assistant&quot;]')?.click()">Open assistant</a><a class="btn ghost" href="https://wa.me/447908701460" target="_blank" rel="noopener">WhatsApp</a></div></div>
+  <div class="planner-board">
+    <div class="planner-card reveal"><div class="num">01</div><h3>Photos first</h3><p>Customers can upload photos of walls, ceilings, exterior areas, repairs or wallpaper jobs.</p></div>
+    <div class="planner-card reveal"><div class="num">02</div><h3>Scope captured</h3><p>The bot asks what needs doing, how big the area is and whether prep or plastering is needed.</p></div>
+    <div class="planner-card reveal"><div class="num">03</div><h3>Timing noted</h3><p>Urgent jobs, preferred dates and flexible times are captured for a faster call-back.</p></div>
+    <div class="planner-card reveal"><div class="num">04</div><h3>Lead delivered</h3><p>Steve gets a tidy summary by email rather than a half-finished enquiry.</p></div>
+  </div>
+</div></section>
+
+<section class="band alt" id="work"><div class="wrap">
+  <div class="project-ledger reveal">
+    <div>""" + _ba(IMG+"2021/02/image-1_.jpg", IMG+"2021/02/image-3_.jpg", "K&H before and after") + """</div>
+    <div class="ledger-copy">
+      <div class="eyebrow">Project ledger</div>
+      <h2 class="serif">A site that sells the finish, not just the phone number.</h2>
+      <p>This layout puts the work, trust and quote process together in one place, so visitors understand the standard before they even message.</p>
+      <div class="ledger-notes"><span>Prep-led finish</span><span>Photo-led quotes</span><span>Local proof</span></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="band dark" id="services"><div class="wrap">
+  <div class="head reveal"><div class="rule"></div><div class="eyebrow" style="margin-top:12px">Signature work</div><h2 class="serif">More than a paint job.</h2><p class="sub">The site now presents K&H as a careful local specialist rather than a generic trades page.</p></div>
+  <div class="signature">
+    <article class="signature-card reveal"><img src=\"""" + IMG + """2021/02/PHOTO-2021-02-01-09-40-31.jpg" alt="K&H decorated room" onerror="this.style.display='none'"><div><h3>Full room transformations</h3><p>Preparation, plastering, decorating and finishing details handled as one project.</p></div></article>
+    <div class="signature-stack">
+      <article class="signature-card reveal"><img src=\"""" + IMG + """2022/06/WhatsApp-Image-2022-06-23-at-11.59.01-AM.jpeg" alt="Decorating finish" onerror="this.style.display='none'"><div><h3>Commercial refreshes</h3><p>Clean, practical finishes for offices and rental properties.</p></div></article>
+      <article class="signature-card reveal"><img src=\"""" + IMG + """2021/02/PHOTO-2021-02-01-09-39-42-5.jpg" alt="Heritage decorating" onerror="this.style.display='none'"><div><h3>Period property care</h3><p>Listed buildings, heritage surfaces and the right materials for the job.</p></div></article>
+    </div>
+  </div>
+</div></section>
+
+<section class="band"><div class="wrap">
+  <div class="head reveal"><div class="rule"></div><div class="eyebrow" style="margin-top:12px">Photo proof</div><h2 class="serif">Smaller, sharper gallery moments.</h2><p class="sub">Less giant image blocks, more quick proof points that keep the page moving.</p></div>
+  <div class="mini-gallery reveal">""" + _shots(GAL[:8]) + """</div>
+  <p style="margin-top:22px"><a href="/gallery">Open full gallery &rarr;</a></p>
+</div></section>
+
+<section class="band alt" id="reviews"><div class="wrap">
+  <div class="head reveal"><div class="rule"></div><div class="eyebrow" style="margin-top:12px">Customer proof</div><h2 class="serif">225 reasons to trust Steve.</h2><p class="sub">A review wall with the strongest messages upfront, not a plain row of identical cards.</p></div>
+  <div class="proof-wall">
+    <article class="proof-review featured reveal"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><h3>Hall, stairs, landing &amp; bedroom</h3><p>An exceptional job throughout. Steve is friendly, polite and hardworking. Nothing was too much trouble and we will use again.</p><div class="review-meta">Verified review &middot; PO19</div></article>
+    <article class="proof-review reveal"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><h3>Internal &amp; external decorating</h3><p>Attention to detail, workmanship and finish were outstanding.</p><div class="review-meta">BN18</div></article>
+    <article class="proof-review reveal"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><h3>Kitchen decorated</h3><p>Efficient, punctual, tidy and friendly. The kitchen looks immaculate.</p><div class="review-meta">PO19</div></article>
+    <article class="proof-review reveal"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><h3>Lounge plastered</h3><p>A magnificent job plastering and decorating the lounge.</p><div class="review-meta">PO10</div></article>
+    <article class="proof-review reveal"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><h3>Ceiling repair</h3><p>Quick, clean and a great result after a leak.</p><div class="review-meta">PO21</div></article>
+  </div>
+</div></section>
+""" + FOOTER + SCRIPTS + WIDGET_INCLUDE + "</body></html>"
+
 GALLERY_PAGE = """
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Gallery - K&H Decorators</title><meta name="viewport" content="width=device-width, initial-scale=1">""" + BASE_STYLE + """</head><body>""" + NAV + """
 <section class="band"><div class="wrap">
@@ -810,7 +919,7 @@ WIDGET_JS = """
   var bubble = document.createElement('button');
   bubble.innerHTML = 'Chat';
   bubble.setAttribute('aria-label','Open quote assistant');
-  bubble.style.cssText='position:fixed;right:22px;bottom:22px;z-index:999999;border:0;border-radius:999px;background:linear-gradient(135deg,#36523f,#a9854f);color:white;font-weight:900;padding:15px 18px;box-shadow:0 12px 34px rgba(0,0,0,.34);cursor:pointer';
+  bubble.style.cssText='position:fixed;right:22px;bottom:22px;z-index:999999;border:0;border-radius:999px;background:linear-gradient(135deg,#101722,#5d2f86 58%,#d6a13a);color:white;font-weight:900;padding:15px 18px;box-shadow:0 12px 34px rgba(0,0,0,.34);cursor:pointer';
   var frame = document.createElement('iframe');
   frame.src = base + '/widget-frame';
   function size(){ frame.style.cssText = window.innerWidth <= 640 ? 'position:fixed;inset:0;width:100vw;height:100dvh;border:0;z-index:999999;display:none;background:white' : 'position:fixed;right:22px;bottom:84px;width:410px;height:610px;border:0;border-radius:18px;box-shadow:0 18px 60px rgba(0,0,0,.45);z-index:999999;display:none;background:white'; }
@@ -824,7 +933,7 @@ WIDGET_JS = """
 WIDGET_FRAME = """
 <!DOCTYPE html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><style>
 *{box-sizing:border-box}html,body{margin:0;height:100%;font-family:Manrope,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f5f2ee;color:#17141b;overflow:hidden}
-#chatWindow{height:100dvh;display:flex;flex-direction:column;background:#f5f2ee}#chatHeader{background:#050506;color:white;padding:16px;display:flex;align-items:center;gap:12px;justify-content:space-between}.hbrand{display:flex;gap:10px;align-items:center}.hbrand img{width:42px;height:42px;border-radius:8px;object-fit:cover}.title{font-weight:900}.sub{font-size:12px;color:#d9ccff}.close{font-size:28px;color:#a9854f;cursor:pointer;padding:2px 8px}.progress{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;padding:10px 14px;background:#fff;border-bottom:1px solid #ded6e8}.bar{height:6px;border-radius:99px;background:#e6dff0}.bar.on{background:linear-gradient(90deg,#36523f,#a9854f)}#status{font-size:12px;color:#6b6178;background:#fff;padding:0 14px 10px;border-bottom:1px solid #ded6e8}#chatbox{flex:1;overflow:auto;padding:16px;-webkit-overflow-scrolling:touch}.msg{max-width:84%;margin:10px 0;padding:12px 14px;border-radius:16px;line-height:1.45;font-size:15px}.bot{background:#fff;border:1px solid #ded6e8}.user{margin-left:auto;background:#100d18;color:white}.photo-msg{padding:5px;background:#100d18}.photo{width:210px;border-radius:12px}#inputRow{flex:none;display:flex;gap:8px;padding:10px;background:white;border-top:1px solid #ded6e8;padding-bottom:max(10px,env(safe-area-inset-bottom))}#userInput{flex:1;min-width:0;border:1px solid #cabfe0;border-radius:999px;padding:12px 14px;font-size:16px;outline:none}#sendBtn,#attachBtn{border:0;border-radius:50%;width:46px;height:46px;display:grid;place-items:center;background:#100d18;color:white;font-weight:900;cursor:pointer;flex:none}#attachBtn{background:#eee8f8;color:#100d18}#fileInput{display:none}.typing{color:#8c819e}
+#chatWindow{height:100dvh;display:flex;flex-direction:column;background:#f5f2ee}#chatHeader{background:#050506;color:white;padding:16px;display:flex;align-items:center;gap:12px;justify-content:space-between}.hbrand{display:flex;gap:10px;align-items:center}.hbrand img{width:42px;height:42px;border-radius:8px;object-fit:cover}.title{font-weight:900}.sub{font-size:12px;color:#d9ccff}.close{font-size:28px;color:#d6a13a;cursor:pointer;padding:2px 8px}.progress{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;padding:10px 14px;background:#fff;border-bottom:1px solid #ded6e8}.bar{height:6px;border-radius:99px;background:#e6dff0}.bar.on{background:linear-gradient(90deg,#101722,#5d2f86,#d6a13a)}#status{font-size:12px;color:#6b6178;background:#fff;padding:0 14px 10px;border-bottom:1px solid #ded6e8}#chatbox{flex:1;overflow:auto;padding:16px;-webkit-overflow-scrolling:touch}.msg{max-width:84%;margin:10px 0;padding:12px 14px;border-radius:16px;line-height:1.45;font-size:15px}.bot{background:#fff;border:1px solid #ded6e8}.user{margin-left:auto;background:#100d18;color:white}.photo-msg{padding:5px;background:#100d18}.photo{width:210px;border-radius:12px}#inputRow{flex:none;display:flex;gap:8px;padding:10px;background:white;border-top:1px solid #ded6e8;padding-bottom:max(10px,env(safe-area-inset-bottom))}#userInput{flex:1;min-width:0;border:1px solid #cabfe0;border-radius:999px;padding:12px 14px;font-size:16px;outline:none}#sendBtn,#attachBtn{border:0;border-radius:50%;width:46px;height:46px;display:grid;place-items:center;background:#100d18;color:white;font-weight:900;cursor:pointer;flex:none}#attachBtn{background:#eee8f8;color:#100d18}#fileInput{display:none}.typing{color:#8c819e}
 </style></head><body><div id="chatWindow"><div id="chatHeader"><div class="hbrand"><img src="https://www.kandhdecoratorschichester.co.uk/wp-content/uploads/2021/02/cropped-Untitled-design-1-270x270.png"><div><div class="title">K&H Decorators Assistant</div><div class="sub">Quote details captured in minutes</div></div></div><div class="close" onclick="window.parent.postMessage('close-au-chat','*')">&times;</div></div><div class="progress"><span class="bar on"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span></div><div id="status">Quote progress: tell us what needs doing</div><div id="chatbox"></div><div id="inputRow"><label id="attachBtn" title="Attach photos"><input type="file" id="fileInput" accept="image/*" multiple onchange="handleFiles(this)">+</label><input type="text" id="hpField" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0"><input id="userInput" type="text" placeholder="Type your message..." onkeypress="if(event.key==='Enter')sendMessage()"><button id="sendBtn" onclick="sendMessage()">></button></div></div>
 <script>
 var messages=0; addMessage("Hi, I can help get a free quote for plastering, painting or decorating. What needs doing?", "bot");
