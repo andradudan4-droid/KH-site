@@ -282,7 +282,7 @@ def _transcript_html(conversation):
         if msg["role"] == "user":
             who, color, bg = "Customer", "#0a0a0a", "#f5f4f0"
         elif msg["role"] == "assistant":
-            who, color, bg = "K&H Assistant", "#9a7d1a", "#ffffff"
+            who, color, bg = "K&H Assistant", "#6a7480", "#ffffff"
         else:
             continue
         text = html.escape(msg["content"]).replace("\n", "<br>")
@@ -340,7 +340,7 @@ def _lead_email_html(fields, conversation, image_count):
         '<div style="max-width:620px;margin:0 auto;background:#fff;border-radius:14px;'
         'overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.07)">'
         '<div style="background:#0a0a0a;padding:24px 28px">'
-        '<div style="color:#D4AF37;font-size:12px;letter-spacing:.18em;text-transform:uppercase;'
+        '<div style="color:#c9ced6;font-size:12px;letter-spacing:.18em;text-transform:uppercase;'
         'font-weight:700">K&H Decorators</div>'
         '<div style="color:#fff;font-size:21px;font-weight:700;margin-top:5px">'
         'New enquiry from your website</div></div>'
@@ -419,7 +419,7 @@ def send_photo_followup(conversation, images):
         '<div style="max-width:620px;margin:0 auto;background:#fff;border-radius:14px;overflow:hidden;'
         'box-shadow:0 2px 12px rgba(0,0,0,.07)">'
         '<div style="background:#0a0a0a;padding:22px 28px">'
-        '<div style="color:#D4AF37;font-size:12px;letter-spacing:.18em;text-transform:uppercase;'
+        '<div style="color:#c9ced6;font-size:12px;letter-spacing:.18em;text-transform:uppercase;'
         'font-weight:700">K&H Decorators</div>'
         '<div style="color:#fff;font-size:19px;font-weight:700;margin-top:5px">'
         'More photos for an existing lead</div></div>'
@@ -587,7 +587,8 @@ BASE_STYLE = """
   .reveal{opacity:0;transform:translateY(20px);transition:opacity .8s,transform .8s}.reveal.in{opacity:1;transform:none}
   @media(max-width:860px){
     .links a:not(.navcta){display:none}
-    .hero{min-height:84vh}.hero-badge{right:auto;left:0;bottom:18px}
+    .hero{min-height:auto}.hero-inner{padding:118px 0 48px}
+    .hero-badge{position:static;margin-top:24px;width:max-content;max-width:100%}
     .band{padding:60px 0}.feature{min-height:auto;padding:64px 0}.feature-bg{background-attachment:scroll}
     .split,.split.rev{grid-template-columns:1fr;gap:26px}.split.rev .txt{order:0}
     .gallery{columns:2 150px}.stats{grid-template-columns:1fr 1fr}
