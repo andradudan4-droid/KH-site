@@ -469,16 +469,15 @@ include the internal tag [[READY]]. Do not show or mention the tag.
 
 
 
-
-
-KH_LOGO = "https://www.kandhdecoratorschichester.co.uk/wp-content/uploads/2021/02/cropped-Untitled-design-1-270x270.png"
 IMG = "https://www.kandhdecoratorschichester.co.uk/wp-content/uploads/"
 
 
-KH_LOGO = "https://www.kandhdecoratorschichester.co.uk/wp-content/uploads/2021/02/cropped-Untitled-design-1-270x270.png"
+KH_ICON = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%23050506'/%3E%3Ctext x='32' y='39' text-anchor='middle' font-family='Arial' font-size='22' font-weight='900' fill='%23f2f5f8'%3EK%26H%3C/text%3E%3C/svg%3E"
+KH_WORDMARK = """<span class="kh-wordmark" aria-label="K&H Decorators"><span class="kh-word">K<span>&amp;</span>H DECORATORS</span><svg class="kh-man" viewBox="0 0 58 78" aria-hidden="true"><path class="rail" d="M3 14h38v14"/><circle cx="41" cy="36" r="6"/><path d="M41 43v18M41 49l-11 7M41 49l10-3M41 61l-8 12M41 61l9 12"/></svg></span>"""
+CHAT_MARK = """<span class="chat-mark" aria-hidden="true">K<span>&amp;</span>H<i></i></span>"""
 
 BASE_STYLE = """
-<link rel="icon" type="image/png" href=\"""" + KH_LOGO + """\">
+<link rel="icon" href=\"""" + KH_ICON + """\">
 <meta name="theme-color" content="#0a0a0c">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="K&H Decorators Chichester">
@@ -501,8 +500,14 @@ BASE_STYLE = """
   /* nav */
   nav{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:16px 26px;transition:background .3s,padding .3s,border-color .3s;border-bottom:1px solid transparent}
   nav.solid{background:rgba(10,10,12,.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:11px 26px}
-  .brand{display:flex;align-items:center;gap:11px;color:#fff;text-decoration:none;font-family:Fraunces,serif;font-weight:600;font-size:21px;letter-spacing:.04em}
-  .brand .amp{color:var(--silver-d)}
+  .brand{display:flex;align-items:center;color:#fff;text-decoration:none}
+  .kh-wordmark{display:inline-flex;align-items:flex-start;gap:9px;color:#fff;text-decoration:none;filter:drop-shadow(0 12px 24px rgba(0,0,0,.55))}
+  .kh-word{font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-weight:900;font-size:clamp(30px,5vw,58px);line-height:.82;letter-spacing:-.045em;text-transform:uppercase;color:#fff;text-shadow:0 0 18px rgba(242,245,248,.22),0 3px 16px rgba(0,0,0,.75)}
+  .kh-word span{color:#cfd4db}
+  .kh-man{width:.72em;height:1.02em;margin-top:-.12em;overflow:visible;fill:none;stroke:#f5f7fa;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 10px rgba(242,245,248,.26))}
+  .kh-man .rail{stroke:#fff;stroke-width:5}
+  .brand .kh-word{font-size:22px;white-space:nowrap;letter-spacing:-.045em}
+  .brand .kh-man{width:28px;height:38px}
   .links{display:flex;align-items:center;gap:26px}.links a{color:#e9eaee;text-decoration:none;font-size:13.5px;font-weight:600;letter-spacing:.01em}.links a:hover{color:#fff}
   .navcta{border:1px solid rgba(255,255,255,.4);padding:9px 16px;border-radius:999px;color:#fff!important;font-size:13px}
   .navcta:hover{background:#fff;color:#0a0a0c!important}
@@ -586,14 +591,22 @@ BASE_STYLE = """
   .badges{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:18px}
   .badge{font-size:12px;font-weight:700;color:#cdd2da;border:1px solid var(--line);border-radius:999px;padding:7px 13px}
   footer{padding:54px 26px 36px;text-align:center;color:var(--mut);border-top:1px solid var(--line);background:#08080a}
-  .hero-logo{max-width:215px;width:55%;border:1px solid rgba(255,255,255,.18);border-radius:12px;margin-bottom:22px;box-shadow:0 18px 50px rgba(0,0,0,.55)}
-  .footer-logo{max-width:300px;width:80%;margin:0 auto 16px;border:1px solid var(--line);border-radius:12px}
+  .hero-logo{display:inline-flex;align-items:center;margin-bottom:22px;padding:0;border:0;border-radius:0;box-shadow:none}
+  .hero-logo .kh-word{font-size:clamp(42px,8.5vw,92px)}
+  .hero-logo .kh-man{width:72px;height:98px}
+  .footer-logo{display:inline-flex;justify-content:center;margin:0 auto 16px}
+  .footer-logo .kh-word{font-size:34px}
+  .footer-logo .kh-man{width:40px;height:52px}
   footer .fb{font-family:Fraunces,serif;font-size:24px;color:#fff}
   .wa-float{position:fixed;left:20px;bottom:22px;z-index:999998;width:56px;height:56px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 12px 30px rgba(0,0,0,.4)}.wa-float svg{width:31px;height:31px;fill:#fff}
   .lb{position:fixed;inset:0;z-index:1000000;background:rgba(5,5,7,.94);display:none;align-items:center;justify-content:center;padding:24px;cursor:zoom-out}.lb.open{display:flex}.lb img{max-width:92vw;max-height:90vh;border-radius:10px}.lb .x{position:absolute;top:16px;right:22px;color:#fff;font-size:34px;cursor:pointer}
   .reveal{opacity:0;transform:translateY(20px);transition:opacity .8s,transform .8s}.reveal.in{opacity:1;transform:none}
   @media(max-width:860px){
     .links a:not(.navcta){display:none}
+    .brand .kh-word{font-size:18px}
+    .brand .kh-man{width:22px;height:30px}
+    .hero-logo .kh-word{font-size:40px}
+    .hero-logo .kh-man{width:50px;height:68px}
     .hero{min-height:auto}.hero-inner{padding:118px 0 48px}
     .hero-badge{position:static;margin-top:24px;width:max-content;max-width:100%}
     .band{padding:60px 0}.feature{min-height:auto;padding:64px 0}.feature-bg{background-attachment:scroll}
@@ -605,7 +618,7 @@ BASE_STYLE = """
 
 NAV = """
 <nav id="nav">
-  <a class="brand" href="/">K<span class="amp">&amp;</span>H <span style="font-size:13px;letter-spacing:.22em;font-family:Inter;align-self:center;color:#aeb4bd;margin-left:2px">DECORATORS</span></a>
+  <a class="brand" href="/">""" + KH_WORDMARK + """</a>
   <div class="links">
     <a href="/#work">Our work</a><a href="/#venetian">Venetian</a><a href="/#services">Services</a>
     <a href="/gallery">Gallery</a><a href="/#reviews">Reviews</a><a href="/contact">Contact</a>
@@ -625,7 +638,7 @@ FOOTER = """
   <div class="badges"><span class="badge">&#9733; 10/10 Checkatrade</span><span class="badge">225 reviews</span><span class="badge">CITB &amp; City &amp; Guilds</span><span class="badge">&pound;1,000 guarantee</span></div>
 </div></div></section>
 <footer>
-  <img class="footer-logo" src="/static/images/logo.png" alt="K&H Decorators">
+  <div class="footer-logo">""" + KH_WORDMARK + """</div>
   <div style="margin-top:6px">Painting, decorating, plastering &amp; Venetian finishes &middot; Chichester &amp; West Sussex</div>
   <div style="margin-top:12px"><a href="tel:+447908701460">07908 701460</a> &nbsp;|&nbsp; <a href="tel:+441243778091">01243 778091</a> &nbsp;|&nbsp; <a href="mailto:steve25hamblin@hotmail.com">steve25hamblin@hotmail.com</a> &nbsp;|&nbsp; <a href="/privacy-policy">Privacy</a></div>
   <div style="margin-top:18px;display:flex;gap:12px;justify-content:center">
@@ -669,7 +682,7 @@ HOME_PAGE = """
 <meta name="viewport" content="width=device-width, initial-scale=1">
 """ + BASE_STYLE + """</head><body>""" + NAV + """
 <header class="hero"><div class="hero-bg"></div><div class="wrap"><div class="hero-inner">
-  <img class="hero-logo" src="/static/images/logo.png" alt="K&H Decorators logo">
+  <div class="hero-logo">""" + KH_WORDMARK + """</div>
   <div class="eyebrow">Chichester &amp; West Sussex</div>
   <h1 class="serif silver">A finish worth living with.</h1>
   <p>Painting, decorating, plastering and Venetian finishes for homes and businesses &mdash; carried out by Steve and the K&H team, and left immaculate.</p>
@@ -843,8 +856,8 @@ WIDGET_JS = """
 WIDGET_FRAME = """
 <!DOCTYPE html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><style>
 *{box-sizing:border-box}html,body{margin:0;height:100%;font-family:Manrope,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0a0b0d;color:#f7f8fb;overflow:hidden}
-#chatWindow{height:100dvh;display:flex;flex-direction:column;background:#0a0b0d}#chatHeader{background:#050506;color:white;padding:16px;display:flex;align-items:center;gap:12px;justify-content:space-between;box-shadow:0 16px 36px rgba(0,0,0,.32)}.hbrand{display:flex;gap:10px;align-items:center}.hbrand img{width:42px;height:42px;border-radius:8px;object-fit:cover}.title{font-weight:900;text-shadow:0 0 16px rgba(242,245,248,.3)}.sub{font-size:12px;color:#cdd4de}.close{font-size:28px;color:#f2f5f8;cursor:pointer;padding:2px 8px}.progress{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;padding:10px 14px;background:#111317;border-bottom:1px solid rgba(242,245,248,.16)}.bar{height:6px;border-radius:99px;background:#2a2d33}.bar.on{background:linear-gradient(90deg,#f2f5f8,#8d96a3,#414852)}#status{font-size:12px;color:#b5bcc7;background:#111317;padding:0 14px 10px;border-bottom:1px solid rgba(242,245,248,.16)}#chatbox{flex:1;overflow:auto;padding:16px;-webkit-overflow-scrolling:touch}.msg{max-width:84%;margin:10px 0;padding:12px 14px;border-radius:16px;line-height:1.45;font-size:15px}.bot{background:#171a20;border:1px solid rgba(242,245,248,.16);color:#f7f8fb}.user{margin-left:auto;background:linear-gradient(135deg,#050506,#454d59);color:white}.photo-msg{padding:5px;background:#050506}.photo{width:210px;border-radius:12px}#inputRow{flex:none;display:flex;gap:8px;padding:10px;background:#111317;border-top:1px solid rgba(242,245,248,.16);padding-bottom:max(10px,env(safe-area-inset-bottom))}#userInput{flex:1;min-width:0;border:1px solid rgba(242,245,248,.24);border-radius:999px;padding:12px 14px;font-size:16px;outline:none;background:#050506;color:#fff}#userInput::placeholder{color:#858d99}#sendBtn,#attachBtn{border:0;border-radius:50%;width:46px;height:46px;display:grid;place-items:center;background:linear-gradient(135deg,#050506,#4b535f,#f2f5f8);color:white;font-weight:900;cursor:pointer;flex:none}#attachBtn{background:#242830;color:#f2f5f8;border:1px solid rgba(242,245,248,.2)}#fileInput{display:none}.typing{color:#8c96a3}
-</style></head><body><div id="chatWindow"><div id="chatHeader"><div class="hbrand"><img src="https://www.kandhdecoratorschichester.co.uk/wp-content/uploads/2021/02/cropped-Untitled-design-1-270x270.png"><div><div class="title">K&H Decorators Assistant</div><div class="sub">Quote details captured in minutes</div></div></div><div class="close" onclick="window.parent.postMessage('close-au-chat','*')">&times;</div></div><div class="progress"><span class="bar on"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span></div><div id="status">Quote progress: tell us what needs doing</div><div id="chatbox"></div><div id="inputRow"><label id="attachBtn" title="Attach photos"><input type="file" id="fileInput" accept="image/*" multiple onchange="handleFiles(this)">+</label><input type="text" id="hpField" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0"><input id="userInput" type="text" placeholder="Type your message..." onkeypress="if(event.key==='Enter')sendMessage()"><button id="sendBtn" onclick="sendMessage()">></button></div></div>
+#chatWindow{height:100dvh;display:flex;flex-direction:column;background:#0a0b0d}#chatHeader{background:#050506;color:white;padding:16px;display:flex;align-items:center;gap:12px;justify-content:space-between;box-shadow:0 16px 36px rgba(0,0,0,.32)}.hbrand{display:flex;gap:10px;align-items:center}.chat-mark{position:relative;width:44px;height:44px;display:grid;place-items:center;border:1px solid rgba(242,245,248,.24);border-radius:9px;background:linear-gradient(145deg,#050506,#20242a);font-weight:900;letter-spacing:-.08em;box-shadow:0 0 18px rgba(242,245,248,.16)}.chat-mark span{color:#cfd4db}.chat-mark i{position:absolute;right:5px;bottom:5px;width:8px;height:18px;border-right:3px solid #fff;border-bottom:3px solid #fff;transform:rotate(-12deg);opacity:.9}.title{font-weight:900;text-shadow:0 0 16px rgba(242,245,248,.3)}.sub{font-size:12px;color:#cdd4de}.close{font-size:28px;color:#f2f5f8;cursor:pointer;padding:2px 8px}.progress{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;padding:10px 14px;background:#111317;border-bottom:1px solid rgba(242,245,248,.16)}.bar{height:6px;border-radius:99px;background:#2a2d33}.bar.on{background:linear-gradient(90deg,#f2f5f8,#8d96a3,#414852)}#status{font-size:12px;color:#b5bcc7;background:#111317;padding:0 14px 10px;border-bottom:1px solid rgba(242,245,248,.16)}#chatbox{flex:1;overflow:auto;padding:16px;-webkit-overflow-scrolling:touch}.msg{max-width:84%;margin:10px 0;padding:12px 14px;border-radius:16px;line-height:1.45;font-size:15px}.bot{background:#171a20;border:1px solid rgba(242,245,248,.16);color:#f7f8fb}.user{margin-left:auto;background:linear-gradient(135deg,#050506,#454d59);color:white}.photo-msg{padding:5px;background:#050506}.photo{width:210px;border-radius:12px}#inputRow{flex:none;display:flex;gap:8px;padding:10px;background:#111317;border-top:1px solid rgba(242,245,248,.16);padding-bottom:max(10px,env(safe-area-inset-bottom))}#userInput{flex:1;min-width:0;border:1px solid rgba(242,245,248,.24);border-radius:999px;padding:12px 14px;font-size:16px;outline:none;background:#050506;color:#fff}#userInput::placeholder{color:#858d99}#sendBtn,#attachBtn{border:0;border-radius:50%;width:46px;height:46px;display:grid;place-items:center;background:linear-gradient(135deg,#050506,#4b535f,#f2f5f8);color:white;font-weight:900;cursor:pointer;flex:none}#attachBtn{background:#242830;color:#f2f5f8;border:1px solid rgba(242,245,248,.2)}#fileInput{display:none}.typing{color:#8c96a3}
+</style></head><body><div id="chatWindow"><div id="chatHeader"><div class="hbrand">""" + CHAT_MARK + """<div><div class="title">K&H Decorators Assistant</div><div class="sub">Quote details captured in minutes</div></div></div><div class="close" onclick="window.parent.postMessage('close-au-chat','*')">&times;</div></div><div class="progress"><span class="bar on"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span></div><div id="status">Quote progress: tell us what needs doing</div><div id="chatbox"></div><div id="inputRow"><label id="attachBtn" title="Attach photos"><input type="file" id="fileInput" accept="image/*" multiple onchange="handleFiles(this)">+</label><input type="text" id="hpField" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0"><input id="userInput" type="text" placeholder="Type your message..." onkeypress="if(event.key==='Enter')sendMessage()"><button id="sendBtn" onclick="sendMessage()">></button></div></div>
 <script>
 var messages=0; addMessage("Hi, I can help get a free quote for plastering, painting or decorating. What needs doing?", "bot");
 function updateProgress(){var n=Math.min(6,Math.ceil(messages/2));document.querySelectorAll('.bar').forEach(function(b,i){b.classList.toggle('on',i<n)});document.getElementById('status').textContent='Quote progress: '+n+'/6 details captured';}
