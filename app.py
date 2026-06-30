@@ -666,6 +666,7 @@ def _shots(items):
 HOME_PAGE = """
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>K&H Decorators - Painting &amp; Decorating in Chichester</title>
 <meta name="description" content="K&H Decorators: painting, decorating, plastering and Venetian finishes across Chichester and West Sussex. 10/10 on Checkatrade from 225 reviews. Free estimates.">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 """ + BASE_STYLE + """</head><body>""" + NAV + """
 <header class="hero"><div class="hero-bg"></div><div class="wrap"><div class="hero-inner">
@@ -769,6 +770,45 @@ HOME_PAGE = """
     <article class="review-card"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><h3>Ceiling repair after a leak</h3><p>Repaired and repainted the ceiling after a leak &mdash; quick, clean and a great result.</p><div class="review-meta">Verified review &middot; PO21</div></article>
   </div>
 </div></section>
+
+<section class="band" id="coverage" style="border-top:1px solid var(--line)"><div class="wrap">
+  <div class="head reveal"><div class="rule"></div><div class="eyebrow" style="margin-top:12px">Where we work</div><h2 class="serif">Covering 20 miles around Chichester.</h2><p class="sub">Based in Mid Lavant, we cover roughly a 20-mile radius across Chichester and West Sussex &mdash; from the harbour villages to the South Downs. Not sure if you're in range? Just ask.</p></div>
+  <div class="cover-wrap reveal">
+    <div id="coverMap" class="cover-map"></div>
+    <div class="cover-towns">
+      <span>Chichester</span><span>Bognor Regis</span><span>Arundel</span><span>Littlehampton</span><span>Selsey</span><span>Emsworth</span><span>Havant</span><span>Petersfield</span><span>Midhurst</span><span>Petworth</span><span>Bosham</span><span>Pulborough</span>
+    </div>
+  </div>
+</div>
+<style>
+  .cover-wrap{max-width:920px;margin:34px auto 0}
+  .cover-map{height:440px;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.55);background:#0c0c10}
+  .cover-map .leaflet-control-attribution{background:rgba(10,10,12,.7);color:var(--silver-d)}
+  .cover-map .leaflet-control-attribution a{color:var(--silver)}
+  .cover-map .leaflet-bar a{background:#15151b;color:var(--silver);border-bottom-color:var(--line)}
+  .cover-map .leaflet-bar a:hover{background:#1d1d24}
+  .cover-towns{display:flex;flex-wrap:wrap;justify-content:center;gap:9px;margin-top:22px}
+  .cover-towns span{font-size:12.5px;letter-spacing:.04em;color:var(--silver);border:1px solid var(--line);border-radius:999px;padding:7px 14px;background:rgba(255,255,255,.02)}
+  @media(max-width:640px){.cover-map{height:320px}}
+</style>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+(function(){
+  if(typeof L==='undefined'){return;}
+  var center=[50.873173,-0.786647];
+  var map=L.map('coverMap',{scrollWheelZoom:false,attributionControl:true}).setView(center,9);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{
+    attribution:'&copy; OpenStreetMap &copy; CARTO',maxZoom:19,subdomains:'abcd'
+  }).addTo(map);
+  var radius=20*1609.344;
+  var circle=L.circle(center,{radius:radius,color:'#cfd4db',weight:1.5,opacity:.9,fillColor:'#cfd4db',fillOpacity:.08}).addTo(map);
+  L.circleMarker(center,{radius:5,color:'#ffffff',weight:2,fillColor:'#cfd4db',fillOpacity:1}).addTo(map).bindTooltip('K&H Decorators',{direction:'top'});
+  map.fitBounds(circle.getBounds(),{padding:[26,26]});
+  map.setMaxBounds(circle.getBounds().pad(0.6));
+  setTimeout(function(){map.invalidateSize();},250);
+})();
+</script>
+</section>
 """ + FOOTER + SCRIPTS + WIDGET_INCLUDE + "</body></html>"
 
 GALLERY_PAGE = """
