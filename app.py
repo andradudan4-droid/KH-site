@@ -605,7 +605,7 @@ BASE_STYLE = """
 
 NAV = """
 <nav id="nav">
-  <a class="brand" href="/"><img src="/static/images/nav-logo.png" alt="K&H Decorators" style="height:88px;width:auto;display:block;max-width:88vw"></a>
+  <a class="brand" href="/"><img src="/static/images/nav-logo.png" alt="K&H Decorators" style="height:54px;width:auto;display:block;max-width:88vw"></a>
   <div class="links">
     <a href="/#work">Our work</a><a href="/#venetian">Venetian</a><a href="/#services">Services</a>
     <a href="/gallery">Gallery</a><a href="/#reviews">Reviews</a><a href="/contact">Contact</a>
