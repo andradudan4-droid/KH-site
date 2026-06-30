@@ -605,7 +605,7 @@ BASE_STYLE = """
 
 NAV = """
 <nav id="nav">
-  <a class="brand" href="/"><img src="/static/images/nav-logo.png" alt="K&H Decorators" style="height:44px;width:auto;display:block"></a>
+  <a class="brand" href="/"><img src="/static/images/nav-logo.png" alt="K&H Decorators" style="height:56px;width:auto;display:block"></a>
   <div class="links">
     <a href="/#work">Our work</a><a href="/#venetian">Venetian</a><a href="/#services">Services</a>
     <a href="/gallery">Gallery</a><a href="/#reviews">Reviews</a><a href="/contact">Contact</a>
@@ -625,7 +625,7 @@ FOOTER = """
   <div class="badges"><span class="badge">&#9733; 10/10 Checkatrade</span><span class="badge">225 reviews</span><span class="badge">CITB &amp; City &amp; Guilds</span><span class="badge">&pound;1,000 guarantee</span></div>
 </div></div></section>
 <footer>
-  <img class="footer-logo" src="/static/images/logo.png" alt="K&H Decorators">
+  <img class="footer-logo" src="/static/images/logo-silver.png" alt="K&H Decorators">
   <div style="margin-top:6px">Painting, decorating, plastering &amp; Venetian finishes &middot; Chichester &amp; West Sussex</div>
   <div style="margin-top:12px"><a href="tel:+447908701460">07908 701460</a> &nbsp;|&nbsp; <a href="tel:+441243778091">01243 778091</a> &nbsp;|&nbsp; <a href="mailto:steve25hamblin@hotmail.com">steve25hamblin@hotmail.com</a> &nbsp;|&nbsp; <a href="/privacy-policy">Privacy</a></div>
   <div style="margin-top:18px;display:flex;gap:12px;justify-content:center">
