@@ -587,7 +587,7 @@ BASE_STYLE = """
   .badge{font-size:12px;font-weight:700;color:#cdd2da;border:1px solid var(--line);border-radius:999px;padding:7px 13px}
   footer{padding:54px 26px 36px;text-align:center;color:var(--mut);border-top:1px solid var(--line);background:#08080a}
   .hero-logo{max-width:215px;width:55%;border:1px solid rgba(255,255,255,.18);border-radius:12px;margin-bottom:22px;box-shadow:0 18px 50px rgba(0,0,0,.55)}
-  .footer-logo{max-width:300px;width:80%;margin:0 auto 16px;border:1px solid var(--line);border-radius:12px}
+  .footer-logo{max-width:440px;width:90%;margin:0 auto 16px;border:1px solid var(--line);border-radius:12px}
   footer .fb{font-family:Fraunces,serif;font-size:24px;color:#fff}
   .wa-float{position:fixed;left:20px;bottom:22px;z-index:999998;width:56px;height:56px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 12px 30px rgba(0,0,0,.4)}.wa-float svg{width:31px;height:31px;fill:#fff}
   .lb{position:fixed;inset:0;z-index:1000000;background:rgba(5,5,7,.94);display:none;align-items:center;justify-content:center;padding:24px;cursor:zoom-out}.lb.open{display:flex}.lb img{max-width:92vw;max-height:90vh;border-radius:10px}.lb .x{position:absolute;top:16px;right:22px;color:#fff;font-size:34px;cursor:pointer}
