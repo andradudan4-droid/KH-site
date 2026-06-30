@@ -776,7 +776,7 @@ HOME_PAGE = """
   <div class="cover-wrap reveal">
     <div id="coverMap" class="cover-map"></div>
     <div class="cover-towns">
-      <span>Chichester</span><span>Bognor Regis</span><span>Arundel</span><span>Littlehampton</span><span>Selsey</span><span>Emsworth</span><span>Havant</span><span>Petersfield</span><span>Midhurst</span><span>Petworth</span><span>Bosham</span><span>Pulborough</span>
+      <span>Chichester</span><span>Bognor Regis</span><span>Arundel</span><span>Littlehampton</span><span>Selsey</span><span>Emsworth</span><span>Havant</span><span>Portsmouth</span><span>Petersfield</span><span>Midhurst</span><span>Petworth</span><span>Bosham</span><span>Pulborough</span>
     </div>
   </div>
 </div>
