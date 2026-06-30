@@ -605,7 +605,7 @@ BASE_STYLE = """
 
 NAV = """
 <nav id="nav">
-  <a class="brand" href="/"><img src="/static/images/nav-logo.png" alt="K&H Decorators" style="height:34px;width:auto;display:block"></a>
+  <a class="brand" href="/"><img src="/static/images/nav-logo.png" alt="K&H Decorators" style="height:44px;width:auto;display:block"></a>
   <div class="links">
     <a href="/#work">Our work</a><a href="/#venetian">Venetian</a><a href="/#services">Services</a>
     <a href="/gallery">Gallery</a><a href="/#reviews">Reviews</a><a href="/contact">Contact</a>
@@ -669,7 +669,6 @@ HOME_PAGE = """
 <meta name="viewport" content="width=device-width, initial-scale=1">
 """ + BASE_STYLE + """</head><body>""" + NAV + """
 <header class="hero"><div class="hero-bg"></div><div class="wrap"><div class="hero-inner">
-  <img class="hero-logo" src="/static/images/logo.png" alt="K&H Decorators logo">
   <div class="eyebrow">Chichester &amp; West Sussex</div>
   <h1 class="serif silver">A finish worth living with.</h1>
   <p>Painting, decorating, plastering and Venetian finishes for homes and businesses &mdash; carried out by Steve and the K&H team, and left immaculate.</p>
