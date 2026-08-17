@@ -600,6 +600,23 @@ BASE_STYLE = """
     .split,.split.rev{grid-template-columns:1fr;gap:26px}.split.rev .txt{order:0}
     .gallery{columns:2 150px}.stats{grid-template-columns:1fr 1fr}
   }
+
+  /* cookie consent */
+  .cc-bar{position:fixed;left:16px;right:16px;bottom:16px;z-index:999999;max-width:640px;margin:0 auto;
+    background:rgba(10,10,10,.92);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.12);
+    border-radius:10px;padding:16px 18px;display:none;align-items:center;gap:16px;flex-wrap:wrap;
+    box-shadow:0 20px 50px rgba(0,0,0,.4);transform:translateY(12px);opacity:0;transition:transform .35s ease,opacity .35s ease}
+  .cc-bar.cc-show{display:flex}
+  .cc-bar.cc-in{transform:translateY(0);opacity:1}
+  .cc-bar p{margin:0;color:#eee;font-size:13.5px;line-height:1.5;flex:1 1 260px}
+  .cc-bar a{color:var(--silver);text-decoration:underline}
+  .cc-actions{display:flex;gap:10px;flex:0 0 auto}
+  .cc-btn{font-family:inherit;font-size:13px;font-weight:700;padding:9px 16px;border-radius:6px;cursor:pointer;white-space:nowrap}
+  .cc-accept{background:var(--silver);color:#0a0a0a;border:1px solid var(--silver)}
+  .cc-reject{background:transparent;color:#eee;border:1px solid rgba(255,255,255,.3)}
+  .cc-btn:focus-visible{outline:2px solid var(--silver);outline-offset:2px}
+  @media(max-width:640px){.cc-bar{left:10px;right:10px;bottom:10px;padding:14px}.cc-actions{width:100%;justify-content:flex-end}}
+  @media(prefers-reduced-motion:reduce){.cc-bar{transition:none}}
 </style>
 """
 
@@ -627,7 +644,7 @@ FOOTER = """
 <footer>
   <img class="footer-logo" src="/static/images/logo-silver.png" alt="K&H Decorators">
   <div style="margin-top:6px">Painting, decorating, plastering &amp; Venetian finishes &middot; Chichester &amp; West Sussex</div>
-  <div style="margin-top:12px"><a href="tel:+447908701460">07908 701460</a> &nbsp;|&nbsp; <a href="tel:+441243778091">01243 778091</a> &nbsp;|&nbsp; <a href="mailto:steve25hamblin@hotmail.com">steve25hamblin@hotmail.com</a> &nbsp;|&nbsp; <a href="/privacy-policy">Privacy</a></div>
+  <div style="margin-top:12px"><a href="tel:+447908701460">07908 701460</a> &nbsp;|&nbsp; <a href="tel:+441243778091">01243 778091</a> &nbsp;|&nbsp; <a href="mailto:steve25hamblin@hotmail.com">steve25hamblin@hotmail.com</a> &nbsp;|&nbsp; <a href="/privacy-policy">Privacy</a> &nbsp;|&nbsp; <a href="/terms">Terms</a></div>
   <div style="margin-top:18px;display:flex;gap:12px;justify-content:center">
     <a href="https://www.facebook.com/kandhdecs" target="_blank" rel="noopener" aria-label="K&H Decorators on Facebook" style="width:42px;height:42px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);background:rgba(255,255,255,.03)">
       <svg viewBox="0 0 24 24" width="20" height="20" fill="#cfd4db"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.7l-.4 2.9h-2.3v7A10 10 0 0 0 22 12z"/></svg>
@@ -636,6 +653,14 @@ FOOTER = """
 </footer>
 <a class="wa-float" href="https://wa.me/447908701460" target="_blank" rel="noopener" aria-label="WhatsApp K&H Decorators">""" + WA_SVG + """</a>
 <div class="lb" id="lb" onclick="this.classList.remove('open')"><span class="x">&times;</span><img id="lbimg" src="" alt=""></div>
+
+<div class="cc-bar" id="ccBar" role="region" aria-label="Cookie notice">
+  <p>We use cookies for essential site functionality (like remembering your chat session). See our <a href="/privacy-policy">Privacy Policy</a> for details.</p>
+  <div class="cc-actions">
+    <button class="cc-btn cc-reject" id="ccReject" type="button">Reject</button>
+    <button class="cc-btn cc-accept" id="ccAccept" type="button">Accept</button>
+  </div>
+</div>
 """
 
 WIDGET_INCLUDE = '<script src="/widget.js"></script>'
@@ -647,6 +672,29 @@ SCRIPTS = """
 document.querySelectorAll('.ba').forEach(function(ba){var r=ba.querySelector('input');function u(){ba.style.setProperty('--pos',r.value+'%');}r.addEventListener('input',u);u();});
 (function(){var lb=document.getElementById('lb'),img=document.getElementById('lbimg');if(!lb)return;document.querySelectorAll('.shot img').forEach(function(im){im.addEventListener('click',function(){img.src=im.src;lb.classList.add('open');});});})();
 (function(){var els=document.querySelectorAll('.reveal');if(!('IntersectionObserver'in window)){els.forEach(function(e){e.classList.add('in')});return;}var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.12});els.forEach(function(e){io.observe(e)});})();
+(function(){
+  var KEY = 'cookieConsent';
+  var bar = document.getElementById('ccBar');
+  if(!bar) return;
+  var stored = null;
+  try { stored = localStorage.getItem(KEY); } catch(e) {}
+  if(stored !== 'accepted' && stored !== 'rejected'){
+    bar.classList.add('cc-show');
+    requestAnimationFrame(function(){ bar.classList.add('cc-in'); });
+  }
+  function hide(){
+    bar.classList.remove('cc-in');
+    setTimeout(function(){ bar.classList.remove('cc-show'); }, 350);
+  }
+  document.getElementById('ccAccept').addEventListener('click', function(){
+    try { localStorage.setItem(KEY, 'accepted'); } catch(e) {}
+    hide();
+  });
+  document.getElementById('ccReject').addEventListener('click', function(){
+    try { localStorage.setItem(KEY, 'rejected'); } catch(e) {}
+    hide();
+  });
+})();
 </script>
 """
 
@@ -862,6 +910,24 @@ PRIVACY_PAGE = """
   </div>
 </div></section>""" + FOOTER + SCRIPTS + WIDGET_INCLUDE + "</body></html>"
 
+TERMS_PAGE = """
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Terms &amp; Conditions - K&H Decorators</title><meta name="viewport" content="width=device-width, initial-scale=1">""" + BASE_STYLE + """</head><body>""" + NAV + """
+<section class="band" style="padding-top:120px"><div class="wrap narrow">
+  <div class="head reveal"><div class="rule"></div><div class="eyebrow" style="margin-top:12px">Legal</div><h2 class="serif">Terms &amp; Conditions</h2><p class="sub">The terms that apply when you book a job with K&H Decorators.</p></div>
+  <div class="prose reveal">
+    <p>These terms apply to any job booked with K&amp;H Decorators (Steve Hamblin, &ldquo;we&rdquo;, &ldquo;us&rdquo;). By asking us to carry out work you agree to them.</p>
+    <h3>Estimates</h3><p>Estimates given by chat, phone, email or WhatsApp are free and based on what you've described or photos you've sent. The final price is confirmed once we've seen the job or have all the details, before any work starts.</p>
+    <h3>Booking &amp; access</h3><p>Please make sure someone is available at the property for the agreed time, with reasonable access to the work area.</p>
+    <h3>Cancellations</h3><p>We ask for as much notice as possible if a job needs to be moved or cancelled. Late cancellations, or access not being available on the day, may be subject to a reasonable charge.</p>
+    <h3>Workmanship &amp; guarantee</h3><p>Work is carried out to a professional standard, backed by Checkatrade's &pound;1,000 guarantee. If anything about the finished job isn't right, let us know within a reasonable time and we'll come back and put it right.</p>
+    <h3>Liability</h3><p>We take care to protect your home and belongings while working. Our liability is limited to putting right work that falls below a reasonable standard.</p>
+    <h3>Payment</h3><p>Payment is due on completion unless otherwise agreed beforehand.</p>
+    <h3>Website &amp; chat use</h3><p>This website and its chat assistant are here to help you get a free estimate quickly. Nothing on the site is a binding offer until Steve has confirmed an estimate and a booking with you directly.</p>
+    <h3>Governing law</h3><p>These terms are governed by the law of England &amp; Wales.</p>
+    <h3>Contact</h3><p>Questions about these terms? Email <a href="mailto:steve25hamblin@hotmail.com">steve25hamblin@hotmail.com</a> or call <a href="tel:+447908701460">07908 701460</a>.</p>
+  </div>
+</div></section>""" + FOOTER + SCRIPTS + WIDGET_INCLUDE + "</body></html>"
+
 WIDGET_JS = """
 (function(){
   var base = new URL(document.currentScript.src).origin;
@@ -903,7 +969,7 @@ def ensure_session():
 
 @app.route("/sitemap.xml")
 def sitemap():
-    pages = ["/", "/services", "/gallery", "/contact", "/privacy-policy"]
+    pages = ["/", "/services", "/gallery", "/contact", "/privacy-policy", "/terms"]
     base = request.host_url.rstrip("/")
     urls = "".join(f"<url><loc>{base}{p}</loc></url>" for p in pages)
     xml = f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>'
@@ -939,6 +1005,12 @@ def contact():
 def privacy():
     ensure_session()
     return render_template_string(PRIVACY_PAGE)
+
+@app.route("/terms")
+@app.route("/terms-and-conditions")
+def terms():
+    ensure_session()
+    return render_template_string(TERMS_PAGE)
 
 @app.route("/widget.js")
 def widget_js():
