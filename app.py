@@ -174,7 +174,7 @@ def summarise_lead(conversation):
     """Uses the model to extract a tidy, organised lead from the chat."""
     try:
         resp = client_chat(
-            model="llama-3.3-70b-versatile",
+            model="openai/gpt-oss-120b",
             messages=[
                 {"role": "system", "content": LEAD_SUMMARY_PROMPT},
                 {"role": "user", "content": _transcript(conversation)},
@@ -1078,7 +1078,7 @@ def chat_endpoint():
 
     try:
         response = client_chat(
-            model="llama-3.3-70b-versatile",
+            model="openai/gpt-oss-120b",
             messages=conversation,
             max_tokens=256,
             timeout=20,
