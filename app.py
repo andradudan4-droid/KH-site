@@ -617,6 +617,7 @@ BASE_STYLE = """
   .cc-btn:focus-visible{outline:2px solid var(--silver);outline-offset:2px}
   @media(max-width:640px){.cc-bar{left:10px;right:10px;bottom:10px;padding:14px}.cc-actions{width:100%;justify-content:flex-end}}
   @media(prefers-reduced-motion:reduce){.cc-bar{transition:none}}
+  body.cc-open .wa-float,body.cc-open #kh-chat-bubble{display:none!important}
 </style>
 """
 
@@ -680,10 +681,12 @@ document.querySelectorAll('.ba').forEach(function(ba){var r=ba.querySelector('in
   try { stored = localStorage.getItem(KEY); } catch(e) {}
   if(stored !== 'accepted' && stored !== 'rejected'){
     bar.classList.add('cc-show');
+    document.body.classList.add('cc-open');
     requestAnimationFrame(function(){ bar.classList.add('cc-in'); });
   }
   function hide(){
     bar.classList.remove('cc-in');
+    document.body.classList.remove('cc-open');
     setTimeout(function(){ bar.classList.remove('cc-show'); }, 350);
   }
   document.getElementById('ccAccept').addEventListener('click', function(){
@@ -932,6 +935,7 @@ WIDGET_JS = """
 (function(){
   var base = new URL(document.currentScript.src).origin;
   var bubble = document.createElement('button');
+  bubble.id = 'kh-chat-bubble';
   bubble.innerHTML = 'Chat';
   bubble.setAttribute('aria-label','Open quote assistant');
   bubble.style.cssText='position:fixed;right:22px;bottom:22px;z-index:999999;border:1px solid rgba(242,245,248,.28);border-radius:999px;background:linear-gradient(135deg,#050506,#444b55 58%,#f2f5f8);color:white;font-weight:900;padding:15px 18px;box-shadow:0 16px 38px rgba(0,0,0,.46),0 0 22px rgba(242,245,248,.18);cursor:pointer';
