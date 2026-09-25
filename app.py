@@ -3,6 +3,8 @@ import os
 import re
 import uuid
 import html
+import hmac
+import hashlib
 import base64
 import threading
 import time
@@ -10,9 +12,17 @@ import requests
 from groq import Groq
 
 app = Flask(__name__)
-app.secret_key = os.environ.get("SECRET_KEY", "dev-secret-key-change-this-later")
+_fallback_secret = hashlib.sha256(
+    (
+        os.environ.get("GROQ_API_KEY", "")
+        + os.environ.get("RESEND_API_KEY", "")
+        + "kh-decorators-chichester-v1"
+    ).encode("utf-8")
+).hexdigest()
+app.secret_key = os.environ.get("SECRET_KEY") or _fallback_secret
 app.config["SESSION_COOKIE_SAMESITE"] = "None"
 app.config["SESSION_COOKIE_SECURE"] = True
+app.config["SESSION_COOKIE_HTTPONLY"] = True
 # Photos are resized in the browser before upload, so payloads are small.
 # This is a safety cap to reject anything abnormally large.
 app.config["MAX_CONTENT_LENGTH"] = 12 * 1024 * 1024  # 12 MB
@@ -22,6 +32,50 @@ all_conversations = {}
 session_images = {}
 notified_sessions = set()
 chat_activity = {}
+ip_activity = {}
+pending_lead_timers = {}
+MAX_ACTIVE_SESSIONS = 400
+
+
+def _client_ip():
+    forwarded = request.headers.get("X-Forwarded-For", "")
+    if forwarded:
+        return forwarded.split(",")[0].strip()
+    return request.remote_addr or "unknown"
+
+
+def _ip_rate_limited(limit_per_min=30):
+    ip = _client_ip()
+    now = time.time()
+    recent = [t for t in ip_activity.get(ip, []) if now - t < 60]
+    if len(recent) >= limit_per_min:
+        ip_activity[ip] = recent
+        return True
+    recent.append(now)
+    ip_activity[ip] = recent
+    if len(ip_activity) > 1000:
+        cutoff = now - 60
+        for k in list(ip_activity.keys()):
+            if not [t for t in ip_activity[k] if t >= cutoff]:
+                ip_activity.pop(k, None)
+    return False
+
+
+def _prune_sessions():
+    while len(all_conversations) > MAX_ACTIVE_SESSIONS:
+        oldest = next(iter(all_conversations))
+        all_conversations.pop(oldest, None)
+        session_images.pop(oldest, None)
+        chat_activity.pop(oldest, None)
+
+
+@app.after_request
+def _set_security_headers(response):
+    response.headers.setdefault("X-Content-Type-Options", "nosniff")
+    response.headers.setdefault("X-Frame-Options", "SAMEORIGIN")
+    response.headers.setdefault("Referrer-Policy", "strict-origin-when-cross-origin")
+    return response
+
 
 
 def _decode_image_data_url(data_url):
@@ -471,20 +525,73 @@ include the internal tag [[READY]]. Do not show or mention the tag.
 
 
 
+SITE_URL = os.environ.get("SITE_URL", "https://kandhdecorators.org.uk").rstrip("/")
 KH_LOGO = "/static/images/logo.png"
 IMG = "https://www.kandhdecoratorschichester.co.uk/wp-content/uploads/"
 
+SCHEMA_JSON_LD = """<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HousePainter",
+  "@id": \"""" + SITE_URL + """/#business",
+  "name": "K&H Decorators",
+  "alternateName": "K&H Decorators Chichester",
+  "url": \"""" + SITE_URL + """\",
+  "logo": \"""" + SITE_URL + """/static/images/logo.png",
+  "image": \"""" + SITE_URL + """/static/images/hero.jpg",
+  "description": "Painting, decorating, plastering and Venetian polished plaster finishes across Chichester and West Sussex. Led by Steve Hamblin with 26 years experience. Rated 10/10 on Checkatrade from 225 verified reviews.",
+  "telephone": "+447908701460",
+  "email": "steve25hamblin@hotmail.com",
+  "priceRange": "££",
+  "foundingDate": "2010",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Mid Lavant, Chichester",
+    "addressRegion": "West Sussex",
+    "postalCode": "PO18",
+    "addressCountry": "GB"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 50.873173,
+    "longitude": -0.786647
+  },
+  "areaServed": [
+    {"@type": "City", "name": "Chichester"},
+    {"@type": "City", "name": "Bognor Regis"},
+    {"@type": "City", "name": "Arundel"},
+    {"@type": "City", "name": "Littlehampton"},
+    {"@type": "City", "name": "Selsey"},
+    {"@type": "City", "name": "Emsworth"},
+    {"@type": "City", "name": "Havant"},
+    {"@type": "City", "name": "Portsmouth"},
+    {"@type": "City", "name": "Petersfield"},
+    {"@type": "City", "name": "Midhurst"},
+    {"@type": "City", "name": "Petworth"},
+    {"@type": "City", "name": "Bosham"},
+    {"@type": "City", "name": "Pulborough"}
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "10",
+    "bestRating": "10",
+    "worstRating": "1",
+    "ratingCount": "225"
+  },
+  "sameAs": [
+    "https://www.facebook.com/kandhdecs"
+  ]
+}
+</script>"""
 
 BASE_STYLE = """
 <link rel="icon" type="image/png" href=\"""" + KH_LOGO + """\">
+<link rel="apple-touch-icon" href=\"""" + KH_LOGO + """\">
 <meta name="theme-color" content="#0a0a0c">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="K&H Decorators Chichester">
-<meta property="og:title" content="K&H Decorators - Painting & Decorating, Chichester">
-<meta property="og:description" content="Painting, decorating, plastering and Venetian finishes across Chichester & West Sussex. Rated 10/10 on Checkatrade.">
-<meta property="og:image" content="/static/images/hero.jpg">
+<meta name="robots" content="index, follow">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+""" + SCHEMA_JSON_LD + """
 <style>
   :root{
     --bg:#0a0a0c; --panel:#121217; --panel2:#17171d; --ink:#f3f4f6; --mut:#9aa1ab;
@@ -716,12 +823,36 @@ def _ba(before, after, title):
 def _shots(items):
     return "".join('<figure class="shot"><img src="/static/images/' + fn + '" alt="' + cap + '" loading="lazy"><figcaption>' + cap + '</figcaption></figure>' for fn, cap in items)
 
-HOME_PAGE = """
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>K&H Decorators - Painting &amp; Decorating in Chichester</title>
-<meta name="description" content="K&H Decorators: painting, decorating, plastering and Venetian finishes across Chichester and West Sussex. 10/10 on Checkatrade from 225 reviews. Free estimates.">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-""" + BASE_STYLE + """</head><body>""" + NAV + """
+def _page_head(title, description, path="/", extra=""):
+    url = SITE_URL + path
+    esc_title = html.escape(title)
+    esc_desc = html.escape(description)
+    return (
+        '<!DOCTYPE html><html lang="en-GB"><head><meta charset="utf-8">'
+        f'<title>{esc_title}</title>'
+        f'<meta name="description" content="{esc_desc}">'
+        f'<link rel="canonical" href="{url}">'
+        '<meta name="viewport" content="width=device-width, initial-scale=1">'
+        '<meta property="og:type" content="website">'
+        '<meta property="og:locale" content="en_GB">'
+        '<meta property="og:site_name" content="K&amp;H Decorators Chichester">'
+        f'<meta property="og:title" content="{esc_title}">'
+        f'<meta property="og:description" content="{esc_desc}">'
+        f'<meta property="og:url" content="{url}">'
+        f'<meta property="og:image" content="{SITE_URL}/static/images/hero.jpg">'
+        '<meta name="twitter:card" content="summary_large_image">'
+        f'<meta name="twitter:title" content="{esc_title}">'
+        f'<meta name="twitter:description" content="{esc_desc}">'
+        f'<meta name="twitter:image" content="{SITE_URL}/static/images/hero.jpg">'
+        + extra + BASE_STYLE + "</head><body>" + NAV
+    )
+
+HOME_PAGE = _page_head(
+    "K&H Decorators - Painting, Decorating & Venetian Plastering in Chichester",
+    "K&H Decorators: interior & exterior painting, decorating, plastering and Venetian finishes across Chichester and West Sussex. Rated 10/10 on Checkatrade from 225 reviews. Free estimates.",
+    "/",
+    extra='<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">',
+) + """
 <header class="hero"><div class="hero-bg"></div><div class="wrap"><div class="hero-inner">
   <div class="eyebrow">Chichester &amp; West Sussex</div>
   <h1 class="serif silver">A finish worth living with.</h1>
@@ -836,6 +967,7 @@ HOME_PAGE = """
 <style>
   .cover-wrap{max-width:920px;margin:34px auto 0}
   .cover-map{height:440px;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.55);background:#0c0c10}
+  .cover-map .leaflet-tile-pane{filter:invert(100%) hue-rotate(180deg) brightness(88%) contrast(92%) grayscale(75%)}
   .cover-map .leaflet-control-attribution{background:rgba(10,10,12,.7);color:var(--silver-d)}
   .cover-map .leaflet-control-attribution a{color:var(--silver)}
   .cover-map .leaflet-bar a{background:#15151b;color:var(--silver);border-bottom-color:var(--line)}
@@ -850,8 +982,8 @@ HOME_PAGE = """
   if(typeof L==='undefined'){return;}
   var center=[50.873173,-0.786647];
   var map=L.map('coverMap',{scrollWheelZoom:false,attributionControl:true}).setView(center,9);
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{
-    attribution:'&copy; OpenStreetMap &copy; CARTO',maxZoom:19,subdomains:'abcd'
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{
+    attribution:'&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>',maxZoom:19
   }).addTo(map);
   var radius=20*1609.344;
   var circle=L.circle(center,{radius:radius,color:'#cfd4db',weight:1.5,opacity:.9,fillColor:'#cfd4db',fillOpacity:.08}).addTo(map);
@@ -864,8 +996,11 @@ HOME_PAGE = """
 </section>
 """ + FOOTER + SCRIPTS + WIDGET_INCLUDE + "</body></html>"
 
-GALLERY_PAGE = """
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Gallery - K&H Decorators</title><meta name="viewport" content="width=device-width, initial-scale=1">""" + BASE_STYLE + """</head><body>""" + NAV + """
+GALLERY_PAGE = _page_head(
+    "Gallery | Painting, Decorating & Venetian Plastering - K&H Decorators Chichester",
+    "Browse recent painting, decorating, plastering, exterior restoration and Venetian plaster projects completed by K&H Decorators across Chichester and West Sussex.",
+    "/gallery",
+) + """
 <section class="band" style="padding-top:120px"><div class="wrap">
   <div class="head reveal"><div class="rule"></div><div class="eyebrow" style="margin-top:12px">Our work</div><h2 class="serif">Gallery.</h2><p class="sub">A selection of recent painting, decorating, plastering and Venetian work. Tap any photo to enlarge.</p></div>
   <div class="gallery reveal">""" + _shots([
@@ -876,8 +1011,11 @@ GALLERY_PAGE = """
   ]) + """</div>
 </div></section>""" + FOOTER + SCRIPTS + WIDGET_INCLUDE + "</body></html>"
 
-SERVICES_PAGE = """
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Services - K&H Decorators</title><meta name="viewport" content="width=device-width, initial-scale=1">""" + BASE_STYLE + """</head><body>""" + NAV + """
+SERVICES_PAGE = _page_head(
+    "Services | Painting, Plastering & Venetian Finishes - K&H Decorators Chichester",
+    "Interior and exterior painting, Venetian & polished plastering, skimming, wallpapering, coving and listed building specialists in Chichester & West Sussex.",
+    "/services",
+) + """
 <section class="band" style="padding-top:120px"><div class="wrap"><div class="head reveal"><div class="rule"></div><div class="eyebrow" style="margin-top:12px">What we do</div><h2 class="serif">Services.</h2><p class="sub">Domestic and commercial work across Chichester and the wider West Sussex area. All work guaranteed, free estimates.</p></div><div class="cards">
 <div class="card reveal"><h3>Painting &amp; decorating</h3><p>Interior and exterior painting, walls, ceilings, doors, frames and skirting.</p></div>
 <div class="card reveal"><h3>Venetian &amp; polished plaster</h3><p>Hand-applied decorative finishes for feature walls, fireplaces and media walls.</p></div>
@@ -890,8 +1028,11 @@ SERVICES_PAGE = """
 <div class="card reveal"><h3>Listed buildings &amp; heritage</h3><p>Specialist knowledge for listed and period properties.</p></div>
 </div></div></section>""" + FOOTER + SCRIPTS + WIDGET_INCLUDE + "</body></html>"
 
-CONTACT_PAGE = """
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Contact - K&H Decorators</title><meta name="viewport" content="width=device-width, initial-scale=1">""" + BASE_STYLE + """</head><body>""" + NAV + """
+CONTACT_PAGE = _page_head(
+    "Contact K&H Decorators Chichester | Free Painting & Decorating Estimate",
+    "Get a free, no-obligation painting, decorating or plastering estimate in Chichester and West Sussex. Call Steve on 07908 701460 or send job photos via chat.",
+    "/contact",
+) + """
 <section class="band" style="padding-top:120px"><div class="wrap narrow"><div class="head reveal"><div class="rule"></div><div class="eyebrow" style="margin-top:12px">Get in touch</div><h2 class="serif">Free estimate.</h2><p class="sub">Use the chat bubble for the fastest quote, or contact Steve directly.</p></div><div class="contact-box reveal">
 <p><strong>Mobile:</strong> <a href="tel:+447908701460">07908 701460</a></p>
 <p><strong>Landline:</strong> <a href="tel:+441243778091">01243 778091</a></p>
@@ -900,8 +1041,11 @@ CONTACT_PAGE = """
 <p><strong>Area:</strong> Chichester &amp; across West Sussex.</p>
 </div></div></section>""" + FOOTER + SCRIPTS + WIDGET_INCLUDE + "</body></html>"
 
-PRIVACY_PAGE = """
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Privacy Policy - K&H Decorators</title><meta name="viewport" content="width=device-width, initial-scale=1">""" + BASE_STYLE + """</head><body>""" + NAV + """
+PRIVACY_PAGE = _page_head(
+    "Privacy Policy - K&H Decorators Chichester",
+    "How K&H Decorators collects, uses and protects your personal information when you request an estimate.",
+    "/privacy-policy",
+) + """
 <section class="band" style="padding-top:120px"><div class="wrap narrow">
   <div class="head reveal"><div class="rule"></div><div class="eyebrow" style="margin-top:12px">Legal</div><h2 class="serif">Privacy Policy</h2><p class="sub">How K&H Decorators handles the information you share through this website.</p></div>
   <div class="prose reveal">
@@ -915,8 +1059,11 @@ PRIVACY_PAGE = """
   </div>
 </div></section>""" + FOOTER + SCRIPTS + WIDGET_INCLUDE + "</body></html>"
 
-TERMS_PAGE = """
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Terms &amp; Conditions - K&H Decorators</title><meta name="viewport" content="width=device-width, initial-scale=1">""" + BASE_STYLE + """</head><body>""" + NAV + """
+TERMS_PAGE = _page_head(
+    "Terms & Conditions - K&H Decorators Chichester",
+    "Terms and conditions for estimates, bookings and decorating work carried out by K&H Decorators across Chichester and West Sussex.",
+    "/terms",
+) + """
 <section class="band" style="padding-top:120px"><div class="wrap narrow">
   <div class="head reveal"><div class="rule"></div><div class="eyebrow" style="margin-top:12px">Legal</div><h2 class="serif">Terms &amp; Conditions</h2><p class="sub">The terms that apply when you book a job with K&H Decorators.</p></div>
   <div class="prose reveal">
@@ -973,17 +1120,51 @@ def ensure_session():
     if "session_id" not in session:
         session["session_id"] = str(uuid.uuid4())
 
+def _base_url():
+    proto = request.headers.get("X-Forwarded-Proto", "")
+    host = request.headers.get("Host", "")
+    if host:
+        scheme = "https" if (proto == "https" or "localhost" not in host and "127.0.0.1" not in host) else "http"
+        return f"{scheme}://{host}"
+    return SITE_URL
+
+
+def _schedule_lead_fallback(session_id, delay=90.0):
+    """If a visitor leaves contact info early in the chat and then closes the tab
+    before the assistant outputs [[READY]], send the lead after `delay` seconds
+    of inactivity so a lead is never lost."""
+    old_timer = pending_lead_timers.pop(session_id, None)
+    if old_timer is not None:
+        old_timer.cancel()
+
+    def _fire():
+        pending_lead_timers.pop(session_id, None)
+        if session_id in notified_sessions:
+            return
+        conv = all_conversations.get(session_id)
+        if not conv or not has_contact_info(conv):
+            return
+        print(f"[EMAIL] Inactivity fallback lead trigger fired for session {session_id}")
+        notified_sessions.add(session_id)
+        send_lead_email(list(conv), list(session_images.get(session_id, [])))
+
+    t = threading.Timer(delay, _fire)
+    t.daemon = True
+    pending_lead_timers[session_id] = t
+    t.start()
+
+
 @app.route("/sitemap.xml")
 def sitemap():
     pages = ["/", "/services", "/gallery", "/contact", "/privacy-policy", "/terms"]
-    base = request.host_url.rstrip("/")
+    base = _base_url().rstrip("/")
     urls = "".join(f"<url><loc>{base}{p}</loc></url>" for p in pages)
     xml = f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>'
     return Response(xml, mimetype="application/xml")
 
 @app.route("/robots.txt")
 def robots():
-    base = request.host_url.rstrip("/")
+    base = _base_url().rstrip("/")
     return Response(f"User-agent: *\nAllow: /\nSitemap: {base}/sitemap.xml", mimetype="text/plain")
 
 @app.route("/")
@@ -1029,6 +1210,10 @@ def widget_frame():
 
 @app.route("/test-email")
 def test_email():
+    admin_token = os.environ.get("ADMIN_TOKEN", "").strip()
+    provided = (request.args.get("token") or "").strip()
+    if not admin_token or not hmac.compare_digest(admin_token, provided):
+        return Response("Not found", status=404, mimetype="text/plain")
     status, body = _post_resend(
         "K&H test email",
         "This is a test from your website. If you can read this, email sending works.",
@@ -1048,12 +1233,16 @@ def test_email():
 
 @app.route("/chat", methods=["POST"])
 def chat_endpoint():
+    if _ip_rate_limited(limit_per_min=30):
+        return jsonify({"reply": "You're sending messages very quickly - give it a few seconds and try again."})
+
     session_id = session.get("session_id")
     if not session_id:
         session_id = str(uuid.uuid4())
         session["session_id"] = session_id
 
     if session_id not in all_conversations:
+        _prune_sessions()
         all_conversations[session_id] = [{"role": "system", "content": SYSTEM_PROMPT}]
 
     conversation = all_conversations[session_id]
@@ -1109,32 +1298,39 @@ def chat_endpoint():
 
     conversation.append({"role": "assistant", "content": ai_reply})
 
-    # Only email once the assistant has genuinely finished gathering EVERYTHING.
-    # It signals this with the internal [[READY]] tag, which it only adds after
-    # working through the whole checklist (job, scope, budget, area, contact...).
-    # We deliberately do NOT send on wrap-up phrases or a low turn count, because
-    # that was firing before budget/postcode were collected. The fallbacks below
-    # are conservative - only if the visitor clearly signs off, or a very long
-    # chat - so a lead is never lost, but normal chats wait for the full set of
-    # questions. Sent at most once per visitor.
+    # Only email immediately once the assistant has finished gathering details
+    # ([[READY]]), or the visitor signs off, or after 5+ customer turns.
+    # If they provided contact info earlier in the chat, schedule a 90s
+    # inactivity timer so we still capture the lead if they close the tab early.
     if session_id not in notified_sessions and has_contact_info(conversation):
-        print(f"[EMAIL] Lead trigger fired for session {session_id} (ready={lead_ready})")
-        notified_sessions.add(session_id)
-        conversation_copy = list(conversation)
-        images_copy = list(session_images.get(session_id, []))
-        send_lead_email(conversation_copy, images_copy)
+        user_turns = sum(1 for m in conversation if m.get("role") == "user")
+        if lead_ready or _looks_like_closing(user_message) or user_turns >= 5:
+            old_timer = pending_lead_timers.pop(session_id, None)
+            if old_timer is not None:
+                old_timer.cancel()
+            print(f"[EMAIL] Lead trigger fired for session {session_id} (ready={lead_ready}, turns={user_turns})")
+            notified_sessions.add(session_id)
+            conversation_copy = list(conversation)
+            images_copy = list(session_images.get(session_id, []))
+            send_lead_email(conversation_copy, images_copy)
+        else:
+            _schedule_lead_fallback(session_id, delay=90.0)
 
     return jsonify({"reply": ai_reply})
 
 
 @app.route("/upload", methods=["POST"])
 def upload_endpoint():
+    if _ip_rate_limited(limit_per_min=20):
+        return jsonify({"reply": "Please wait a moment before uploading another photo."}), 429
+
     session_id = session.get("session_id")
     if not session_id:
         session_id = str(uuid.uuid4())
         session["session_id"] = session_id
 
     if session_id not in all_conversations:
+        _prune_sessions()
         all_conversations[session_id] = [{"role": "system", "content": SYSTEM_PROMPT}]
     conversation = all_conversations[session_id]
 
@@ -1166,6 +1362,8 @@ def upload_endpoint():
     # so it doesn't get lost.
     if session_id in notified_sessions:
         send_photo_followup(list(conversation), [image])
+    elif has_contact_info(conversation):
+        _schedule_lead_fallback(session_id, delay=90.0)
 
     return jsonify({"reply": reply})
 
