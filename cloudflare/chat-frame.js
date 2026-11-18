@@ -76,7 +76,7 @@ async function sendMessage(){
   }catch(e){
     untyping();
     state.history.pop();save();
-    addMessage((e.data&&e.data.reply)||"Sorry, that did not send. Please try again.",'bot');
+    addMessage((e.data&&e.data.reply)||(CFG.sendError||"Sorry, that did not send. Please try again."),'bot');
   }
   busy=false;
 }
@@ -85,6 +85,7 @@ function resizeImage(file){return new Promise(function(resolve,reject){var reade
 
 async function handleFiles(input){
   var files=Array.from(input.files||[]);input.value='';
+  var ab=document.getElementById('attachBtn');if(ab)ab.classList.add('busy');
   for(const file of files){
     if(!file.type.startsWith('image/')){addMessage('Please choose a photo file.','bot');continue}
     if(state.photos.length>=MAX_PHOTOS){addMessage("Thanks - that's plenty of photos for now. Leave your name and number and we'll take a look and get you a quote.",'bot');continue}
@@ -96,8 +97,9 @@ async function handleFiles(input){
       addMessage(PHOTO_REPLY,'bot');
       if(state.sent){state.sentPhotos=state.photos.length;save();sendFollowUp(dataUrl);}
       else if(state.hasContact){clearTimeout(timer);timer=setTimeout(sendLead,FALLBACK_MS);}
-    }catch(e){addMessage('Sorry, I could not upload that photo. Try another JPG or PNG.','bot')}
+    }catch(e){addMessage((CFG.photoError||'Sorry, I could not upload that photo. Try another JPG or PNG.'),'bot')}
   }
+  if(ab)ab.classList.remove('busy');
 }
 
 // If they leave after giving a number but before the email went, send it now.
@@ -110,6 +112,11 @@ window.addEventListener('pagehide', function () {
       body: JSON.stringify({ history: state.history, images: [], missedPhotos: state.photos.length, website: hp() }) });
   } catch (e) {}
 });
+
+(function () {
+  var ui = document.getElementById('userInput');
+  if (ui) ui.addEventListener('focus', function () { setTimeout(function () { var c = document.getElementById('chatbox'); c.scrollTop = c.scrollHeight; }, 250); });
+})();
 
 (function restore() {
   var saved = null;

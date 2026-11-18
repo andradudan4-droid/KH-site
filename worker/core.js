@@ -189,7 +189,8 @@ async function chat(request, env, site) {
 
   let reply;
   try {
-    reply = await groq(env, { messages: [{ role: "system", content: site.SYSTEM_PROMPT }, ...conv], max_tokens: site.MAX_TOKENS || 256 });
+    reply = await groq(env, { messages: [{ role: "system", content: site.SYSTEM_PROMPT }, ...conv], max_tokens: site.MAX_TOKENS || 256,
+      ...(site.TEMPERATURE !== undefined ? { temperature: site.TEMPERATURE } : {}) });
   } catch (e) {
     console.log("Chat completion failed:", e.message);
     if (e.status === 429) return json({ error: "busy", retryAfter: Math.min(Math.max(e.retryAfter, 3), 20) }, 429);
@@ -203,7 +204,7 @@ async function chat(request, env, site) {
   // As in the Flask apps: send at once when finished, otherwise the browser sends after 90s quiet.
   // full.length + 1 counts the system prompt, as the Flask list did.
   const finished = ready || CLOSING_RE.test(conv.at(-1).content) ||
-    (site.sendNowAfter ? site.sendNowAfter(full) : full.length + 1 >= 24);
+    (site.sendNowAfter ? site.sendNowAfter(full, conv) : full.length + 1 >= 24);
   const lead = !contact ? null : finished ? "now" : "later";
   return json({ reply, lead });
 }

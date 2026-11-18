@@ -5,6 +5,7 @@ Run from the repo root after changing any page in app.py:
 Settings for this site are in cloudflare/site.json. Output goes to public/.
 """
 import json
+import re
 import pathlib
 import shutil
 import subprocess
@@ -26,6 +27,13 @@ def swap_chat_script(html):
     return html[:start] + boot + html[end:]
 
 
+def add_shim(html):
+    """Load chat-shim.js first so the page's own chat code keeps working unchanged."""
+    boot = f"<script>window.CHAT={json.dumps(CFG['chat'])};</script><script src=\"/chat-shim.js?v=1\"></script>"
+    m = re.search(r"<head[^>]*>", html)
+    return html[:m.end()] + boot + html[m.end():]
+
+
 def main():
     if OUT.exists():
         shutil.rmtree(OUT)
@@ -38,6 +46,8 @@ def main():
         html = res.get_data(as_text=True)
         if name in CFG.get("chat_pages", []):
             html = swap_chat_script(html)
+        if name in CFG.get("shim_pages", []):
+            html = add_shim(html)
         (OUT / name).write_text(html)
 
     for path, name in CFG.get("files", {}).items():
