@@ -8,11 +8,10 @@
     "run_worker_first": ["/api/*"],
     "html_handling": "drop-trailing-slash"
   },
-  // TESTING: enquiries go to Andra, and DRY_RUN "1" means no email is sent at all.
-  // Before going live: NOTIFY_TO -> steve25hamblin@hotmail.com (check Render) and DRY_RUN -> "0".
+  // LIVE: enquiries go to Steve. Needs Steve's own Resend key (onboarding@resend.dev only delivers to that account's owner).
   "vars": {
-    "NOTIFY_TO": "andradudan4@gmail.com",
-    "RESEND_FROM": "K&H Decorators Website <leads@frontdesk.org.uk>",
+    "NOTIFY_TO": "steve25hamblin@hotmail.com",
+    "RESEND_FROM": "K&H Decorators <onboarding@resend.dev>",
     "DRY_RUN": "0"
   },
   "ratelimits": [
