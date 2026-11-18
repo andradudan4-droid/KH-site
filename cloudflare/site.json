@@ -1,0 +1,24 @@
+{
+  "base_url": "https://kandhdecorators.org.uk",
+  "pages": {
+    "/": "index.html",
+    "/services": "services.html",
+    "/gallery": "gallery.html",
+    "/contact": "contact.html",
+    "/privacy-policy": "privacy-policy.html",
+    "/terms": "terms.html",
+    "/widget-frame": "widget-frame.html"
+  },
+  "files": {
+    "/widget.js": "widget.js",
+    "/sitemap.xml": "sitemap.xml",
+    "/robots.txt": "robots.txt"
+  },
+  "chat_pages": [
+    "widget-frame.html"
+  ],
+  "chat": {
+    "greeting": "Hi, I can help get a free quote for plastering, painting or decorating. What needs doing?",
+    "progress": true
+  }
+}
