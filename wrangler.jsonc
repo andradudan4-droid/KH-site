@@ -1,6 +1,10 @@
 {
   "name": "kh-site",
   "main": "worker/index.js",
+  "routes": [
+    { "pattern": "kandhdecorators.org.uk", "custom_domain": true },
+    { "pattern": "www.kandhdecorators.org.uk", "custom_domain": true }
+  ],
   "compatibility_date": "2026-01-01",
   "assets": {
     "directory": "./public",
