@@ -240,6 +240,11 @@ export function makeWorker(site) {
   return {
     async fetch(request, env) {
       const url = new URL(request.url);
+      // One address only: send www.<domain> to <domain>, as the Render version did.
+      if (url.hostname.startsWith("www.")) {
+        url.hostname = url.hostname.slice(4);
+        return Response.redirect(url.toString(), 301);
+      }
       const extra = site.routes?.[url.pathname];
       if (url.pathname.startsWith("/api/") || extra) {
         if (request.method !== "POST") return extra ? env.ASSETS.fetch(request) : json({ error: "method" }, 405);
