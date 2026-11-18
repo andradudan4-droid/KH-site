@@ -157,7 +157,8 @@ export async function summary(env, site, conv) {
   try {
     text = await groq(env, {
       messages: [{ role: "system", content: site.LEAD_SUMMARY_PROMPT }, { role: "user", content: transcript(conv) }],
-      max_tokens: 250, temperature: 0.2,
+      // gpt-oss thinks before it writes; 250 tokens cut the summary off.
+      max_tokens: 1200, temperature: 0.2, reasoning_effort: "low",
     });
   } catch (e) { console.log("Lead summary failed:", e.message); }
   const out = {};
