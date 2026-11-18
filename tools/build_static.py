@@ -4,6 +4,7 @@ Run from the repo root after changing any page in app.py:
     python3 tools/build_static.py
 Settings for this site are in cloudflare/site.json. Output goes to public/.
 """
+import html
 import json
 import re
 import pathlib
@@ -34,6 +35,43 @@ def add_shim(html):
     return html[:m.end()] + boot + html[m.end():]
 
 
+def extra_pages():
+    """Service/area pages built from an existing page so they share its design.
+
+    cloudflare/seo_pages.json: {"site", "template", "start", "end", "pages": [{path,title,desc,body}],
+    "links": {"file", "before", "html"}}. The part of the template between `start` and `end`
+    is replaced by each page's body; title, description, canonical and og tags are set.
+    """
+    f = ROOT / "cloudflare" / "seo_pages.json"
+    if not f.exists():
+        return
+    cfg = json.loads(f.read_text())
+    tpl = (OUT / cfg["template"]).read_text()
+    a = tpl.index(cfg["start"]) + len(cfg["start"])
+    b = tpl.index(cfg["end"], a)
+    head, tail = tpl[:a], tpl[b:]
+    sm = (OUT / "sitemap.xml").read_text()
+    for pg in cfg["pages"]:
+        url = cfg["site"] + pg["path"]
+        t, d = html.escape(pg["title"]), html.escape(pg["desc"])
+        h = re.sub(r"<title>.*?</title>", f"<title>{t}</title>", head, count=1, flags=re.S)
+        h = re.sub(r'<meta name="description" content="[^"]*"\s*/?>', "", h)
+        h = re.sub(r'<link rel="canonical" href="[^"]*"\s*/?>', "", h)
+        h = re.sub(r'<meta property="og:(title|description|url)" content="[^"]*"\s*/?>', "", h)
+        h = h.replace(f"<title>{t}</title>", f'<title>{t}</title><meta name="description" content="{d}">'
+                      f'<link rel="canonical" href="{url}"><meta property="og:title" content="{t}">'
+                      f'<meta property="og:description" content="{d}"><meta property="og:url" content="{url}">', 1)
+        (OUT / (pg["path"].strip("/") + ".html")).write_text(h + pg["body"] + tail)
+        if url not in sm:
+            sm = sm.replace("</urlset>", f"<url><loc>{url}</loc></url></urlset>")
+    (OUT / "sitemap.xml").write_text(sm)
+    if cfg.get("links"):
+        lf = OUT / cfg["links"]["file"]
+        x = lf.read_text()
+        i = x.index(cfg["links"]["before"])
+        lf.write_text(x[:i] + cfg["links"]["html"] + x[i:])
+
+
 def main():
     if OUT.exists():
         shutil.rmtree(OUT)
@@ -61,8 +99,10 @@ def main():
         dest.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy(ROOT / rel, dest)
 
+    extra_pages()
+
     for f in (ROOT / "cloudflare").iterdir():
-        if f.name != "site.json":
+        if f.name not in ("site.json", "seo_pages.json"):
             shutil.copy(f, OUT / f.name)
     print("built", len(list(OUT.rglob("*"))), "files into public/")
 
