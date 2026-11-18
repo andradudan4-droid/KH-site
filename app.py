@@ -848,7 +848,7 @@ def _page_head(title, description, path="/", extra=""):
     )
 
 HOME_PAGE = _page_head(
-    "K&H Decorators - Painting, Decorating & Venetian Plastering in Chichester",
+    "Painter & Decorator in Chichester | K&H Decorators",
     "K&H Decorators: interior & exterior painting, decorating, plastering and Venetian finishes across Chichester and West Sussex. Rated 10/10 on Checkatrade from 225 reviews. Free estimates.",
     "/",
     extra='<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">',
@@ -997,7 +997,7 @@ HOME_PAGE = _page_head(
 """ + FOOTER + SCRIPTS + WIDGET_INCLUDE + "</body></html>"
 
 GALLERY_PAGE = _page_head(
-    "Gallery | Painting, Decorating & Venetian Plastering - K&H Decorators Chichester",
+    "Painting & Plastering Gallery | K&H Decorators",
     "Browse recent painting, decorating, plastering, exterior restoration and Venetian plaster projects completed by K&H Decorators across Chichester and West Sussex.",
     "/gallery",
 ) + """
@@ -1012,7 +1012,7 @@ GALLERY_PAGE = _page_head(
 </div></section>""" + FOOTER + SCRIPTS + WIDGET_INCLUDE + "</body></html>"
 
 SERVICES_PAGE = _page_head(
-    "Services | Painting, Plastering & Venetian Finishes - K&H Decorators Chichester",
+    "Decorating Services in Chichester | K&H Decorators",
     "Interior and exterior painting, Venetian & polished plastering, skimming, wallpapering, coving and listed building specialists in Chichester & West Sussex.",
     "/services",
 ) + """
@@ -1029,7 +1029,7 @@ SERVICES_PAGE = _page_head(
 </div></div></section>""" + FOOTER + SCRIPTS + WIDGET_INCLUDE + "</body></html>"
 
 CONTACT_PAGE = _page_head(
-    "Contact K&H Decorators Chichester | Free Painting & Decorating Estimate",
+    "Free Decorating Estimate in Chichester | K&H Decorators",
     "Get a free, no-obligation painting, decorating or plastering estimate in Chichester and West Sussex. Call Steve on 07908 701460 or send job photos via chat.",
     "/contact",
 ) + """
