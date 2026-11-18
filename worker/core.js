@@ -168,7 +168,9 @@ export async function summary(env, site, conv) {
   }
   const pick = (...keys) => {
     for (const k of keys) {
-      const v = out[k];
+      // Exact label first, else one that starts with it, e.g. "approx budget (in gbp £ ...)".
+      const label = k in out ? k : Object.keys(out).find((l) => l.startsWith(k + " ("));
+      const v = label && out[label];
       if (v && !["not specified", "not provided", "n/a", "none", "-"].includes(v.toLowerCase())) return v;
     }
     return null;
